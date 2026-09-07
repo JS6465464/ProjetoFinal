@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jogo das Diferenças</title>
+
+    <link rel="stylesheet" href="jogo.css">
+</head>
+
+<body>
+
+    <div class="jogo">
+
+        <!-- ZONA DAS IMAGENS -->
+
+        <div class="zona-imagens">
+
+            <img
+                id="imagem-jogo"
+                src=""
+                alt="Jogo das diferenças"
+            >
+
+            <img
+                id="tampa"
+                src="recursos/tampa.png"
+                alt="Observa e escolhe a resposta"
+            >
+
+        </div>
+
+
+        <!-- ZONA LATERAL -->
+
+        <div class="zona-lateral">
+
+            <h1>
+                Jogo das Diferenças
+            </h1>
+
+
+            <div class="pontuacao">
+
+                <p>
+                    Pontuação
+                </p>
+
+                <p id="valor-pontuacao">
+                    0 / 0
+                </p>
+
+            </div>
+
+
+            <div
+                id="respostas"
+                class="respostas"
+            >
+
+                <button
+                    id="resposta1"
+                    class="resposta"
+                ></button>
+
+                <button
+                    id="resposta2"
+                    class="resposta"
+                ></button>
+
+                <button
+                    id="resposta3"
+                    class="resposta"
+                ></button>
+
+                <button
+                    id="resposta4"
+                    class="resposta"
+                ></button>
+
+            </div>
+
+
+            <button
+                id="seguinte"
+                class="seguinte"
+            >
+                Seguinte
+            </button>
+
+
+            <button
+                id="home"
+                class="home"
+            >
+                Home
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="jogo.js"></script>
+
+</body>
+
+</html>
