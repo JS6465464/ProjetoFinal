@@ -1,36 +1,350 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MiniGenio</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="estilo.css">
+    <title>MiniGénio</title>
+
+    <link
+        rel="stylesheet"
+        href="estilo.css"
+    >
 </head>
 
 <body>
 
-    <h1>MiniGenio</h1>
+    <main class="aplicacao">
 
-    <p>Escolhe um jogo:</p>
+        <!-- ==================================================
+             TOPO
+        =================================================== -->
 
-    <div class="jogos">
+        <header class="topo">
 
-        <a href="jogos/diferencas/index.html" class="card">
+            <!-- Título principal -->
+            <div class="titulo-principal">
 
-            <img
-                src="jogos/diferencas/card.png"
-                alt="Jogo das Diferenças"
+                <img
+                    src="recursos/bem_vindo.png"
+                    alt="Bem-vindo ao MiniGénio"
+                >
+
+            </div>
+
+
+            <!-- Área do utilizador -->
+            <div class="area-utilizador">
+
+                <div class="perfil">
+
+                    <!-- Avatar -->
+                    <button
+                        id="botaoAvatar"
+                        class="botao-avatar"
+                        type="button"
+                        aria-label="Escolher avatar"
+                    >
+                        <span id="avatarPrincipal">🙂</span>
+                    </button>
+
+
+                    <!-- Nome -->
+                    <div class="dados-utilizador">
+
+                        <span class="ola">
+                            Olá,
+                        </span>
+
+                        <span
+                            id="nomeUtilizador"
+                            class="nome-utilizador"
+                        >
+                            Explorador!
+                        </span>
+
+                    </div>
+
+
+                    <!-- Configurações -->
+                    <button
+                        id="botaoConfiguracoes"
+                        class="botao-configuracoes"
+                        type="button"
+                        aria-label="Configurações"
+                    >
+                        ⚙
+                    </button>
+
+                </div>
+
+
+                <!-- ==================================================
+                     POPUP AVATAR
+                =================================================== -->
+
+                <div
+                    id="popupAvatar"
+                    class="popup popup-avatar"
+                >
+
+                    <div class="popup-cabecalho">
+
+                        <h2>
+                            Escolhe o teu Avatar
+                        </h2>
+
+                        <button
+                            id="fecharAvatar"
+                            class="botao-fechar"
+                            type="button"
+                            aria-label="Fechar"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <div class="lista-avatares">
+
+                        <button
+                            class="opcao-avatar"
+                            type="button"
+                            data-avatar="1"
+                        ></button>
+
+                        <button
+                            class="opcao-avatar"
+                            type="button"
+                            data-avatar="2"
+                        ></button>
+
+                        <button
+                            class="opcao-avatar"
+                            type="button"
+                            data-avatar="3"
+                        ></button>
+
+                        <button
+                            class="opcao-avatar"
+                            type="button"
+                            data-avatar="4"
+                        ></button>
+
+                        <button
+                            class="opcao-avatar"
+                            type="button"
+                            data-avatar="5"
+                        ></button>
+
+                        <button
+                            class="opcao-avatar"
+                            type="button"
+                            data-avatar="6"
+                        ></button>
+
+                    </div>
+
+
+                    <button
+                        id="guardarAvatar"
+                        class="botao-guardar"
+                        type="button"
+                    >
+                        Guardar Avatar
+                    </button>
+
+                </div>
+
+
+                <!-- ==================================================
+                     POPUP CONFIGURAÇÕES / NOME
+                =================================================== -->
+
+                <div
+                    id="popupConfiguracoes"
+                    class="popup popup-configuracoes"
+                >
+
+                    <div class="popup-cabecalho">
+
+                        <h2>
+                            Escolhe o teu nome
+                        </h2>
+
+                        <button
+                            id="fecharConfiguracoes"
+                            class="botao-fechar"
+                            type="button"
+                            aria-label="Fechar"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <div class="lista-nomes">
+
+                        <button
+                            class="opcao-nome"
+                            type="button"
+                            data-nome="Maria"
+                        >
+                            Maria
+                        </button>
+
+                        <button
+                            class="opcao-nome"
+                            type="button"
+                            data-nome="Alice"
+                        >
+                            Alice
+                        </button>
+
+                        <button
+                            class="opcao-nome"
+                            type="button"
+                            data-nome="Leonor"
+                        >
+                            Leonor
+                        </button>
+
+                        <button
+                            class="opcao-nome"
+                            type="button"
+                            data-nome="Matilde"
+                        >
+                            Matilde
+                        </button>
+
+                        <button
+                            class="opcao-nome"
+                            type="button"
+                            data-nome="Joana"
+                        >
+                            Joana
+                        </button>
+
+                        <button
+                            class="opcao-nome"
+                            type="button"
+                            data-nome="Tomás"
+                        >
+                            Tomás
+                        </button>
+
+                        <button
+                            class="opcao-nome"
+                            type="button"
+                            data-nome="João"
+                        >
+                            João
+                        </button>
+
+                        <button
+                            class="opcao-nome"
+                            type="button"
+                            data-nome="Afonso"
+                        >
+                            Afonso
+                        </button>
+
+                        <button
+                            class="opcao-nome"
+                            type="button"
+                            data-nome="Duarte"
+                        >
+                            Duarte
+                        </button>
+
+                        <button
+                            class="opcao-nome"
+                            type="button"
+                            data-nome="Miguel"
+                        >
+                            Miguel
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        id="guardarNome"
+                        class="botao-guardar"
+                        type="button"
+                    >
+                        Guardar Nome
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==================================================
+             CARDS DOS JOGOS
+        =================================================== -->
+
+        <section class="jogos">
+
+            <!-- Jogo das Diferenças -->
+            <a
+                href="jogos/diferencas/index.html"
+                class="card-jogo"
+                aria-label="Abrir Jogo das Diferenças"
             >
 
-            <h2>Jogo das Diferenças</h2>
+                <img
+                    src="recursos/jogo_diferencas.png"
+                    alt="Jogo das Diferenças"
+                >
 
-        </a>
+            </a>
 
-    </div>
+
+            <!-- Jogo da Memória -->
+            <a
+                href="jogos/memoria/index.html"
+                class="card-jogo"
+                aria-label="Abrir Jogo da Memória"
+            >
+
+                <img
+                    src="recursos/jogo_memoria.png"
+                    alt="Jogo da Memória"
+                >
+
+            </a>
+
+
+            <!-- Jogo dos Sons -->
+            <a
+                href="jogos/jogo3/index.html"
+                class="card-jogo"
+                aria-label="Abrir Jogo dos Sons"
+            >
+
+                <img
+                    src="recursos/jogo_sons.png"
+                    alt="Jogo dos Sons"
+                >
+
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <script src="principal.js"></script>
 
 </body>
-
 </html>
