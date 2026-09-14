@@ -1,0 +1,51 @@
+body{
+    background-image: url("https://i.pinimg.com/originals/0e/3c/8f/0e3c8f1b9d5a2f6b4e1f5c1d7e1a2b3c.jpg");
+    font-family: Arial, sans-serif;
+    background-color: #bab8bb;
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    text-align: center;
+    color: #242433;
+}
+
+h2{
+    text-align: center;
+    color: #242433;
+}
+
+#restartButton{
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #171be4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#restartButton:hover{
+    background-color: #3936be;
+}
+
+p{
+    text-align: center;
+    font-size: 18px;
+    color: black;
+}
+
+#difficultyButton{
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #171be4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
