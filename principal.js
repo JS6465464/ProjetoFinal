@@ -2,59 +2,117 @@
    ELEMENTOS
 ================================================== */
 
-const botaoAvatar =
-    document.getElementById("botaoAvatar");
+const botaoAmigo =
+    document.getElementById("botaoAmigo");
 
 const botaoConfiguracoes =
     document.getElementById("botaoConfiguracoes");
 
 
-const popupAvatar =
-    document.getElementById("popupAvatar");
+const popupAmigo =
+    document.getElementById("popupAmigo");
 
 const popupConfiguracoes =
     document.getElementById("popupConfiguracoes");
 
 
-const fecharAvatar =
-    document.getElementById("fecharAvatar");
+const fecharAmigo =
+    document.getElementById("fecharAmigo");
 
 const fecharConfiguracoes =
     document.getElementById("fecharConfiguracoes");
 
 
-const opcoesAvatar =
-    document.querySelectorAll(".opcao-avatar");
+const opcoesAmigo =
+    document.querySelectorAll(".opcao-amigo");
 
 const opcoesNome =
     document.querySelectorAll(".opcao-nome");
 
+const opcoesPersonagem =
+    document.querySelectorAll(".opcao-personagem");
 
-const guardarAvatar =
-    document.getElementById("guardarAvatar");
+
+const guardarAmigo =
+    document.getElementById("guardarAmigo");
 
 const guardarNome =
     document.getElementById("guardarNome");
 
+const guardarPersonagem =
+    document.getElementById("guardarPersonagem");
+
+const guardarNomeEscrito =
+    document.getElementById("guardarNomeEscrito");
+
 
 const nomeUtilizador =
     document.getElementById("nomeUtilizador");
+
+const cabecaAmigoPrincipal =
+    document.getElementById("cabecaAmigoPrincipal");
+
+const corpoAmigo =
+    document.getElementById("corpoAmigo");
+
+
+/* ==================================================
+   ELEMENTOS DAS CONFIGURAÇÕES
+================================================== */
+
+const tituloConfiguracoes =
+    document.getElementById("tituloConfiguracoes");
+
+const menuNomes =
+    document.getElementById("menuNomes");
+
+const areaNomes =
+    document.getElementById("areaNomes");
+
+const areaPersonagens =
+    document.getElementById("areaPersonagens");
+
+const areaEscreverNome =
+    document.getElementById("areaEscreverNome");
+
+
+const abrirNomes =
+    document.getElementById("abrirNomes");
+
+const abrirPersonagens =
+    document.getElementById("abrirPersonagens");
+
+const abrirEscreverNome =
+    document.getElementById("abrirEscreverNome");
+
+
+const botoesVoltar =
+    document.querySelectorAll(".botao-voltar");
+
+
+const campoNome =
+    document.getElementById("campoNome");
+
+const mensagemErroNome =
+    document.getElementById("mensagemErroNome");
 
 
 /* ==================================================
    VARIÁVEIS
 ================================================== */
 
-let avatarSelecionado = null;
+let cabecaSelecionada = null;
+
+let corpoSelecionado = null;
 
 let nomeSelecionado = null;
 
 
 /* ==================================================
-   ABRIR POPUP DOS AVATARES
+   ABRIR POPUP DOS AMIGOS
 ================================================== */
 
-botaoAvatar.addEventListener(
+botaoAmigo.addEventListener(
     "click",
     function () {
 
@@ -62,7 +120,7 @@ botaoAvatar.addEventListener(
             .classList
             .remove("aberto");
 
-        popupAvatar
+        popupAmigo
             .classList
             .toggle("aberto");
 
@@ -78,7 +136,7 @@ botaoConfiguracoes.addEventListener(
     "click",
     function () {
 
-        popupAvatar
+        popupAmigo
             .classList
             .remove("aberto");
 
@@ -86,25 +144,32 @@ botaoConfiguracoes.addEventListener(
             .classList
             .toggle("aberto");
 
+
+        mostrarMenuNomes();
+
     }
 );
 
 
 /* ==================================================
-   FECHAR POPUPS
+   FECHAR POPUP DOS AMIGOS
 ================================================== */
 
-fecharAvatar.addEventListener(
+fecharAmigo.addEventListener(
     "click",
     function () {
 
-        popupAvatar
+        popupAmigo
             .classList
             .remove("aberto");
 
     }
 );
 
+
+/* ==================================================
+   FECHAR CONFIGURAÇÕES
+================================================== */
 
 fecharConfiguracoes.addEventListener(
     "click",
@@ -119,17 +184,17 @@ fecharConfiguracoes.addEventListener(
 
 
 /* ==================================================
-   SELECIONAR AVATAR
+   SELECIONAR AMIGO
 ================================================== */
 
-opcoesAvatar.forEach(
-    function (avatar) {
+opcoesAmigo.forEach(
+    function (amigo) {
 
-        avatar.addEventListener(
+        amigo.addEventListener(
             "click",
             function () {
 
-                opcoesAvatar.forEach(
+                opcoesAmigo.forEach(
                     function (opcao) {
 
                         opcao
@@ -140,13 +205,23 @@ opcoesAvatar.forEach(
                 );
 
 
-                avatar
+                amigo
                     .classList
                     .add("selecionado");
 
 
-                avatarSelecionado =
-                    avatar.dataset.avatar;
+                cabecaSelecionada =
+                    amigo.dataset.cabeca;
+
+                corpoSelecionado =
+                    amigo.dataset.corpo;
+
+
+                corpoAmigo.src =
+                    corpoSelecionado;
+
+                corpoAmigo.style.display =
+                    "block";
 
             }
         );
@@ -156,25 +231,143 @@ opcoesAvatar.forEach(
 
 
 /* ==================================================
-   GUARDAR AVATAR
+   GUARDAR AMIGO
 ================================================== */
 
-guardarAvatar.addEventListener(
+guardarAmigo.addEventListener(
     "click",
     function () {
 
-        /*
-            Nesta primeira versão os círculos
-            ainda não possuem imagens.
+        if (cabecaSelecionada !== null) {
 
-            Mais tarde iremos utilizar
-            avatarSelecionado para saber
-            qual imagem foi escolhida.
-        */
+            cabecaAmigoPrincipal.src =
+                cabecaSelecionada;
 
-        popupAvatar
+        }
+
+
+        popupAmigo
             .classList
             .remove("aberto");
+
+    }
+);
+
+
+/* ==================================================
+   MOSTRAR MENU PRINCIPAL DOS NOMES
+================================================== */
+
+function mostrarMenuNomes() {
+
+    tituloConfiguracoes.textContent =
+        "Escolhe o teu nome";
+
+
+    menuNomes.style.display =
+        "flex";
+
+    areaNomes.style.display =
+        "none";
+
+    areaPersonagens.style.display =
+        "none";
+
+    areaEscreverNome.style.display =
+        "none";
+
+
+    mensagemErroNome.textContent =
+        "";
+
+}
+
+
+/* ==================================================
+   ABRIR NOMES
+================================================== */
+
+abrirNomes.addEventListener(
+    "click",
+    function () {
+
+        tituloConfiguracoes.textContent =
+            "Escolhe um nome";
+
+
+        menuNomes.style.display =
+            "none";
+
+        areaNomes.style.display =
+            "block";
+
+    }
+);
+
+
+/* ==================================================
+   ABRIR PERSONAGENS
+================================================== */
+
+abrirPersonagens.addEventListener(
+    "click",
+    function () {
+
+        tituloConfiguracoes.textContent =
+            "Escolhe uma personagem";
+
+
+        menuNomes.style.display =
+            "none";
+
+        areaPersonagens.style.display =
+            "block";
+
+    }
+);
+
+
+/* ==================================================
+   ABRIR ESCREVER NOME
+================================================== */
+
+abrirEscreverNome.addEventListener(
+    "click",
+    function () {
+
+        tituloConfiguracoes.textContent =
+            "Escreve o teu nome";
+
+
+        menuNomes.style.display =
+            "none";
+
+        areaEscreverNome.style.display =
+            "block";
+
+
+        mensagemErroNome.textContent =
+            "";
+
+    }
+);
+
+
+/* ==================================================
+   BOTÕES VOLTAR
+================================================== */
+
+botoesVoltar.forEach(
+    function (botao) {
+
+        botao.addEventListener(
+            "click",
+            function () {
+
+                mostrarMenuNomes();
+
+            }
+        );
 
     }
 );
@@ -230,12 +423,118 @@ guardarNome.addEventListener(
             nomeUtilizador.textContent =
                 nomeSelecionado + "!";
 
+
+            popupConfiguracoes
+                .classList
+                .remove("aberto");
+
         }
 
+    }
+);
 
-        popupConfiguracoes
-            .classList
-            .remove("aberto");
+
+/* ==================================================
+   SELECIONAR PERSONAGEM
+================================================== */
+
+opcoesPersonagem.forEach(
+    function (personagem) {
+
+        personagem.addEventListener(
+            "click",
+            function () {
+
+                opcoesPersonagem.forEach(
+                    function (opcao) {
+
+                        opcao
+                            .classList
+                            .remove("selecionado");
+
+                    }
+                );
+
+
+                personagem
+                    .classList
+                    .add("selecionado");
+
+
+                nomeSelecionado =
+                    personagem.dataset.nome;
+
+            }
+        );
+
+    }
+);
+
+
+/* ==================================================
+   GUARDAR PERSONAGEM
+================================================== */
+
+guardarPersonagem.addEventListener(
+    "click",
+    function () {
+
+        if (nomeSelecionado !== null) {
+
+            nomeUtilizador.textContent =
+                nomeSelecionado + "!";
+
+
+            popupConfiguracoes
+                .classList
+                .remove("aberto");
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   GUARDAR NOME ESCRITO
+================================================== */
+
+guardarNomeEscrito.addEventListener(
+    "click",
+    function () {
+
+        let nomeEscrito =
+            campoNome.value.trim();
+
+
+        /*
+            O nome deve ter pelo menos
+            2 caracteres e no máximo 15.
+        */
+
+        if (
+            nomeEscrito.length < 2 ||
+            nomeEscrito.length > 15
+        ) {
+
+            mensagemErroNome.textContent =
+                "Preenche um nome válido.";
+
+        } else {
+
+            mensagemErroNome.textContent =
+                "";
+
+
+            nomeUtilizador.textContent =
+                nomeEscrito + "!";
+
+
+            popupConfiguracoes
+                .classList
+                .remove("aberto");
+
+        }
 
     }
 );
