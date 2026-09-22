@@ -1,63 +1,42 @@
 /* fundo dos popups */
-
 .popup-brinquedos {
     display: none;
-
     position: fixed;
-
     left: 0;
     top: 0;
-
     width: 100%;
     height: 100%;
-
-    background-color:
-        rgba(0, 0, 0, 0.45);
-
+    background-color: rgba(0, 0, 0, 0.45);
     justify-content: center;
     align-items: center;
-
     z-index: 100;
 }
 
 
 /* popup brinquedo */
-
 .popup-escolher-brinquedo {
     flex-direction: column;
-
     justify-content: center;
-
     gap: 15px;
 }
 
 
 /* zona do tempo */
-
 .tempo-brinquedo {
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     gap: 6px;
 }
 
 
 /* texto do tempo */
-
 .texto-tempo-brinquedo {
     margin: 0;
-
     padding: 5px 16px;
-
     border-radius: 15px;
-
     background-color: white;
-
     color: #244363;
-
     font-size: 18px;
     font-weight: bold;
 }
@@ -67,238 +46,146 @@
 
 .contador-brinquedo {
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     width: 90px;
     height: 90px;
-
     border: 7px solid white;
-
     border-radius: 50%;
-
     background-color: #259ff0;
-
     color: white;
-
     font-size: 42px;
     font-weight: bold;
-
-    box-shadow:
-        0 5px 15px
-        rgba(0, 0, 0, 0.25);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
-
 
 /* caixa brinquedos */
-
 .caixa-brinquedos {
     width: 760px;
-
     max-width: 92%;
     max-height: 88vh;
-
     padding: 30px;
-
     background-color: white;
-
     border-radius: 25px;
-
     text-align: center;
-
-    box-shadow:
-        0 10px 30px
-        rgba(0, 0, 0, 0.25);
+    box-shadow:0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
-
 /* texto e titulo da caixa */
-
-
 .caixa-brinquedos h2 {
     margin-top: 0;
     margin-bottom: 10px;
-
     color: #123e73;
-
     font-size: 32px;
 }
 
-
-
 .caixa-brinquedos p {
     color: #53606d;
-
     font-size: 18px;
 }
 
-
 /* lista de brinquedos */
-
 .lista-brinquedos {
     display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
+    grid-template-columns: repeat(3, 1fr);
     gap: 18px;
-
     margin-top: 20px;
-
     max-height: 540px;
-
     overflow-y: auto;
-
     padding: 5px;
 }
-
-
 
 .brinquedo-colecao {
     width: 150px;
     height: 150px;
-
     margin: auto;
-
     padding: 8px;
-
     object-fit: contain;
-
     background-color: #f8fafb;
-
     border: 2px solid #e1e6eb;
-
     border-radius: 18px;
 }
-
 
 /* opções brinquedo */
-
 .opcao-brinquedo {
     padding: 12px;
-
     border: 3px solid #e1e6eb;
-
     border-radius: 18px;
-
     background-color: #f8fafb;
-
     cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-
 /* efeito ao passar o rato */
-
 .opcao-brinquedo:hover {
     transform: scale(1.05);
-
     border-color: #24a5ed;
 }
 
-
 /* imagem da opção brinquedos */
-
 .opcao-brinquedo img {
     width: 170px;
     height: 170px;
-
     object-fit: contain;
 }
 
-
 /* mensagem sem brinquedos */
-
 .sem-brinquedos {
     grid-column: 1 / 4;
-
     padding: 30px 15px;
-
     color: #244363;
-
     font-size: 21px;
-
     line-height: 1.5;
 }
 
-
 /* botao fechar */
-
 .fechar-brinquedos {
     margin-top: 20px;
-
     padding: 10px 28px;
-
     border: none;
-
     border-radius: 22px;
-
     background-color: #259ff0;
-
     color: white;
-
     font-size: 18px;
     font-weight: bold;
-
     cursor: pointer;
 }
 
-
 /* efeito botao fechar */
-
 .fechar-brinquedos:hover {
     background-color: #138bd9;
 }
 
-
 /* resposividade */
-
 @media (max-width: 650px) {
-
     /* lista de brinquedos */
-
     .lista-brinquedos {
         grid-template-columns:
             repeat(2, 1fr);
     }
 
-
     /* tamanho dos brinquedos */
-
     .brinquedo-colecao,
     .opcao-brinquedo img {
         width: 110px;
         height: 110px;
     }
 
-
     /* mensagem sem brinqueods */
-
     .sem-brinquedos {
         grid-column: 1 / 3;
     }
 
-
     /* contador */
-
     .contador-brinquedo {
         width: 75px;
         height: 75px;
-
         font-size: 34px;
-
         border-width: 6px;
     }
 
-
     /* Texto de tempo */
-
     .texto-tempo-brinquedo {
         font-size: 16px;
     }
-
 }

@@ -1,5 +1,4 @@
-/* Lista de brinquedos */
-
+/* LISTA DE BRINQUEDOS (CONSTANTES DE CONFIGURAÇÃO) */
 const listaBrinquedos = [
     "001_aculos_mergulho..png",
     "002_Aquaplay..png",
@@ -102,671 +101,283 @@ const listaBrinquedos = [
     "099_xadrez..png"
 ];
 
+/* ELEMENTOS DO DOM E CAMINHOS*/
+const pagina = document.body;
+const botaoBrinquedos = document.getElementById("botaoBrinquedos");
+const fecharBrinquedos = document.getElementById("fecharBrinquedos");
 
-/* caminhos*/
-
-const pagina =
-    document.body;
-
-let caminhoBrinquedos =
-    pagina.dataset.caminhoBrinquedos;
-
-let caminhoRecursos =
-    pagina.dataset.caminhoRecursos;
-
+let caminhoBrinquedos = pagina.dataset.caminhoBrinquedos;
+let caminhoRecursos = pagina.dataset.caminhoRecursos;
 
 if (caminhoBrinquedos === undefined) {
-
-    caminhoBrinquedos =
-        "brinquedos/";
-
+    caminhoBrinquedos = "recursos/brinquedos/";
 }
-
 
 if (caminhoRecursos === undefined) {
-
-    caminhoRecursos =
-        "recursos/";
-
+    caminhoRecursos = "recursos/";
 }
 
+/* ESTADO DA APLICAÇÃO E ÁUDIO*/
+let somCucu = new Audio(caminhoRecursos + "cuckoo_clock.mp3"); // alterado de constante
+somCucu.preload = "auto";
 
-/* som do cuco*/
-
-const somCucu =
-    new Audio(
-        caminhoRecursos +
-        "cuckoo_clock.mp3"
-    );
-
-
-somCucu.preload =
-    "auto";
+let tempoBrinquedo = 10;
+let intervaloBrinquedo = null;
+let oportunidadeTerminada = false;
 
 
-/* iniciar som do cuco */
+/* FUNÇÕES DE ÁUDIO */
 
+/* Iniciar som do cuco */
 function iniciarSomCucu() {
-
     somCucu.pause();
-
-    somCucu.currentTime =
-        0;
-
+    somCucu.currentTime = 0;
     somCucu.play();
-
 }
 
-
-/* parar som */
-
+/* Parar som */
 function pararSomCucu() {
-
     somCucu.pause();
-
-    somCucu.currentTime =
-        0;
-
+    somCucu.currentTime = 0;
 }
 
 
-/* variaveis*/
+/* ARMAZENAMENTO LOCAL (LOCALSTORAGE)*/
 
-let tempoBrinquedo =
-    10;
-
-let intervaloBrinquedo =
-    null;
-
-let oportunidadeTerminada =
-    false;
-
-
-/* ler brinquedos adquiridos */
-
+/* Ler brinquedos adquiridos */
 function lerBrinquedos() {
-
-    const guardados =
-        localStorage.getItem(
-            "brinquedosAdquiridos"
-        );
-
+    const guardados = localStorage.getItem("brinquedosAdquiridos");
 
     if (guardados === null) {
-
         return [];
-
     }
 
-
-    return JSON.parse(
-        guardados
-    );
-
+    return JSON.parse(guardados);
 }
 
-
 /* Guardar brinquedos */
-
 function guardarBrinquedos(brinquedos) {
-
-    localStorage.setItem(
-        "brinquedosAdquiridos",
-        JSON.stringify(brinquedos)
-    );
+    localStorage.setItem("brinquedosAdquiridos", JSON.stringify(brinquedos));
 
     if (typeof guardarDadosRegistoAtual === "function") {
         guardarDadosRegistoAtual();
     }
-
 }
 
+/* GESTÃO DA COLEÇÃO DE BRINQUEDOS */
 
-/* Mostrar Coleçao */
-
+/* Mostrar Coleção */
 function mostrarColecaoBrinquedos() {
-
     if (typeof fecharTodosPopups === "function") {
         fecharTodosPopups();
     }
 
-    const popup =
-        document.getElementById(
-            "popupColecaoBrinquedos"
-        );
+    const popup = document.getElementById("popupColecaoBrinquedos");
+    const zona = document.getElementById("listaColecaoBrinquedos");
 
-    const zona =
-        document.getElementById(
-            "listaColecaoBrinquedos"
-        );
-
-
-    if (
-        popup === null ||
-        zona === null
-    ) {
-
+    if (popup === null || zona === null) {
         return;
-
     }
 
-
-    const brinquedos =
-        lerBrinquedos();
-
-
-    zona.innerHTML =
-        "";
-
+    const brinquedos = lerBrinquedos();
+    zona.innerHTML = "";
 
     if (brinquedos.length === 0) {
+        const mensagem = document.createElement("p");
+        mensagem.className = "sem-brinquedos";
+        mensagem.textContent = "Ainda não tens brinquedos! Continua a jogar e vais poder escolher alguns!";
 
-        const mensagem =
-            document.createElement(
-                "p"
-            );
-
-        mensagem.className =
-            "sem-brinquedos";
-
-        mensagem.textContent =
-            "Ainda não tens brinquedos! Continua a jogar e vais poder escolher alguns!";
-
-
-        zona.appendChild(
-            mensagem
-        );
-
+        zona.appendChild(mensagem);
     } else {
-
         for (let brinquedo of brinquedos) {
+            const imagem = document.createElement("img");
+            imagem.src = caminhoBrinquedos + brinquedo;
+            imagem.alt = "Brinquedo adquirido";
+            imagem.className = "brinquedo-colecao";
 
-            const imagem =
-                document.createElement(
-                    "img"
-                );
-
-            imagem.src =
-                caminhoBrinquedos +
-                brinquedo;
-
-            imagem.alt =
-                "Brinquedo adquirido";
-
-            imagem.className =
-                "brinquedo-colecao";
-
-
-            zona.appendChild(
-                imagem
-            );
-
+            zona.appendChild(imagem);
         }
-
     }
 
-
-    popup.style.display =
-        "flex";
-
+    popup.style.display = "flex";
 }
-
 
 /* Fechar coleção */
-
 function fecharColecaoBrinquedos() {
-
-    const popup =
-        document.getElementById(
-            "popupColecaoBrinquedos"
-        );
-
+    const popup = document.getElementById("popupColecaoBrinquedos");
 
     if (popup !== null) {
-
-        popup.style.display =
-            "none";
-
+        popup.style.display = "none";
     }
-
 }
 
-
-/* escolher 6 brinquedos*/
-
+/* Escolher 6 brinquedos aleatórios */
 function escolherSeisBrinquedos() {
-
-    const adquiridos =
-        lerBrinquedos();
-
-    const disponiveis =
-        [];
-
+    const adquiridos = lerBrinquedos();
+    const disponiveis = [];
 
     for (let brinquedo of listaBrinquedos) {
-
-        if (
-            !adquiridos.includes(
-                brinquedo
-            )
-        ) {
-
-            disponiveis.push(
-                brinquedo
-            );
-
+        if (!adquiridos.includes(brinquedo)) {
+            disponiveis.push(brinquedo);
         }
-
     }
 
+    const escolhidos = [];
 
-    const escolhidos =
-        [];
-
-
-    while (
-        escolhidos.length < 6 &&
-        disponiveis.length > 0
-    ) {
-
-        const posicao =
-            Math.floor(
-                Math.random() *
-                disponiveis.length
-            );
-
-
-        escolhidos.push(
-            disponiveis[posicao]
-        );
-
-
-        disponiveis.splice(
-            posicao,
-            1
-        );
-
+    while (escolhidos.length < 6 && disponiveis.length > 0) {
+        const posicao = Math.floor(Math.random() * disponiveis.length);
+        escolhidos.push(disponiveis[posicao]);
+        disponiveis.splice(posicao, 1);
     }
-
 
     return escolhidos;
-
 }
 
+/* CONTADOR E TEMPORIZADOR*/
 
-/* atualizar contador */
-
+/* Atualizar contador */
 function atualizarContadorBrinquedo() {
-
-    const contador =
-        document.getElementById(
-            "contadorBrinquedo"
-        );
-
+    const contador = document.getElementById("contadorBrinquedo");
 
     if (contador !== null) {
-
-        contador.textContent =
-            tempoBrinquedo;
-
+        contador.textContent = tempoBrinquedo;
     }
-
 }
 
-
-/* iniciar contador */
-
+/* Iniciar contador */
 function iniciarContadorBrinquedo() {
-
-    if (
-        intervaloBrinquedo !== null
-    ) {
-
-        clearInterval(
-            intervaloBrinquedo
-        );
-
+    if (intervaloBrinquedo !== null) {
+        clearInterval(intervaloBrinquedo);
     }
 
-
-    tempoBrinquedo =
-        10;
-
-    oportunidadeTerminada =
-        false;
-
+    tempoBrinquedo = 10;
+    oportunidadeTerminada = false;
 
     atualizarContadorBrinquedo();
 
-
-    /*
-        COMEÇA O SOM AO MESMO TEMPO
-        QUE APARECE O NÚMERO 10
-    */
-
+    /* Começa o som ao mesmo tempo que aparece o número 10 */
     iniciarSomCucu();
 
+    intervaloBrinquedo = setInterval(function () {
+        tempoBrinquedo = tempoBrinquedo - 1;
+        atualizarContadorBrinquedo();
 
-    intervaloBrinquedo =
-        setInterval(
-            function () {
-
-                tempoBrinquedo =
-                    tempoBrinquedo - 1;
-
-
-                atualizarContadorBrinquedo();
-
-
-                if (
-                    tempoBrinquedo <= 0
-                ) {
-
-                    terminarTempoBrinquedo();
-
-                }
-
-            },
-            1000
-        );
-
+        if (tempoBrinquedo <= 0) {
+            terminarTempoBrinquedo();
+        }
+    }, 1000);
 }
 
-
-/* parar contador */
-
+/* Parar contador */
 function pararContadorBrinquedo() {
-
-    if (
-        intervaloBrinquedo !== null
-    ) {
-
-        clearInterval(
-            intervaloBrinquedo
-        );
-
-        intervaloBrinquedo =
-            null;
-
+    if (intervaloBrinquedo !== null) {
+        clearInterval(intervaloBrinquedo);
+        intervaloBrinquedo = null;
     }
 
-
-    /*
-        QUANDO O CONTADOR PARA,
-        O SOM TAMBÉM PARA
-    */
-
+    /* Quando o contador para, o som também para */
     pararSomCucu();
-
 }
 
-
-/* tempo terminou */
-
+/* Tempo terminou */
 function terminarTempoBrinquedo() {
-
-    if (
-        oportunidadeTerminada === true
-    ) {
-
+    if (oportunidadeTerminada === true) {
         return;
-
     }
 
-
-    oportunidadeTerminada =
-        true;
-
-
+    oportunidadeTerminada = true;
     pararContadorBrinquedo();
 
-
-    const popup =
-        document.getElementById(
-            "popupEscolherBrinquedo"
-        );
-
+    const popup = document.getElementById("popupEscolherBrinquedo");
 
     if (popup !== null) {
-
-        popup.style.display =
-            "none";
-
+        popup.style.display = "none";
     }
 
-
-    /*
-        A OPORTUNIDADE É CONSUMIDA
-        MESMO SEM ESCOLHER BRINQUEDO
-    */
-
-    if (
-        typeof oportunidadeBrinquedoTerminadaDiferencas ===
-        "function"
-    ) {
-
+    /* A oportunidade é consumida mesmo sem escolher brinquedo */
+    if (typeof oportunidadeBrinquedoTerminadaDiferencas === "function") {
         oportunidadeBrinquedoTerminadaDiferencas();
-
     }
-
 }
 
+/* OPORTUNIDADE E ADQUIRIR BRINQUEDO*/
 
-/* mostrar oportunidade */
-
+/* Mostrar oportunidade */
 function mostrarOportunidadeBrinquedo() {
+    const popup = document.getElementById("popupEscolherBrinquedo");
+    const zona = document.getElementById("listaEscolherBrinquedo");
 
-    const popup =
-        document.getElementById(
-            "popupEscolherBrinquedo"
-        );
-
-    const zona =
-        document.getElementById(
-            "listaEscolherBrinquedo"
-        );
-
-
-    if (
-        popup === null ||
-        zona === null
-    ) {
-
+    if (popup === null || zona === null) {
         return;
-
     }
 
-
-    const escolhidos =
-        escolherSeisBrinquedos();
-
-
-    zona.innerHTML =
-        "";
-
+    const escolhidos = escolherSeisBrinquedos();
+    zona.innerHTML = "";
 
     for (let brinquedo of escolhidos) {
+        const botao = document.createElement("button");
+        botao.type = "button";
+        botao.className = "opcao-brinquedo";
 
-        const botao =
-            document.createElement(
-                "button"
-            );
+        const imagem = document.createElement("img");
+        imagem.src = caminhoBrinquedos + brinquedo;
+        imagem.alt = "Escolher brinquedo";
 
-        botao.type =
-            "button";
+        botao.appendChild(imagem);
 
-        botao.className =
-            "opcao-brinquedo";
+        botao.addEventListener("click", function () {
+            adquirirBrinquedo(brinquedo);
+        });
 
-
-        const imagem =
-            document.createElement(
-                "img"
-            );
-
-        imagem.src =
-            caminhoBrinquedos +
-            brinquedo;
-
-        imagem.alt =
-            "Escolher brinquedo";
-
-
-        botao.appendChild(
-            imagem
-        );
-
-
-        botao.addEventListener(
-            "click",
-            function () {
-
-                adquirirBrinquedo(
-                    brinquedo
-                );
-
-            }
-        );
-
-
-        zona.appendChild(
-            botao
-        );
-
+        zona.appendChild(botao);
     }
 
+    popup.style.display = "flex";
 
-    popup.style.display =
-        "flex";
-
-
-    /*
-        COMEÇAM OS 10 SEGUNDOS
-        E O SOM DO CUCO
-    */
-
+    /* Começam os 10 segundos e o som do cuco */
     iniciarContadorBrinquedo();
-
 }
 
-
-/* adquirir brinquedo */
-
+/* Adquirir brinquedo */
 function adquirirBrinquedo(brinquedo) {
-
-    if (
-        oportunidadeTerminada === true
-    ) {
-
+    if (oportunidadeTerminada === true) {
         return;
-
     }
 
+    oportunidadeTerminada = true;
 
-    oportunidadeTerminada =
-        true;
-
-
-    /*
-        AO ESCOLHER UM BRINQUEDO,
-        PARA O CONTADOR E O SOM
-    */
-
+    /* Ao escolher um brinquedo, para o contador e o som */
     pararContadorBrinquedo();
 
+    const brinquedos = lerBrinquedos();
 
-    const brinquedos =
-        lerBrinquedos();
-
-
-    if (
-        !brinquedos.includes(
-            brinquedo
-        )
-    ) {
-
-        brinquedos.push(
-            brinquedo
-        );
-
-
-        guardarBrinquedos(
-            brinquedos
-        );
-
+    if (!brinquedos.includes(brinquedo)) {
+        brinquedos.push(brinquedo);
+        guardarBrinquedos(brinquedos);
     }
 
-
-    /*
-        REGISTA A OPORTUNIDADE
-        COMO UTILIZADA
-    */
-
-    if (
-        typeof oportunidadeBrinquedoTerminadaDiferencas ===
-        "function"
-    ) {
-
+    /* Regista a oportunidade como utilizada */
+    if (typeof oportunidadeBrinquedoTerminadaDiferencas === "function") {
         oportunidadeBrinquedoTerminadaDiferencas();
-
     }
 
-
-    const popup =
-        document.getElementById(
-            "popupEscolherBrinquedo"
-        );
-
+    const popup = document.getElementById("popupEscolherBrinquedo");
 
     if (popup !== null) {
-
-        popup.style.display =
-            "none";
-
+        popup.style.display = "none";
     }
-
 }
 
-
-/* botão brinqueods */
-
-const botaoBrinquedos =
-    document.getElementById(
-        "botaoBrinquedos"
-    );
-
+/* EVENT LISTENERS (OUVINTES DE EVENTOS) */
 
 if (botaoBrinquedos !== null) {
-
-    botaoBrinquedos.addEventListener(
-        "click",
-        function () {
-
-            mostrarColecaoBrinquedos();
-
-        }
-    );
-
+    botaoBrinquedos.addEventListener("click", function () {
+        mostrarColecaoBrinquedos();
+    });
 }
 
-
-/* botao fechar */
-
-const fecharBrinquedos =
-    document.getElementById(
-        "fecharBrinquedos"
-    );
-
-
 if (fecharBrinquedos !== null) {
-
-    fecharBrinquedos.addEventListener(
-        "click",
-        function () {
-
-            fecharColecaoBrinquedos();
-
-        }
-    );
-
+    fecharBrinquedos.addEventListener("click", function () {
+        fecharColecaoBrinquedos();
+    });
 }
