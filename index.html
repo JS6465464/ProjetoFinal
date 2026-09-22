@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -14,11 +16,19 @@
         rel="stylesheet"
         href="estilo.css"
     >
+
+    <link
+        rel="stylesheet"
+        href="comum/brinquedos.css"
+    >
+
 </head>
 
-<body>
+
+<body data-caminho-brinquedos="brinquedos/">
 
     <main class="aplicacao">
+
 
         <!-- ==================================================
              TOPO
@@ -26,7 +36,9 @@
 
         <header class="topo">
 
-            <!-- Título principal -->
+
+            <!-- TÍTULO -->
+
             <div class="titulo-principal">
 
                 <img
@@ -37,23 +49,34 @@
             </div>
 
 
-            <!-- Área do utilizador -->
+            <!-- ÁREA DO UTILIZADOR -->
+
             <div class="area-utilizador">
+
 
                 <div class="perfil">
 
-                    <!-- Avatar -->
+
+                    <!-- AMIGO -->
+
                     <button
-                        id="botaoAvatar"
-                        class="botao-avatar"
+                        id="botaoAmigo"
+                        class="botao-amigo"
                         type="button"
-                        aria-label="Escolher avatar"
+                        aria-label="Escolher amigo"
                     >
-                        <span id="avatarPrincipal">🙂</span>
+
+                        <img
+                            id="cabecaAmigoPrincipal"
+                            src="recursos/cara_botao.png"
+                            alt="Amigo"
+                        >
+
                     </button>
 
 
-                    <!-- Nome -->
+                    <!-- NOME -->
+
                     <div class="dados-utilizador">
 
                         <span class="ola">
@@ -70,7 +93,8 @@
                     </div>
 
 
-                    <!-- Configurações -->
+                    <!-- CONFIGURAÇÕES -->
+
                     <button
                         id="botaoConfiguracoes"
                         class="botao-configuracoes"
@@ -80,26 +104,28 @@
                         ⚙
                     </button>
 
+
                 </div>
 
 
                 <!-- ==================================================
-                     POPUP AVATAR
+                     POPUP DOS AMIGOS
                 =================================================== -->
 
                 <div
-                    id="popupAvatar"
-                    class="popup popup-avatar"
+                    id="popupAmigo"
+                    class="popup popup-amigo"
                 >
+
 
                     <div class="popup-cabecalho">
 
                         <h2>
-                            Escolhe o teu Avatar
+                            Escolhe o teu Amigo
                         </h2>
 
                         <button
-                            id="fecharAvatar"
+                            id="fecharAmigo"
                             class="botao-fechar"
                             type="button"
                             aria-label="Fechar"
@@ -110,60 +136,386 @@
                     </div>
 
 
-                    <div class="lista-avatares">
+                    <div class="lista-amigos">
+
+
+                        <!-- AMIGO 1 -->
 
                         <button
-                            class="opcao-avatar"
+                            class="opcao-amigo"
                             type="button"
-                            data-avatar="1"
-                        ></button>
+                            data-cabeca="amigos_suas_cabecas/cabecaAmigo1.png"
+                            data-corpo="amigos_suas_cabecas/amigo1.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAmigo1.png"
+                                alt="Amigo 1"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 2 -->
 
                         <button
-                            class="opcao-avatar"
+                            class="opcao-amigo"
                             type="button"
-                            data-avatar="2"
-                        ></button>
+                            data-cabeca="amigos_suas_cabecas/cabecaAmigo2.png"
+                            data-corpo="amigos_suas_cabecas/amigo2.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAmigo2.png"
+                                alt="Amigo 2"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 3 -->
 
                         <button
-                            class="opcao-avatar"
+                            class="opcao-amigo"
                             type="button"
-                            data-avatar="3"
-                        ></button>
+                            data-cabeca="amigos_suas_cabecas/cabecaAmigo3.png"
+                            data-corpo="amigos_suas_cabecas/amigo3.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAmigo3.png"
+                                alt="Amigo 3"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 4 -->
 
                         <button
-                            class="opcao-avatar"
+                            class="opcao-amigo"
                             type="button"
-                            data-avatar="4"
-                        ></button>
+                            data-cabeca="amigos_suas_cabecas/cabecaAmigo4.png"
+                            data-corpo="amigos_suas_cabecas/amigo4.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAmigo4.png"
+                                alt="Amigo 4"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 5 -->
 
                         <button
-                            class="opcao-avatar"
+                            class="opcao-amigo"
                             type="button"
-                            data-avatar="5"
-                        ></button>
+                            data-cabeca="amigos_suas_cabecas/cabecaAmigo5.png"
+                            data-corpo="amigos_suas_cabecas/amigo5.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAmigo5.png"
+                                alt="Amigo 5"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 6 -->
 
                         <button
-                            class="opcao-avatar"
+                            class="opcao-amigo"
                             type="button"
-                            data-avatar="6"
-                        ></button>
+                            data-cabeca="amigos_suas_cabecas/cabecaAmigo6.png"
+                            data-corpo="amigos_suas_cabecas/amigo6.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAmigo6.png"
+                                alt="Amigo 6"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 7 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAmigo7.png"
+                            data-corpo="amigos_suas_cabecas/amigo7.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAmigo7.png"
+                                alt="Amigo 7"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 8 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAmigo8.png"
+                            data-corpo="amigos_suas_cabecas/amigo8.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAmigo8.png"
+                                alt="Amigo 8"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 9 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAmigo9.png"
+                            data-corpo="amigos_suas_cabecas/amigo9.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAmigo9.png"
+                                alt="Amigo 9"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 10 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAmigo10.png"
+                            data-corpo="amigos_suas_cabecas/amigo10.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAmigo10.png"
+                                alt="Amigo 10"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 11 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAmigo11.png"
+                            data-corpo="amigos_suas_cabecas/amigo11.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAmigo11.png"
+                                alt="Amigo 11"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 12 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAmigo12.png"
+                            data-corpo="amigos_suas_cabecas/amigo12.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAmigo12.png"
+                                alt="Amigo 12"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 13 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAvatar1.png"
+                            data-corpo="amigos_suas_cabecas/avatar1.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAvatar1.png"
+                                alt="Amigo 13"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 14 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAvatar2.png"
+                            data-corpo="amigos_suas_cabecas/avatar2.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAvatar2.png"
+                                alt="Amigo 14"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 15 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAvatar3.png"
+                            data-corpo="amigos_suas_cabecas/avatar3.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAvatar3.png"
+                                alt="Amigo 15"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 16 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAvatar4.png"
+                            data-corpo="amigos_suas_cabecas/avatar4.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAvatar4.png"
+                                alt="Amigo 16"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 17 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAvatar5.png"
+                            data-corpo="amigos_suas_cabecas/avatar5.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAvatar5.png"
+                                alt="Amigo 17"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 18 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAvatar6.png"
+                            data-corpo="amigos_suas_cabecas/avatar6.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAvatar6.png"
+                                alt="Amigo 18"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 19 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAvatar9.png"
+                            data-corpo="amigos_suas_cabecas/avatar9.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAvatar9.png"
+                                alt="Amigo 19"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 20 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAvatar10.png"
+                            data-corpo="amigos_suas_cabecas/avatar10.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAvatar10.png"
+                                alt="Amigo 20"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 21 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAvatar11.png"
+                            data-corpo="amigos_suas_cabecas/avatar11.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAvatar11.png"
+                                alt="Amigo 21"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 22 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAvatar12.png"
+                            data-corpo="amigos_suas_cabecas/avatar12.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAvatar12.png"
+                                alt="Amigo 22"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 23 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAvatar13.png"
+                            data-corpo="amigos_suas_cabecas/avatar13.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAvatar13.png"
+                                alt="Amigo 23"
+                            >
+                        </button>
+
+
+                        <!-- AMIGO 24 -->
+
+                        <button
+                            class="opcao-amigo"
+                            type="button"
+                            data-cabeca="amigos_suas_cabecas/cabecaAvatar14.png"
+                            data-corpo="amigos_suas_cabecas/avatar14.png"
+                        >
+                            <img
+                                src="amigos_suas_cabecas/cabecaAvatar14.png"
+                                alt="Amigo 24"
+                            >
+                        </button>
+
 
                     </div>
 
 
                     <button
-                        id="guardarAvatar"
+                        id="guardarAmigo"
                         class="botao-guardar"
                         type="button"
                     >
-                        Guardar Avatar
+                        Guardar Amigo
                     </button>
+
 
                 </div>
 
 
                 <!-- ==================================================
-                     POPUP CONFIGURAÇÕES / NOME
+                     POPUP CONFIGURAÇÕES
                 =================================================== -->
 
                 <div
@@ -171,9 +523,10 @@
                     class="popup popup-configuracoes"
                 >
 
+
                     <div class="popup-cabecalho">
 
-                        <h2>
+                        <h2 id="tituloConfiguracoes">
                             Escolhe o teu nome
                         </h2>
 
@@ -189,113 +542,365 @@
                     </div>
 
 
-                    <div class="lista-nomes">
+                    <!-- ==================================================
+                         MENU PRINCIPAL
+                    =================================================== -->
+
+                    <div id="menuNomes">
+
 
                         <button
-                            class="opcao-nome"
+                            id="abrirNomes"
+                            class="botao-tipo-nome"
                             type="button"
-                            data-nome="Maria"
                         >
-                            Maria
+
+                            <span class="icone-tipo-nome">
+                                👧
+                            </span>
+
+                            <span>
+                                <strong>Nomes</strong>
+                                <small>Escolhe um nome da lista</small>
+                            </span>
+
                         </button>
 
-                        <button
-                            class="opcao-nome"
-                            type="button"
-                            data-nome="Alice"
-                        >
-                            Alice
-                        </button>
 
                         <button
-                            class="opcao-nome"
+                            id="abrirPersonagens"
+                            class="botao-tipo-nome"
                             type="button"
-                            data-nome="Leonor"
                         >
-                            Leonor
+
+                            <span class="icone-tipo-nome">
+                                ⭐
+                            </span>
+
+                            <span>
+                                <strong>Personagens</strong>
+                                <small>Escolhe um nome divertido</small>
+                            </span>
+
                         </button>
 
-                        <button
-                            class="opcao-nome"
-                            type="button"
-                            data-nome="Matilde"
-                        >
-                            Matilde
-                        </button>
 
                         <button
-                            class="opcao-nome"
+                            id="abrirEscreverNome"
+                            class="botao-tipo-nome"
                             type="button"
-                            data-nome="Joana"
                         >
-                            Joana
+
+                            <span class="icone-tipo-nome">
+                                ✏️
+                            </span>
+
+                            <span>
+                                <strong>Escrever o meu nome</strong>
+                                <small>Escreve o nome que gostas</small>
+                            </span>
+
                         </button>
 
-                        <button
-                            class="opcao-nome"
-                            type="button"
-                            data-nome="Tomás"
-                        >
-                            Tomás
-                        </button>
-
-                        <button
-                            class="opcao-nome"
-                            type="button"
-                            data-nome="João"
-                        >
-                            João
-                        </button>
-
-                        <button
-                            class="opcao-nome"
-                            type="button"
-                            data-nome="Afonso"
-                        >
-                            Afonso
-                        </button>
-
-                        <button
-                            class="opcao-nome"
-                            type="button"
-                            data-nome="Duarte"
-                        >
-                            Duarte
-                        </button>
-
-                        <button
-                            class="opcao-nome"
-                            type="button"
-                            data-nome="Miguel"
-                        >
-                            Miguel
-                        </button>
 
                     </div>
 
 
-                    <button
-                        id="guardarNome"
-                        class="botao-guardar"
-                        type="button"
+                    <!-- ==================================================
+                         NOMES
+                    =================================================== -->
+
+                    <div
+                        id="areaNomes"
+                        class="area-nomes"
                     >
-                        Guardar Nome
-                    </button>
+
+                        <button
+                            class="botao-voltar"
+                            type="button"
+                        >
+                            ← Voltar
+                        </button>
+
+
+                        <div class="lista-nomes">
+
+                            <button class="opcao-nome" type="button" data-nome="Maria">
+                                Maria
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Alice">
+                                Alice
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Leonor">
+                                Leonor
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Matilde">
+                                Matilde
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Beatriz">
+                                Beatriz
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Carolina">
+                                Carolina
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Mariana">
+                                Mariana
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Sofia">
+                                Sofia
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Inês">
+                                Inês
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Joana">
+                                Joana
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Tomás">
+                                Tomás
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="João">
+                                João
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Afonso">
+                                Afonso
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Duarte">
+                                Duarte
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Miguel">
+                                Miguel
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Martim">
+                                Martim
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Rodrigo">
+                                Rodrigo
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Francisco">
+                                Francisco
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Santiago">
+                                Santiago
+                            </button>
+
+                            <button class="opcao-nome" type="button" data-nome="Diogo">
+                                Diogo
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            id="guardarNome"
+                            class="botao-guardar"
+                            type="button"
+                        >
+                            Guardar Nome
+                        </button>
+
+
+                    </div>
+
+
+                    <!-- ==================================================
+                         PERSONAGENS
+                    =================================================== -->
+
+                    <div
+                        id="areaPersonagens"
+                        class="area-nomes"
+                    >
+
+                        <button
+                            class="botao-voltar"
+                            type="button"
+                        >
+                            ← Voltar
+                        </button>
+
+
+                        <div class="lista-nomes">
+
+                            <button class="opcao-personagem" type="button" data-nome="Barbie">
+                                Barbie
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Bluey">
+                                Bluey
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Elsa">
+                                Elsa
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Moana">
+                                Moana
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="SpongeBob">
+                                SpongeBob
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Hello Kitty">
+                                Hello Kitty
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Peppa">
+                                Peppa
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Spider-Man">
+                                Spider-Man
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Cinderela">
+                                Cinderela
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Mickey">
+                                Mickey
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Sonic">
+                                Sonic
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Superman">
+                                Superman
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Batman">
+                                Batman
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Mario">
+                                Mario
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Chase">
+                                Chase
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Iron Man">
+                                Iron Man
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Stitch">
+                                Stitch
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Pikachu">
+                                Pikachu
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Minnie">
+                                Minnie
+                            </button>
+
+                            <button class="opcao-personagem" type="button" data-nome="Olaf">
+                                Olaf
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            id="guardarPersonagem"
+                            class="botao-guardar"
+                            type="button"
+                        >
+                            Guardar Nome
+                        </button>
+
+
+                    </div>
+
+
+                    <!-- ==================================================
+                         ESCREVER NOME
+                    =================================================== -->
+
+                    <div
+                        id="areaEscreverNome"
+                        class="area-escrever-nome"
+                    >
+
+                        <button
+                            class="botao-voltar"
+                            type="button"
+                        >
+                            ← Voltar
+                        </button>
+
+
+                        <p class="texto-escrever-nome">
+                            Como gostas de ser chamado?
+                        </p>
+
+
+                        <input
+                            id="campoNome"
+                            class="campo-nome"
+                            type="text"
+                            placeholder="O teu nome..."
+                            minlength="2"
+                            maxlength="15"
+                        >
+
+
+                        <p
+                            id="mensagemErroNome"
+                            class="mensagem-erro"
+                        >
+                        </p>
+
+
+                        <button
+                            id="guardarNomeEscrito"
+                            class="botao-guardar"
+                            type="button"
+                        >
+                            Guardar Nome
+                        </button>
+
+
+                    </div>
+
 
                 </div>
 
+
             </div>
+
 
         </header>
 
 
         <!-- ==================================================
-             CARDS DOS JOGOS
+             JOGOS
         =================================================== -->
 
         <section class="jogos">
 
-            <!-- Jogo das Diferenças -->
+
             <a
                 href="jogos/diferencas/index.html"
                 class="card-jogo"
@@ -310,7 +915,6 @@
             </a>
 
 
-            <!-- Jogo da Memória -->
             <a
                 href="jogos/memoria/index.html"
                 class="card-jogo"
@@ -325,7 +929,6 @@
             </a>
 
 
-            <!-- Jogo dos Sons -->
             <a
                 href="jogos/jogo3/index.html"
                 class="card-jogo"
@@ -339,12 +942,186 @@
 
             </a>
 
+
         </section>
+
+
+        <!-- ==================================================
+             AMIGO ESCOLHIDO
+        =================================================== -->
+
+        <section class="amigo-escolhido">
+
+            <img
+                id="corpoAmigo"
+                src=""
+                alt="Amigo escolhido"
+            >
+
+        </section>
+
+
+        <!-- ==================================================
+             BOTÃO BRINQUEDOS
+        =================================================== -->
+
+        <button
+            id="botaoBrinquedos"
+            class="botao-brinquedos-principal"
+            type="button"
+        >
+            🧸 Brinquedos
+        </button>
+
+
+        <!-- ==================================================
+             BOTÃO NOMES REGISTADOS
+        =================================================== -->
+
+        <button
+            id="botaoHistorico"
+            class="botao-historico"
+            type="button"
+        >
+            📋 Histórico
+        </button>
+
+
+        <button
+            id="botaoNomesRegistados"
+            class="botao-nomes-registados"
+            type="button"
+        >
+            Nomes registados
+        </button>
+
 
     </main>
 
 
+    <!-- ==================================================
+         POPUP DA COLEÇÃO DE BRINQUEDOS
+    =================================================== -->
+
+    <div
+        id="popupColecaoBrinquedos"
+        class="popup-brinquedos"
+    >
+
+        <div class="caixa-brinquedos">
+
+            <h2>
+                Os meus Brinquedos
+            </h2>
+
+
+            <div
+                id="listaColecaoBrinquedos"
+                class="lista-brinquedos"
+            >
+            </div>
+
+
+            <button
+                id="fecharBrinquedos"
+                class="fechar-brinquedos"
+                type="button"
+            >
+                Fechar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         POPUP DOS NOMES REGISTADOS
+    =================================================== -->
+
+    <div
+        id="popupNomesRegistados"
+        class="popup-registos"
+    >
+        <div class="caixa-registos">
+
+            <div class="cabecalho-registos">
+                <h2>Nomes registados</h2>
+
+                <button
+                    id="botaoBorracha"
+                    class="botao-borracha"
+                    type="button"
+                    aria-label="Ativar modo de apagar"
+                    title="Apagar registos"
+                >
+                    🧽
+                </button>
+
+                <button
+                    id="fecharNomesRegistados"
+                    class="fechar-registos"
+                    type="button"
+                    aria-label="Fechar"
+                >
+                    ×
+                </button>
+            </div>
+
+            <p class="texto-registos">
+                Escolhe um registo para voltar a utilizá-lo.
+            </p>
+
+            <div
+                id="listaNomesRegistados"
+                class="lista-registos"
+            ></div>
+
+        </div>
+    </div>
+
+
+
+
+    <!-- ==================================================
+         POPUP DO HISTÓRICO
+    =================================================== -->
+
+    <div id="popupHistorico" class="popup-historico">
+        <div class="caixa-historico">
+            <div class="cabecalho-historico">
+                <h2>Histórico</h2>
+
+                <button
+                    id="fecharHistorico"
+                    class="fechar-registos"
+                    type="button"
+                    aria-label="Fechar"
+                >
+                    ×
+                </button>
+            </div>
+
+            <p class="texto-registos">
+                Resultados do utilizador atual.
+            </p>
+
+            <div id="listaHistorico" class="lista-historico"></div>
+        </div>
+    </div>
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+    =================================================== -->
+
+    <script src="comum/dados.js"></script>
+
     <script src="principal.js"></script>
 
+    <script src="comum/brinquedos.js"></script>
+
+
 </body>
+
 </html>

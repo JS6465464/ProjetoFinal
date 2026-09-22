@@ -16,15 +16,9 @@ body {
 
 body {
     min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background-image:
-        url("recursos/fundo1.png");
-
+    background-image: url("recursos/fundo1.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -41,11 +35,7 @@ body {
 .aplicacao {
     width: 100%;
     min-height: 100vh;
-
-    padding:
-        20px
-        35px
-        40px;
+    padding: 20px 35px 40px;
 }
 
 
@@ -55,18 +45,11 @@ body {
 
 .topo {
     width: 100%;
-
-    display: grid;
-
-    grid-template-columns:
-        2fr
-        1fr;
-
-    align-items: start;
-
-    gap: 20px;
-
     position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 
     z-index: 10;
 }
@@ -80,20 +63,15 @@ body {
     width: 100%;
 
     display: flex;
-
     justify-content: center;
     align-items: flex-start;
 }
 
 .titulo-principal img {
-    width: 80%;
-
+    width: 55%;
     max-width: 720px;
-
     min-width: 350px;
-
     height: auto;
-
     display: block;
 }
 
@@ -103,90 +81,66 @@ body {
 ================================================== */
 
 .area-utilizador {
-    width: 100%;
-
-    display: flex;
-
-    justify-content: flex-end;
-
-    position: relative;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
-
-/* Caixa branca comum */
-
 .perfil {
-    width: 100%;
-
-    max-width: 360px;
-
+    width: 360px;
     min-height: 82px;
+    padding: 8px 12px;
 
-    padding:
-        8px
-        12px;
-
-    background-color:
-        rgba(255, 255, 255, 0.94);
-
+    background-color: rgba(255, 255, 255, 0.94);
     border-radius: 40px;
 
-    box-shadow:
-        0 5px 18px
-        rgba(0, 0, 0, 0.20);
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.20);
 
     display: grid;
-
-    grid-template-columns:
-        64px
-        1fr
-        58px;
-
+    grid-template-columns: 64px 1fr 58px;
     align-items: center;
-
     gap: 10px;
 }
 
 
 /* ==================================================
-   BOTÃO AVATAR
+   BOTÃO AMIGO
 ================================================== */
 
-.botao-avatar {
+.botao-amigo {
     width: 62px;
     height: 62px;
+    padding: 4px;
 
     border-radius: 50%;
-
-    border:
-        4px solid
-        #1ca9f5;
-
-    background-color:
-        #ffffff;
+    border: 4px solid #1ca9f5;
+    background-color: #ffd84d;
 
     display: flex;
-
     justify-content: center;
     align-items: center;
 
     cursor: pointer;
+    overflow: hidden;
 
-    box-shadow:
-        0 3px 8px
-        rgba(0, 0, 0, 0.18);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
 
-    transition:
-        transform 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
-.botao-avatar:hover {
-    transform:
-        scale(1.08);
+.botao-amigo:hover {
+    transform: scale(1.08);
 }
 
-.botao-avatar span {
-    font-size: 32px;
+.botao-amigo img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 50%;
 }
 
 
@@ -196,26 +150,19 @@ body {
 
 .dados-utilizador {
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
 }
 
 .ola {
     font-size: 15px;
-
-    color:
-        #53606d;
+    color: #53606d;
 }
 
 .nome-utilizador {
     font-size: 20px;
-
     font-weight: bold;
-
-    color:
-        #123e73;
+    color: #123e73;
 }
 
 
@@ -228,38 +175,26 @@ body {
     height: 52px;
 
     border-radius: 50%;
+    border: 4px solid #ffffff;
 
-    border:
-        4px solid
-        #ffffff;
-
-    background-color:
-        #35495e;
-
-    color:
-        #ffffff;
+    background-color: #35495e;
+    color: #ffffff;
 
     font-size: 27px;
 
     cursor: pointer;
 
     display: flex;
-
     justify-content: center;
     align-items: center;
 
-    box-shadow:
-        0 3px 8px
-        rgba(0, 0, 0, 0.20);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.20);
 
-    transition:
-        transform 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
 .botao-configuracoes:hover {
-    transform:
-        rotate(20deg)
-        scale(1.08);
+    transform: rotate(20deg) scale(1.08);
 }
 
 
@@ -269,22 +204,17 @@ body {
 
 .popup {
     position: absolute;
-
     top: 95px;
     right: 0;
 
-    width: 320px;
-
+    width: 360px;
     padding: 20px;
 
-    background-color:
-        rgba(255, 255, 255, 0.98);
+    background-color: rgba(255, 255, 255, 0.98);
 
     border-radius: 24px;
 
-    box-shadow:
-        0 10px 30px
-        rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 
     display: none;
 
@@ -304,7 +234,6 @@ body {
     width: 100%;
 
     display: flex;
-
     justify-content: space-between;
     align-items: center;
 
@@ -313,9 +242,7 @@ body {
 
 .popup-cabecalho h2 {
     font-size: 21px;
-
-    color:
-        #123e73;
+    color: #123e73;
 }
 
 .botao-fechar {
@@ -323,62 +250,115 @@ body {
     height: 34px;
 
     border: none;
-
     border-radius: 50%;
 
-    background-color:
-        #edf1f5;
-
-    color:
-        #123e73;
+    background-color: #edf1f5;
+    color: #123e73;
 
     font-size: 25px;
-
     font-weight: bold;
 
     cursor: pointer;
 }
 
 .botao-fechar:hover {
-    background-color:
-        #dfe6ec;
+    background-color: #dfe6ec;
 }
 
 
 /* ==================================================
-   AVATARES
+   AMIGOS
 ================================================== */
 
-.lista-avatares {
+.lista-amigos {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 
-    gap: 18px;
+    gap: 12px;
 
     justify-items: center;
 
-    margin-bottom: 22px;
+    max-height: 360px;
+
+    overflow-y: auto;
+
+    margin-bottom: 20px;
+
+    padding: 4px;
+}
+
+.opcao-amigo {
+    width: 65px;
+    height: 65px;
+
+    padding: 0;
+
+    border: 3px solid transparent;
+    border-radius: 50%;
+
+    background-color: transparent;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.opcao-amigo img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+.opcao-amigo:hover {
+    transform: scale(1.10);
+}
+
+.opcao-amigo.selecionado {
+    border-color: #24a5ed;
 }
 
 
-/* Círculos vazios */
+/* ==================================================
+   MENU DE ESCOLHA DO NOME
+================================================== */
 
-.opcao-avatar {
-    width: 70px;
-    height: 70px;
+#menuNomes {
+    width: 100%;
 
-    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
 
-    border:
-        4px solid
-        #cfd7df;
+    gap: 12px;
+}
 
-    background-color:
-        #edf1f4;
+.botao-tipo-nome {
+    width: 100%;
+
+    min-height: 82px;
+
+    padding: 12px 15px;
+
+    border: 2px solid #e1e6eb;
+    border-radius: 18px;
+
+    background-color: #f8fafb;
+
+    color: #244363;
 
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    text-align: left;
 
     transition:
         transform 0.2s ease,
@@ -386,20 +366,78 @@ body {
         background-color 0.2s ease;
 }
 
-.opcao-avatar:hover {
-    transform:
-        scale(1.08);
+.botao-tipo-nome:hover {
+    transform: translateY(-2px);
 
-    border-color:
-        #24a5ed;
+    border-color: #29a3ed;
+
+    background-color: #eef8ff;
 }
 
-.opcao-avatar.selecionado {
-    border-color:
-        #24a5ed;
+.icone-tipo-nome {
+    width: 50px;
+    height: 50px;
 
-    background-color:
-        #d9f2ff;
+    min-width: 50px;
+
+    border-radius: 50%;
+
+    background-color: #e4f4ff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 27px;
+}
+
+.botao-tipo-nome strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 17px;
+
+    color: #123e73;
+}
+
+.botao-tipo-nome small {
+    display: block;
+
+    font-size: 13px;
+
+    color: #647587;
+}
+
+
+/* ==================================================
+   ÁREAS DOS NOMES
+================================================== */
+
+.area-nomes,
+.area-escrever-nome {
+    display: none;
+}
+
+.botao-voltar {
+    margin-bottom: 14px;
+
+    padding: 6px 4px;
+
+    border: none;
+
+    background-color: transparent;
+
+    color: #188fd4;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.botao-voltar:hover {
+    text-decoration: underline;
 }
 
 
@@ -411,12 +449,11 @@ body {
     width: 100%;
 
     display: flex;
-
     flex-direction: column;
 
     gap: 7px;
 
-    max-height: 340px;
+    max-height: 310px;
 
     overflow-y: auto;
 
@@ -425,27 +462,20 @@ body {
     padding-right: 4px;
 }
 
-
-.opcao-nome {
+.opcao-nome,
+.opcao-personagem {
     width: 100%;
 
     min-height: 40px;
 
-    padding:
-        8px
-        15px;
+    padding: 8px 15px;
 
-    border:
-        2px solid
-        #e1e6eb;
-
+    border: 2px solid #e1e6eb;
     border-radius: 14px;
 
-    background-color:
-        #f8fafb;
+    background-color: #f8fafb;
 
-    color:
-        #244363;
+    color: #244363;
 
     font-size: 16px;
 
@@ -459,24 +489,68 @@ body {
         transform 0.2s ease;
 }
 
-.opcao-nome:hover {
-    background-color:
-        #e7f5ff;
+.opcao-nome:hover,
+.opcao-personagem:hover {
+    background-color: #e7f5ff;
 
-    border-color:
-        #29a3ed;
+    border-color: #29a3ed;
 
-    transform:
-        translateX(4px);
+    transform: translateX(4px);
 }
 
-.opcao-nome.selecionado {
-    background-color:
-        #d9f1ff;
+.opcao-nome.selecionado,
+.opcao-personagem.selecionado {
+    background-color: #d9f1ff;
 
-    border-color:
-        #159eea;
+    border-color: #159eea;
 
+    font-weight: bold;
+}
+
+
+/* ==================================================
+   ESCREVER NOME
+================================================== */
+
+.texto-escrever-nome {
+    margin-bottom: 12px;
+
+    color: #53606d;
+
+    font-size: 16px;
+}
+
+.campo-nome {
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    border: 2px solid #dce3e9;
+    border-radius: 14px;
+
+    background-color: #f8fafb;
+
+    color: #244363;
+
+    font-size: 17px;
+
+    outline: none;
+}
+
+.campo-nome:focus {
+    border-color: #259ff0;
+}
+
+.mensagem-erro {
+    min-height: 30px;
+
+    padding-top: 7px;
+
+    color: #d43434;
+
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -491,24 +565,18 @@ body {
     min-height: 44px;
 
     border: none;
-
     border-radius: 22px;
 
-    background-color:
-        #259ff0;
+    background-color: #259ff0;
 
-    color:
-        #ffffff;
+    color: #ffffff;
 
     font-size: 16px;
-
     font-weight: bold;
 
     cursor: pointer;
 
-    box-shadow:
-        0 3px 8px
-        rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
 
     transition:
         transform 0.2s ease,
@@ -516,11 +584,9 @@ body {
 }
 
 .botao-guardar:hover {
-    background-color:
-        #138bd9;
+    background-color: #138bd9;
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
 
 
@@ -532,34 +598,18 @@ body {
     width: 100%;
 
     display: flex;
-
     justify-content: center;
     align-items: flex-end;
 
-    gap:
-        clamp(
-            25px,
-            4vw,
-            70px
-        );
+    gap: clamp(25px, 4vw, 70px);
 
-    padding:
-        10px
-        5%;
+    padding: 10px 5%;
 
-    margin-top: 10px;
+    margin-top: -15px;
 }
 
-
-/* O próprio card é o botão */
-
 .card-jogo {
-    width:
-        clamp(
-            200px,
-            22vw,
-            310px
-        );
+    width: clamp(200px, 22vw, 310px);
 
     display: block;
 
@@ -574,7 +624,6 @@ body {
 
 .card-jogo img {
     width: 100%;
-
     height: auto;
 
     display: block;
@@ -583,12 +632,34 @@ body {
 }
 
 
-/* Efeito rato */
+/* ==================================================
+   POSIÇÃO DAS CARTAS
+================================================== */
+
+/*
+    Jogo das Diferenças:
+    mantém a posição original.
+
+    Jogo da Memória:
+    mantém os 6 píxeis acima.
+
+    Jogo dos Sons:
+    sobe agora 8 píxeis no total.
+*/
+
+.card-jogo:nth-child(2) {
+    position: relative;
+    top: -6px;
+}
+
+.card-jogo:nth-child(3) {
+    position: relative;
+    top: -8px;
+}
+
 
 .card-jogo:hover {
-    transform:
-        translateY(-12px)
-        scale(1.04);
+    transform: translateY(-12px) scale(1.04);
 
     filter:
         drop-shadow(
@@ -597,13 +668,87 @@ body {
         );
 }
 
-
-/* Efeito clique */
-
 .card-jogo:active {
-    transform:
-        translateY(-3px)
-        scale(0.97);
+    transform: translateY(-3px) scale(0.97);
+}
+
+
+/* ==================================================
+   AMIGO ESCOLHIDO
+================================================== */
+
+.amigo-escolhido {
+    position: fixed;
+
+    left: 50%;
+    bottom: 25px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+.amigo-escolhido img {
+    width: 180px;
+    height: 220px;
+
+    object-fit: contain;
+
+    display: none;
+
+    filter:
+        drop-shadow(4px 0 0 white)
+        drop-shadow(-4px 0 0 white)
+        drop-shadow(0 4px 0 white)
+        drop-shadow(0 -4px 0 white);
+}
+
+
+/* ==================================================
+   BOTÃO BRINQUEDOS
+================================================== */
+
+.botao-brinquedos-principal {
+    position: fixed;
+
+    left: 35px;
+    bottom: 30px;
+
+    padding: 12px 22px;
+
+    border: 3px solid #ffffff;
+    border-radius: 25px;
+
+    background-color: #259ff0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.22);
+
+    z-index: 20;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.botao-brinquedos-principal:hover {
+    transform: scale(1.06);
+
+    background-color: #138bd9;
 }
 
 
@@ -614,37 +759,33 @@ body {
 @media (max-width: 950px) {
 
     .aplicacao {
-        padding:
-            15px
-            20px
-            30px;
-    }
-
-    .topo {
-        grid-template-columns:
-            1.6fr
-            1fr;
+        padding: 15px 20px 30px;
     }
 
     .titulo-principal img {
-        width: 95%;
-
+        width: 60%;
         min-width: 250px;
     }
 
     .perfil {
-        min-width: 250px;
+        width: 300px;
     }
 
     .jogos {
         flex-wrap: wrap;
 
-        margin-top: 25px;
+        margin-top: 0;
     }
 
     .card-jogo {
         width: 240px;
     }
+
+    .amigo-escolhido img {
+        width: 160px;
+        height: 200px;
+    }
+
 }
 
 
@@ -655,8 +796,6 @@ body {
 @media (max-width: 650px) {
 
     .topo {
-        display: flex;
-
         flex-direction: column;
 
         align-items: center;
@@ -671,18 +810,33 @@ body {
     }
 
     .area-utilizador {
+        position: relative;
+
+        top: auto;
+        right: auto;
+
+        width: 100%;
+
+        display: flex;
         justify-content: center;
     }
 
     .perfil {
+        width: 100%;
+
         max-width: 330px;
     }
 
     .popup {
+        width: 330px;
+
         right: 50%;
 
-        transform:
-            translateX(50%);
+        transform: translateX(50%);
+    }
+
+    .lista-amigos {
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .jogos {
@@ -692,7 +846,12 @@ body {
 
         gap: 25px;
 
-        margin-top: 35px;
+        margin-top: 10px;
+    }
+
+    .card-jogo:nth-child(2),
+    .card-jogo:nth-child(3) {
+        top: 0;
     }
 
     .card-jogo {
@@ -700,4 +859,355 @@ body {
 
         max-width: 280px;
     }
+
+    .amigo-escolhido img {
+        width: 150px;
+        height: 190px;
+    }
+
+    .botao-brinquedos-principal {
+        left: 15px;
+        bottom: 15px;
+
+        padding: 10px 16px;
+
+        font-size: 16px;
+    }
+
+}
+
+/* ==================================================
+   NOMES REGISTADOS
+================================================== */
+
+.botao-nomes-registados {
+    position: fixed;
+    left: 35px;
+    bottom: 95px;
+    padding: 12px 22px;
+    border: 3px solid #ffffff;
+    border-radius: 25px;
+    background-color: #ffd84d;
+    color: #123e73;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+    z-index: 20;
+}
+
+.botao-nomes-registados:hover {
+    transform: scale(1.06);
+}
+
+.popup-registos {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    justify-content: center;
+    align-items: center;
+    z-index: 120;
+}
+
+.caixa-registos {
+    width: 600px;
+    max-width: 90%;
+    max-height: 80vh;
+    padding: 25px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.cabecalho-registos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cabecalho-registos h2 {
+    color: #123e73;
+    font-size: 26px;
+}
+
+.fechar-registos {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background-color: #edf1f5;
+    color: #123e73;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.texto-registos {
+    margin-bottom: 15px;
+    color: #53606d;
+    font-size: 16px;
+}
+
+.lista-registos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-height: 55vh;
+    overflow-y: auto;
+}
+
+.registo-utilizador {
+    min-height: 80px;
+    padding: 10px;
+    border: 2px solid #e1e6eb;
+    border-radius: 18px;
+    background-color: #f8fafb;
+    color: #244363;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.registo-utilizador:hover {
+    border-color: #24a5ed;
+    background-color: #eef8ff;
+}
+
+.registo-utilizador img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+}
+
+.sem-registos {
+    grid-column: 1 / 3;
+    padding: 30px 10px;
+    text-align: center;
+    color: #53606d;
+    font-size: 18px;
+}
+
+@media (max-width: 650px) {
+    .botao-nomes-registados {
+        left: 15px;
+        bottom: 75px;
+        padding: 10px 16px;
+        font-size: 16px;
+    }
+
+    .lista-registos {
+        grid-template-columns: 1fr;
+    }
+
+    .sem-registos {
+        grid-column: 1;
+    }
+}
+
+
+/* ==================================================
+   VERSÃO APERFEIÇOADA
+================================================== */
+
+.botao-historico {
+    position: fixed;
+    left: 35px;
+    bottom: 160px;
+    padding: 12px 22px;
+    border: 3px solid #ffffff;
+    border-radius: 25px;
+    background-color: #90ee90;
+    color: #123e73;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+    z-index: 20;
+}
+
+.botao-historico:hover {
+    transform: scale(1.06);
+}
+
+.botao-borracha {
+    width: 42px;
+    height: 42px;
+    margin-left: auto;
+    margin-right: 10px;
+    border: 2px solid #e1e6eb;
+    border-radius: 12px;
+    background-color: #f8fafb;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.botao-borracha.ativa {
+    background-color: #ffd6d6;
+    border-color: #e56b6b;
+}
+
+.popup-historico {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    justify-content: center;
+    align-items: center;
+    z-index: 120;
+}
+
+.caixa-historico {
+    width: 600px;
+    max-width: 90%;
+    max-height: 80vh;
+    padding: 25px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.cabecalho-historico {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cabecalho-historico h2 {
+    color: #123e73;
+    font-size: 26px;
+}
+
+.lista-historico {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 55vh;
+    overflow-y: auto;
+}
+
+.resultado-historico {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 5px 15px;
+    padding: 12px 15px;
+    border: 2px solid #e1e6eb;
+    border-radius: 15px;
+    background-color: #f8fafb;
+    color: #244363;
+}
+
+.resultado-historico small {
+    grid-column: 1 / 3;
+    color: #647587;
+}
+
+.sem-historico {
+    padding: 30px 10px;
+    text-align: center;
+    color: #53606d;
+    font-size: 18px;
+}
+
+@media (max-width: 650px) {
+    .botao-historico {
+        left: 15px;
+        bottom: 135px;
+        padding: 10px 16px;
+        font-size: 16px;
+    }
+}
+
+
+/* ==================================================
+   BOTÕES PRINCIPAIS INFERIORES - MEDIDAS IGUAIS
+================================================== */
+
+.botao-historico,
+.botao-nomes-registados,
+.botao-brinquedos-principal {
+    left: 35px;
+
+    width: 210px;
+    height: 55px;
+
+    padding: 0 12px;
+
+    border-width: 3px;
+    border-style: solid;
+    border-color: #ffffff;
+
+    border-radius: 28px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    white-space: nowrap;
+}
+
+
+/* ==================================================
+   POSIÇÃO DOS TRÊS BOTÕES
+================================================== */
+
+.botao-historico {
+    bottom: 160px;
+}
+
+.botao-nomes-registados {
+    bottom: 95px;
+}
+
+.botao-brinquedos-principal {
+    bottom: 30px;
+}
+
+
+/* ==================================================
+   TELEMÓVEIS - MEDIDAS IGUAIS
+================================================== */
+
+@media (max-width: 650px) {
+
+    .botao-historico,
+    .botao-nomes-registados,
+    .botao-brinquedos-principal {
+        left: 15px;
+
+        width: 190px;
+        height: 50px;
+
+        padding: 0 10px;
+
+        font-size: 16px;
+    }
+
+    .botao-historico {
+        bottom: 135px;
+    }
+
+    .botao-nomes-registados {
+        bottom: 75px;
+    }
+
+    .botao-brinquedos-principal {
+        bottom: 15px;
+    }
+
 }
