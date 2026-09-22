@@ -1,0 +1,99 @@
+body{
+    background-image: url("https://i.pinimg.com/originals/0e/3c/8f/0e3c8f1b9d5a2f6b4e1f5c1d7e1a2b3c.jpg");
+    font-family: Arial, sans-serif;
+    background-color: #bab8bb;
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    text-align: center;
+    color: #242433;
+}
+
+h2{
+    text-align: center;
+    color: #242433;
+}
+
+#restartButton{
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #171be4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#restartButton:hover{
+    background-color: #3936be;
+}
+
+p{
+    text-align: center;
+    font-size: 18px;
+    color: black;
+}
+
+#difficultyButton{
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #171be4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.memory-board {
+    display: grid;
+    gap: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+    transition: opacity 0.3s ease;
+}
+
+.card {
+    background-color: #ccc;
+    height: 80px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card .front, .card .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    border-radius: 8px;
+}
+
+.card .front {
+    background-color: #374151;
+    color: white;
+}
+
+.card .back {
+    background-color: white;
+    transform: rotateY(180deg);
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
