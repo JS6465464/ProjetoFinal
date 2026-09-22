@@ -37,71 +37,119 @@
 
         <div class="zona-lateral">
 
-            <h1>
-                Jogo das Diferenças
-            </h1>
-
-
-            <div class="pontuacao">
-
-                <p>
-                    Pontuação
-                </p>
-
-                <p id="valor-pontuacao">
-                    0 / 0
-                </p>
-
-            </div>
-
+            <h1>Jogo das Diferenças</h1>
 
             <div
-                id="respostas"
-                class="respostas"
-            >
+                id="oportunidadesDiferencas"
+                class="oportunidades-diferencas"
+                aria-label="Oportunidades de brinquedo restantes"
+            ></div>
 
-                <button
-                    id="resposta1"
-                    class="resposta"
-                ></button>
+            <p
+                id="nomeJogo"
+                class="nome-utilizador-jogo nome-diferencas"
+            ></p>
 
-                <button
-                    id="resposta2"
-                    class="resposta"
-                ></button>
-
-                <button
-                    id="resposta3"
-                    class="resposta"
-                ></button>
-
-                <button
-                    id="resposta4"
-                    class="resposta"
-                ></button>
-
+            <div class="pontuacao">
+                <p>Pontuação</p>
+                <p id="valor-pontuacao">0 / 0</p>
             </div>
 
+            <div id="respostas" class="respostas">
+                <button id="resposta1" class="resposta" type="button"></button>
+                <button id="resposta2" class="resposta" type="button"></button>
+                <button id="resposta3" class="resposta" type="button"></button>
+                <button id="resposta4" class="resposta" type="button"></button>
+            </div>
 
-            <button
-                id="seguinte"
-                class="seguinte"
-            >
+            <button id="seguinte" class="seguinte" type="button">
                 Seguinte
             </button>
 
-
             <button
-                id="home"
-                class="home"
+                id="botaoBrinquedos"
+                class="botao-brinquedos-jogo"
+                type="button"
             >
+                🧸 Brinquedos
+            </button>
+
+            <button id="home" class="home" type="button">
                 Home
             </button>
 
         </div>
 
     </div>
+    <!-- amigo escolhido -->
 
+    <img
+        id="amigoJogo"
+        class="amigo-utilizador-jogo amigo-diferencas"
+        src=""
+        alt="Amigo escolhido"
+    >
+
+
+    <!-- popup da coleção -->
+
+    <div id="popupColecaoBrinquedos" class="popup-brinquedos">
+        <div class="caixa-brinquedos">
+            <h2>Os meus Brinquedos</h2>
+
+            <p>Estes são os brinquedos que já ganhaste.</p>
+
+            <div
+                id="listaColecaoBrinquedos"
+                class="lista-brinquedos"
+            ></div>
+
+            <button
+                id="fecharBrinquedos"
+                class="fechar-brinquedos"
+                type="button"
+            >
+                Fechar
+            </button>
+        </div>
+    </div>
+
+
+    <!-- popup escolher brnquedo-->
+
+    <div
+        id="popupEscolherBrinquedo"
+        class="popup-brinquedos popup-escolher-brinquedo"
+    >
+        <div class="tempo-brinquedo">
+            <p class="texto-tempo-brinquedo">
+                Tempo para escolher
+            </p>
+
+            <div id="contadorBrinquedo" class="contador-brinquedo">
+                10
+            </div>
+        </div>
+
+        <div class="caixa-brinquedos">
+            <h2>Escolhe um brinquedo!</h2>
+
+            <p>Escolhe um antes que o tempo termine.</p>
+
+            <div
+                id="listaEscolherBrinquedo"
+                class="lista-brinquedos"
+            ></div>
+        </div>
+    </div>
+
+
+    <!-- js -->
+
+    <script src="../../comum/dados.js"></script>
+    <script src="../../comum/utilizador.js"></script>
+    <script src="../../comum/brinquedos.js"></script>
+    <script src="jogo.js"></script>
 
     <script src="jogo.js"></script>
 

@@ -128,6 +128,248 @@ let jogadas = 0
 
 let acertos = 0
 
+let etapaAtual = 1
+
+let resultadoGuardado = false
+
+// ======================================================
+// OPORTUNIDADES DE BRINQUEDOS
+// ======================================================
+
+const maximoOportunidadesDiferencas = 4
+
+let oportunidadesUtilizadasDiferencas = 0
+
+let oportunidadesBrinquedos = []
+
+let oportunidadeAtualMostrada = false
+
+
+// ======================================================
+// MOSTRAR OPORTUNIDADES RESTANTES
+// ======================================================
+
+function atualizarSimbolosOportunidades() {
+
+    const zona =
+        document.getElementById(
+            "oportunidadesDiferencas"
+        )
+
+
+    if (zona === null) {
+
+        return
+    }
+
+
+    zona.innerHTML = ""
+
+
+    const restantes =
+        maximoOportunidadesDiferencas -
+        oportunidadesUtilizadasDiferencas
+
+
+    for (let i = 0; i < restantes; i++) {
+
+        const simbolo =
+            document.createElement("img")
+
+        simbolo.src =
+            "../../recursos/simbolo_brinquedo1.png"
+
+        simbolo.alt =
+            "Oportunidade de brinquedo"
+
+        simbolo.className =
+            "simbolo-oportunidade"
+
+        zona.appendChild(simbolo)
+    }
+}
+
+
+// ======================================================
+// LER PROGRESSO DAS OPORTUNIDADES
+// ======================================================
+
+function lerProgressoBrinquedosDiferencas() {
+
+    const guardado =
+        localStorage.getItem(
+            "brinquedosDiferencas"
+        )
+
+
+    if (guardado === null) {
+
+        oportunidadesUtilizadasDiferencas = 0
+
+    } else {
+
+        oportunidadesUtilizadasDiferencas =
+            Number(guardado)
+
+    }
+}
+
+
+// ======================================================
+// CRIAR OPORTUNIDADES ALEATÓRIAS
+// ======================================================
+
+function criarOportunidadesBrinquedos() {
+
+    oportunidadesBrinquedos = []
+
+
+    const oportunidadesQueFaltam =
+        maximoOportunidadesDiferencas -
+        oportunidadesUtilizadasDiferencas
+
+
+    if (
+        oportunidadesQueFaltam <= 0
+    ) {
+
+        return
+    }
+
+
+    /*
+        As oportunidades são distribuídas
+        aleatoriamente pelas 37 etapas.
+
+        A primeira etapa fica de fora
+        para o popup não aparecer
+        imediatamente ao entrar.
+    */
+
+    while (
+        oportunidadesBrinquedos.length <
+        oportunidadesQueFaltam
+    ) {
+
+        const etapa =
+            Math.floor(
+                Math.random() * 36
+            ) + 2
+
+
+        if (
+            !oportunidadesBrinquedos.includes(
+                etapa
+            )
+        ) {
+
+            oportunidadesBrinquedos.push(
+                etapa
+            )
+
+        }
+
+    }
+
+
+    console.log(
+        "Oportunidades de brinquedos:",
+        oportunidadesBrinquedos
+    )
+}
+
+
+// ======================================================
+// VERIFICAR OPORTUNIDADE
+// ======================================================
+
+function verificarOportunidadeBrinquedo() {
+
+    if (
+        oportunidadesUtilizadasDiferencas >=
+        maximoOportunidadesDiferencas
+    ) {
+
+        return
+    }
+
+
+    if (
+        oportunidadeAtualMostrada === true
+    ) {
+
+        return
+    }
+
+
+    if (
+        oportunidadesBrinquedos.includes(
+            etapaAtual
+        )
+    ) {
+
+        oportunidadeAtualMostrada =
+            true
+
+
+        utilizarOportunidadeBrinquedoDiferencas()
+
+
+        mostrarOportunidadeBrinquedo()
+
+    }
+}
+
+
+// ======================================================
+// OPORTUNIDADE TERMINADA
+// ======================================================
+
+function utilizarOportunidadeBrinquedoDiferencas() {
+
+    /*
+        Esta função é chamada quer
+        a criança escolha um brinquedo,
+        quer o relógio chegue a zero.
+    */
+
+    oportunidadesUtilizadasDiferencas =
+        oportunidadesUtilizadasDiferencas + 1
+
+
+    if (
+        oportunidadesUtilizadasDiferencas >
+        maximoOportunidadesDiferencas
+    ) {
+
+        oportunidadesUtilizadasDiferencas =
+            maximoOportunidadesDiferencas
+
+    }
+
+
+    localStorage.setItem(
+        "brinquedosDiferencas",
+        oportunidadesUtilizadasDiferencas
+    )
+
+
+    if (typeof guardarDadosRegistoAtual === "function") {
+
+        guardarDadosRegistoAtual()
+
+    }
+
+
+    atualizarSimbolosOportunidades()
+
+
+    console.log(
+        "Oportunidades utilizadas:",
+        oportunidadesUtilizadasDiferencas
+    )
+}
+
 
 // ======================================================
 // PARAR TODOS OS SONS
@@ -355,6 +597,8 @@ function verificarResposta(botao) {
     atualizarPontuacao()
 
     mostrarSolucao()
+
+    verificarOportunidadeBrinquedo()
 }
 
 
@@ -407,6 +651,12 @@ function proximaImagem() {
         return
     }
 
+    etapaAtual =
+        etapaAtual + 1
+
+
+    oportunidadeAtualMostrada =
+        false
 
     tampa.style.display = "block"
 
@@ -420,6 +670,28 @@ function proximaImagem() {
     tocarInstrucao()
 }
 
+// ======================================================
+// GUARDAR RESULTADO NO HISTÓRICO
+// ======================================================
+
+function guardarResultadoAtual() {
+
+    if (
+        resultadoGuardado === false &&
+        jogadas > 0 &&
+        typeof guardarResultadoJogo === "function"
+    ) {
+
+        guardarResultadoJogo(
+            "Jogo das Diferenças",
+            acertos,
+            jogadas
+        )
+
+        resultadoGuardado = true
+
+    }
+}
 
 // ======================================================
 // VOLTAR AO MINIGENIO
@@ -429,6 +701,7 @@ function voltarMenu() {
 
     pararSons()
 
+    guardarResultadoAtual()
 
     window.location.href =
         "../../index.html"
@@ -474,6 +747,9 @@ resposta4.addEventListener(
     }
 )
 
+// ======================================================
+// EVENTO SEGUINTE
+// ======================================================
 
 seguinte.addEventListener(
     "click",
@@ -483,7 +759,9 @@ seguinte.addEventListener(
     }
 )
 
-
+// ======================================================
+// EVENTO HOME
+// ======================================================
 home.addEventListener(
     "click",
     () => {
@@ -496,6 +774,11 @@ home.addEventListener(
 // ======================================================
 // INICIAR
 // ======================================================
+lerProgressoBrinquedosDiferencas()
+
+atualizarSimbolosOportunidades()
+
+criarOportunidadesBrinquedos()
 
 escolherImagem()
 
