@@ -1,141 +1,261 @@
-/* RESET*/ 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* PÁGINA */
-
 body {
-    min-height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f5f7ff;
-    display: flow-root;
-}
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 10px;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow: hidden;
+        }
 
-/* TÍTULO */
+        .fonte-titulo {
+            font-family: 'Fredoka One', cursive;
+        }
 
-.titulo-jogo {
-    width: 500px;
-    height: 100px;
+        .contentor-moldura {
+            width: 1200px;
+            height: 800px;
+            max-width: 96vw;
+            max-height: min(82vh, calc(100vh - 160px));
+            position: relative;
+        }
 
-    margin: 40px auto 0;
+        .moldura-jogo {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            border: 10px solid #FFD166;
+            border-radius: 32px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
 
-    border: 1px solid black;
-}
-.placeholder-h1 {
-    height: 100%;
+        /* Botões estilo brinquedo 3D */
+        .botao-brinquedo {
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 6px 0 rgba(0,0,0,0.15);
+        }
+        .botao-brinquedo:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 0 rgba(0,0,0,0.15);
+        }
+        .botao-brinquedo:active {
+            transform: translateY(3px) scale(0.98);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+        }
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        .botao-modo {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            min-width: 170px;
+            padding: 12px 20px;
+            background: #ffffff;
+            border: 4px solid #E2E8F0;
+            border-radius: 22px;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.10);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .botao-modo:hover {
+            transform: translateY(-3px);
+            border-color: #A7F3D0;
+        }
+        .botao-modo.modo-selecionado {
+            border-color: #2ECC71;
+            background: #ECFDF5;
+            transform: scale(1.05);
+            box-shadow: 0 0 0 5px rgba(46, 204, 113, 0.25), 0 5px 0 rgba(0,0,0,0.12);
+        }
+        .botao-modo.modo-selecionado[data-rondas="10"] {
+            border-color: #F59E0B;
+            background: #FFFBEB;
+            box-shadow: 0 0 0 5px rgba(245, 158, 11, 0.25), 0 5px 0 rgba(0,0,0,0.12);
+        }
+        .modo-visto {
+            display: none;
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 30px;
+            height: 30px;
+            border-radius: 9999px;
+            background: #2ECC71;
+            color: #fff;
+            font-size: 14px;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #fff;
+        }
+        .botao-modo.modo-selecionado .modo-visto {
+            display: flex;
+        }
+        .botao-modo.modo-selecionado[data-rondas="10"] .modo-visto {
+            background: #F59E0B;
+        }
 
-    font-size: 38px;
-}
+        .cartao-vertical {
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 5px solid #E2E8F0;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            min-height: 0;
+        }
+        .cartao-vertical:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: #4ECDC4;
+            box-shadow: 0 10px 20px rgba(78, 205, 196, 0.3);
+        }
 
-/* ÁREA DO JOGO */
+        .cartao-vertical img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
 
-.moldura-jogo {
-    width: min(1200px, 80vw);
-    height: min(800px, 60vh);
+        .cartao-certo {
+            animation: saltoVitoria 0.6s ease infinite alternate;
+            border-color: #2ECC71 !important;
+            box-shadow: 0 0 25px rgba(46, 204, 113, 0.6) !important;
+        }
 
-    padding: 20px;
+        .cartao-errado {
+            animation: abanar 0.4s ease-in-out;
+            border-color: #FF6B6B !important;
+            opacity: 0.5;
+            pointer-events: none;
+        }
 
-    display: flex;
+        @keyframes saltoVitoria {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.04) rotate(1.5deg); }
+        }
 
-    background-color: white;
+        @keyframes abanar {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
 
-    border: 5px solid #333;
-    border-radius: 25px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
+        .botao-audio-pulsante {
+            animation: pulsoBrilho 1.6s infinite ease-in-out;
+        }
+        @keyframes pulsoBrilho {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+            50% { transform: scale(1.12); box-shadow: 0 0 0 18px rgba(239, 68, 68, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
 
-.conteudo-jogo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-}
+        /* Nuvens decorativas ao fundo */
+        .nuvem-fundo {
+            position: absolute;
+            opacity: 0.15;
+            animation: flutuarNuvem 25s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes flutuarNuvem {
+            from { transform: translateX(-150px); }
+            to { transform: translateX(1250px); }
+        }
 
-.area-jogo {
-    flex: 1;
+        .cabecalho-pagina {
+            margin-bottom: clamp(20px, 4vh, 40px);
+        }
+        .subtitulo-pagina {
+            color: #7e22ce;
+            font-weight: 700;
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+            margin-top: 0.25rem;
+        }
+        @media (min-width: 768px) {
+            .subtitulo-pagina {
+                font-size: 1.25rem;
+            }
+        }
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        .area-cartoes {
+            width: 100%;
+            max-width: 1000px;
+        }
 
-    min-height: 0;
-}
+        .mensagem-inicio {
+            color: #6b21a8;
+            background: rgba(254, 240, 138, 0.9);
+            border-color: #facc15;
+        }
+        .mensagem-sucesso {
+            color: #065f46;
+            background: #a7f3d0;
+            border-color: #34d399;
+        }
+        .mensagem-nova-tentativa {
+            color: #92400e;
+            background: #fde68a;
+            border-color: #fbbf24;
+        }
+        .mensagem-revelacao {
+            color: #6b21a8;
+            background: #e9d5ff;
+            border-color: #c084fc;
+        }
 
-/* BOTÃO VOLTAR */
+        .caixa-mensagem {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            padding: 0.5rem 2.5rem;
+            border-width: 3px;
+        }
+        @media (min-width: 768px) {
+            .caixa-mensagem {
+                font-size: 1.75rem;
+                line-height: 2.25rem;
+            }
+        }
 
-.btn-voltar {
-    margin-top: 25px;
-
-    padding: 12px 30px;
-
-    border: none;
-    border-radius: 12px;
-
-    background-color: #333;
-    color: white;
-
-    font-size: 17px;
-
-    cursor: pointer;
-}
-
-
-/* ELEMENTOS LATERAIS */
-
-.barra-lateral {
-    position: fixed;
-
-    top: 30px;
-    right: 30px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    gap: 25px;
-}
-
-.avatar {
-    width: 85px;
-    height: 85px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background-color: white;
-
-    border: 4px solid #333;
-    border-radius: 50%;
-
-    font-size: 42px;
-}
-
-.btn-conquistas {
-    width: 140px;
-
-    padding: 12px 8px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-
-    border: none;
-    border-radius: 12px;
-
-    background-color: #333;
-    color: white;
-
-    font-size: 16px;
-
-    cursor: pointer;
-}
+        .nuvem-rosa {
+            top: 32%;
+            font-size: 4.5rem;
+            line-height: 1;
+            color: #f9a8d4;
+            animation-duration: 32s;
+            animation-delay: -6s;
+        }
+        .nuvem-turquesa {
+            top: 78%;
+            font-size: 3rem;
+            line-height: 1;
+            color: #5eead4;
+            animation-duration: 28s;
+            animation-delay: -19s;
+        }
+        .nuvem-amarela-a {
+            top: 21%;
+            font-size: 3.75rem;
+            line-height: 1;
+            color: #facc15;
+            animation-duration: 36s;
+            animation-delay: -14s;
+        }
+        .nuvem-amarela-b {
+            top: 89%;
+            font-size: 3.5rem;
+            line-height: 1;
+            color: #facc15;
+            animation-duration: 30s;
+            animation-delay: -3s;
+        }
