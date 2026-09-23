@@ -206,6 +206,7 @@ function prepararRonda() {
     // O animal certo nunca se repete na mesma partida.
     const alvosDisponiveis = BASE_ANIMAIS.filter(animal => !idsAnimaisUsados.includes(animal.id));
     animalCerto = alvosDisponiveis[Math.floor(Math.random() * alvosDisponiveis.length)];
+    alert(animalCerto.nome);
     idsAnimaisUsados.push(animalCerto.id);
 
     // As outras 3 opções são animais diferentes do certo; depois baralha-se tudo
@@ -395,13 +396,55 @@ function mostrarPontuacaoFinal() {
     if (typeof confetti === 'function') {
         confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
     }
+
+    // O popup do brinquedo só aparece depois dos confetis acabarem
+    setTimeout(verificarOportunidadeBrinquedoAnimais, 2000);
 }
 
 function guardarResultadoAtual() {
-if (typeof guardarResultadoJogo === "function") {
-const jogadas = resultadosRondas.length;
-const acertos = resultadosRondas.filter(r => r.estrelas > 0).length;
+    if (typeof guardarResultadoJogo === "function") {
+    const jogadas = resultadosRondas.length;
+    const acertos = resultadosRondas.filter(r => r.estrelas > 0).length;
 
-guardarResultadoJogo("Jogo dos Animais", acertos, jogadas);
+    guardarResultadoJogo("Jogo dos Animais", acertos, jogadas);
+    }
 }
+
+// ---------- Brinquedos (bónus por partida perfeita) ----------
+
+const CHAVE_BRINQUEDOS_FACIL = "brinquedosAnimaisFacil";
+const CHAVE_BRINQUEDOS_DIFICIL = "brinquedosAnimaisDificil";
+const MAX_BRINQUEDOS_POR_MODO = 2;
+
+function lerNumeroBrinquedosAnimais(chave) {
+    const guardado = localStorage.getItem(chave);
+    return guardado === null ? 0 : Number(guardado);
+}
+
+// Junta os dois contadores no total que o dados.js já sabe ler ("brinquedosSons")
+function atualizarTotalBrinquedosSons() {
+    const facil = lerNumeroBrinquedosAnimais(CHAVE_BRINQUEDOS_FACIL);
+    const dificil = lerNumeroBrinquedosAnimais(CHAVE_BRINQUEDOS_DIFICIL);
+    localStorage.setItem("brinquedosSons", facil + dificil);
+
+    if (typeof guardarDadosRegistoAtual === "function") {
+        guardarDadosRegistoAtual();
+    }
+}
+
+// Só há oportunidade numa partida perfeita: todas as rondas com estrela cheia
+function verificarOportunidadeBrinquedoAnimais() {
+    if (totalEstrelas !== totalRondas) return;
+
+    const chave = totalRondas === 5 ? CHAVE_BRINQUEDOS_FACIL : CHAVE_BRINQUEDOS_DIFICIL;
+    const usados = lerNumeroBrinquedosAnimais(chave);
+
+    if (usados >= MAX_BRINQUEDOS_POR_MODO) return;   // já ganhou os 2 brinquedos deste modo
+
+    localStorage.setItem(chave, usados + 1);
+    atualizarTotalBrinquedosSons();
+
+    if (typeof mostrarOportunidadeBrinquedo === "function") {
+        mostrarOportunidadeBrinquedo();
+    }
 }
