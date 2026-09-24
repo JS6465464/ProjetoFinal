@@ -100,6 +100,12 @@ function guardarDadosRegistoAtual() {
     registos[posicao].sons =
         lerNumeroLocalStorage("brinquedosSons");
 
+    registos[posicao].animaisFacil =
+        lerNumeroLocalStorage("brinquedosAnimaisFacil");
+
+    registos[posicao].animaisDificil =
+        lerNumeroLocalStorage("brinquedosAnimaisDificil");
+
     if (registos[posicao].historico === undefined) {
         registos[posicao].historico = [];
     }
@@ -112,6 +118,8 @@ function limparDadosAtivos() {
     localStorage.removeItem("brinquedosDiferencas");
     localStorage.removeItem("brinquedosMemoria");
     localStorage.removeItem("brinquedosSons");
+    localStorage.removeItem("brinquedosAnimaisFacil");
+    localStorage.removeItem("brinquedosAnimaisDificil");
 }
 
 function carregarDadosDoRegisto(registo) {
@@ -125,6 +133,8 @@ function carregarDadosDoRegisto(registo) {
     localStorage.setItem("brinquedosDiferencas", registo.diferencas || 0);
     localStorage.setItem("brinquedosMemoria", registo.memoria || 0);
     localStorage.setItem("brinquedosSons", registo.sons || 0);
+    localStorage.setItem("brinquedosAnimaisFacil", registo.animaisFacil || 0);
+    localStorage.setItem("brinquedosAnimaisDificil", registo.animaisDificil || 0);
 }
 
 function guardarResultadoJogo(jogo, acertos, jogadas) {
