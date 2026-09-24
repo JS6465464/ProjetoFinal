@@ -5,7 +5,7 @@ const BASE_ANIMAIS = [
     { id: 'vaca', nome: 'Vaca', emoji: '🐮', somUrl: 'https://actions.google.com/sounds/v1/animals/cow_moo.ogg', imagem: 'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&w=800&q=80' },
     { id: 'pato', nome: 'Pato', emoji: '🦆', somUrl: 'https://actions.google.com/sounds/v1/animals/mallard_duck_quacking.ogg', imagem: 'https://images.unsplash.com/photo-1555852095-64e7428df0fa?auto=format&fit=crop&w=800&q=80' },
     { id: 'leao', nome: 'Leão', emoji: '🦁', somUrl: 'https://actions.google.com/sounds/v1/animals/lion_roar.ogg', imagem: 'https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?auto=format&fit=crop&w=800&q=80' },
-    { id: 'ovelha', nome: 'Ovelha', emoji: '🐑', somUrl: 'https://actions.google.com/sounds/v1/animals/sheep_bleat.ogg', imagem: 'https://images.unsplash.com/photo-1484557052118-f32bd25b45b5?auto=format&fit=crop&w=800&q=80' },
+    { id: 'ovelha', nome: 'Ovelha', emoji: '🐑', somUrl: 'https://actions.google.com/sounds/v1/animals/sheep_bleat.ogg', imagem: 'https://modernfarmer.com/wp-content/uploads/2017/12/Funny-Sheep-Facts-jpg.webp' },
     { id: 'porco', nome: 'Porco', emoji: '🐷', somUrl: 'https://actions.google.com/sounds/v1/animals/pig_grunting.ogg', imagem: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=800&q=80' },
     { id: 'galo', nome: 'Galo', emoji: '🐓', somUrl: 'https://actions.google.com/sounds/v1/animals/rooster_crowing.ogg', imagem: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80' },
     { id: 'cavalo', nome: 'Cavalo', emoji: '🐴', somUrl: 'https://actions.google.com/sounds/v1/animals/horse_whinny.ogg', imagem: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=800&q=80' },
@@ -102,7 +102,7 @@ function pararAudio() {
 }
 
 // Toca o som do animal; a Promise resolve quando termina, falha ou passa o tempo máximo
-function tocarSomAnimal(animal, maxMs = 30000) {
+function tocarSomAnimal(animal, maxMs = 4000) {
     return new Promise(resolve => {
         pararAudio();
         const leitor = new Audio(animal.somUrl);
@@ -442,9 +442,33 @@ function verificarOportunidadeBrinquedoAnimais() {
     if (usados >= MAX_BRINQUEDOS_POR_MODO) return;   // já ganhou os 2 brinquedos deste modo
 
     localStorage.setItem(chave, usados + 1);
+    atualizarSimbolosBrinquedosAnimais();
     atualizarTotalBrinquedosSons();
 
     if (typeof mostrarOportunidadeBrinquedo === "function") {
         mostrarOportunidadeBrinquedo();
     }
 }
+
+const TOTAL_BRINQUEDOS_JOGO = MAX_BRINQUEDOS_POR_MODO * 2;   // 2 do fácil + 2 do difícil = 4 no total
+
+// Mostra um 🧸 por cada brinquedo ainda por ganhar; os já ganhos ficam esbatidos
+function atualizarSimbolosBrinquedosAnimais() {
+    const zona = document.getElementById('oportunidadesBrinquedosAnimais');
+    if (zona === null) return;
+
+    const usados =
+        lerNumeroBrinquedosAnimais(CHAVE_BRINQUEDOS_FACIL) +
+        lerNumeroBrinquedosAnimais(CHAVE_BRINQUEDOS_DIFICIL);
+    const restantes = TOTAL_BRINQUEDOS_JOGO - usados;
+
+    zona.innerHTML = '';
+    for (let i = 0; i < TOTAL_BRINQUEDOS_JOGO; i++) {
+        const ursinho = document.createElement('span');
+        ursinho.textContent = '🧸';
+        ursinho.className = i < restantes ? 'text-xl' : 'text-xl opacity-20 grayscale';
+        zona.appendChild(ursinho);
+    }
+}
+
+atualizarSimbolosBrinquedosAnimais();

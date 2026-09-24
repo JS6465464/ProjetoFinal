@@ -46,17 +46,23 @@
                         Jogo dos Animais
                     </h2>
                 </div>
-                <button id="botaoBrinquedos" type="button" title="Os teus brinquedos" aria-label="Ver a tua coleção de brinquedos"
-                    class="bg-white/90 hover:bg-white text-purple-800 w-9 h-9 rounded-full border-2 border-purple-300 shadow-sm flex items-center justify-center cursor-pointer transition-transform hover:scale-110">
-                    <i class="fa-solid fa-gift"></i>
-                </button>
-                <div id="estatisticas-cabecalho" class="hidden flex items-center space-x-4 bg-white/95 px-4 py-1 rounded-full border-2 border-purple-300 shadow-sm">
-                    <div class="flex items-center text-yellow-500 font-bold text-lg">
-                        <i class="fa-solid fa-star text-xl mr-1 animate-bounce"></i>
-                        <span id="contador-estrelas" class="fonte-titulo text-xl text-purple-900">0</span>
-                    </div>
-                    <div class="text-purple-600 font-bold text-sm md:text-base border-l-2 border-purple-200 pl-3">
-                        Ronda: <span id="contador-ronda" class="text-pink-600 fonte-titulo text-lg">1</span>/<span id="total-rondas">5</span>
+
+                <div class="flex items-center gap-3">
+                    <div id="oportunidadesBrinquedosAnimais" class="flex items-center gap-1" title="Brinquedos que ainda podes ganhar"></div>
+
+                    <button id="botaoBrinquedos" type="button" title="Os teus brinquedos" aria-label="Ver a tua coleção de brinquedos"
+                        class="bg-white/90 hover:bg-white text-purple-800 w-9 h-9 rounded-full border-2 border-purple-300 shadow-sm flex items-center justify-center cursor-pointer transition-transform hover:scale-110">
+                        <i class="fa-solid fa-gift"></i>
+                    </button>
+
+                    <div id="estatisticas-cabecalho" class="hidden flex items-center space-x-4 bg-white/95 px-4 py-1 rounded-full border-2 border-purple-300 shadow-sm">
+                        <div class="flex items-center text-yellow-500 font-bold text-lg">
+                            <i class="fa-solid fa-star text-xl mr-1 animate-bounce"></i>
+                            <span id="contador-estrelas" class="fonte-titulo text-xl text-purple-900">0</span>
+                        </div>
+                        <div class="text-purple-600 font-bold text-sm md:text-base border-l-2 border-purple-200 pl-3">
+                            Ronda: <span id="contador-ronda" class="text-pink-600 fonte-titulo text-lg">1</span>/<span id="total-rondas">5</span>
+                        </div>
                     </div>
                 </div>
             </header>
