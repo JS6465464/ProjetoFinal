@@ -11,9 +11,11 @@
     <!-- Confetti  -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="../../comum/utilizador.css">
+    <link rel="stylesheet" href="../../comum/brinquedos.css">
     <link rel="stylesheet" href="jogo.css">
 </head>
-<body>
+<body data-caminho-brinquedos="../../recursos/brinquedos/" data-caminho-recursos="../../recursos/">
+    
 
     <!-- titulo -->
     <div class="cabecalho-pagina text-center z-20">
@@ -44,7 +46,10 @@
                         Jogo dos Animais
                     </h2>
                 </div>
-
+                <button id="botaoBrinquedos" type="button" title="Os teus brinquedos" aria-label="Ver a tua coleção de brinquedos"
+                    class="bg-white/90 hover:bg-white text-purple-800 w-9 h-9 rounded-full border-2 border-purple-300 shadow-sm flex items-center justify-center cursor-pointer transition-transform hover:scale-110">
+                    <i class="fa-solid fa-gift"></i>
+                </button>
                 <div id="estatisticas-cabecalho" class="hidden flex items-center space-x-4 bg-white/95 px-4 py-1 rounded-full border-2 border-purple-300 shadow-sm">
                     <div class="flex items-center text-yellow-500 font-bold text-lg">
                         <i class="fa-solid fa-star text-xl mr-1 animate-bounce"></i>
@@ -194,9 +199,30 @@
         src=""
         alt="Amigo escolhido"
     >
+    <div id="popupColecaoBrinquedos" class="popup-brinquedos">
+        <div class="caixa-brinquedos">
+            <h2>A Tua Coleção de Brinquedos</h2>
+            <p>Estes são os brinquedos que já conquistaste!</p>
+            <div id="listaColecaoBrinquedos" class="lista-brinquedos"></div>
+            <button id="fecharBrinquedos" type="button" class="fechar-brinquedos">Fechar</button>
+        </div>
+    </div>
+
+    <div id="popupEscolherBrinquedo" class="popup-brinquedos popup-escolher-brinquedo">
+        <div class="caixa-brinquedos">
+            <h2>Ganhaste um Brinquedo! 🎁</h2>
+            <p>Escolhe um antes que o tempo acabe!</p>
+            <div class="tempo-brinquedo">
+                <p class="texto-tempo-brinquedo">Tempo restante</p>
+                <div id="contadorBrinquedo" class="contador-brinquedo">10</div>
+            </div>
+            <div id="listaEscolherBrinquedo" class="lista-brinquedos"></div>
+        </div>
+    </div>
 
     <script src="../../comum/utilizador.js"></script>
     <script src="../../comum/dados.js"></script>
     <script src="jogo.js"></script>
+    <script src="../../comum/brinquedos.js"></script>
 </body>
 </html>
