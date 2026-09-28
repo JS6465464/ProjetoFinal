@@ -415,22 +415,10 @@ function guardarResultadoAtual() {
 const CHAVE_BRINQUEDOS_FACIL = "brinquedosAnimaisFacil";
 const CHAVE_BRINQUEDOS_DIFICIL = "brinquedosAnimaisDificil";
 const MAX_BRINQUEDOS_POR_MODO = 2;
+const TOTAL_BRINQUEDOS_JOGO = MAX_BRINQUEDOS_POR_MODO * 2;   // 2 do fácil + 2 do difícil = 4 no total
 
-function lerNumeroBrinquedosAnimais(chave) {
-    const guardado = localStorage.getItem(chave);
-    return guardado === null ? 0 : Number(guardado);
-}
+let brinquedosAntesDaOportunidade = 0;
 
-// Junta os dois contadores no total que o dados.js já sabe ler ("brinquedosSons")
-function atualizarTotalBrinquedosSons() {
-    const facil = lerNumeroBrinquedosAnimais(CHAVE_BRINQUEDOS_FACIL);
-    const dificil = lerNumeroBrinquedosAnimais(CHAVE_BRINQUEDOS_DIFICIL);
-    localStorage.setItem("brinquedosSons", facil + dificil);
-
-    if (typeof guardarDadosRegistoAtual === "function") {
-        guardarDadosRegistoAtual();
-    }
-}
 
 // Só há oportunidade numa partida perfeita: todas as rondas com estrela cheia
 function verificarOportunidadeBrinquedoAnimais() {
@@ -441,16 +429,67 @@ function verificarOportunidadeBrinquedoAnimais() {
 
     if (usados >= MAX_BRINQUEDOS_POR_MODO) return;   // já ganhou os 2 brinquedos deste modo
 
-    localStorage.setItem(chave, usados + 1);
-    atualizarSimbolosBrinquedosAnimais();
-    atualizarTotalBrinquedosSons();
+    // localStorage.setItem(chave, usados + 1);
+    // atualizarSimbolosBrinquedosAnimais();
+    // atualizarTotalBrinquedosSons();
+
+    brinquedosAntesDaOportunidade = obterQuantidadeBrinquedos();
 
     if (typeof mostrarOportunidadeBrinquedo === "function") {
         mostrarOportunidadeBrinquedo();
     }
 }
 
-const TOTAL_BRINQUEDOS_JOGO = MAX_BRINQUEDOS_POR_MODO * 2;   // 2 do fácil + 2 do difícil = 4 no total
+function lerNumeroBrinquedosAnimais(chave) {
+    const guardado = localStorage.getItem(chave);
+    return guardado === null ? 0 : Number(guardado);
+}
+
+// Obtem a quantidade de brinquedos
+function obterQuantidadeBrinquedos() {
+    try {
+        const brinquedos = JSON.parse(
+            localStorage.getItem("brinquedosAdquiridos") || "[]"
+        );
+
+        return Array.isArray(brinquedos)
+            ? brinquedos.length
+            : 0;
+
+    } catch (erro) {
+        return 0;
+    }
+}
+
+function oportunidadeBrinquedoTerminadaDiferencas() {
+
+    const brinquedosDepoisDaOportunidade = obterQuantidadeBrinquedos();
+
+    if (brinquedosDepoisDaOportunidade > brinquedosAntesDaOportunidade) {
+
+        const chaveBrinquedos =
+            totalRondas === 5
+                ? CHAVE_BRINQUEDOS_FACIL
+                : CHAVE_BRINQUEDOS_DIFICIL;
+
+        const brinquedosGanhos = Number(
+            localStorage.getItem(chaveBrinquedos) || 0
+        );
+
+        if (brinquedosGanhos < MAX_BRINQUEDOS_POR_MODO) {
+
+            localStorage.setItem(
+                chaveBrinquedos,
+                brinquedosGanhos + 1
+            );
+
+            atualizarSimbolosBrinquedosAnimais();
+            atualizarTotalBrinquedosSons();
+        }
+    }
+};
+
+
 
 // Mostra um 🧸 por cada brinquedo ainda por ganhar; os já ganhos ficam esbatidos
 function atualizarSimbolosBrinquedosAnimais() {
@@ -470,5 +509,17 @@ function atualizarSimbolosBrinquedosAnimais() {
         zona.appendChild(ursinho);
     }
 }
+
+// Junta os dois contadores no total que o dados.js já sabe ler ("brinquedosSons")
+function atualizarTotalBrinquedosSons() {
+    const facil = lerNumeroBrinquedosAnimais(CHAVE_BRINQUEDOS_FACIL);
+    const dificil = lerNumeroBrinquedosAnimais(CHAVE_BRINQUEDOS_DIFICIL);
+    localStorage.setItem("brinquedosSons", facil + dificil);
+
+    if (typeof guardarDadosRegistoAtual === "function") {
+        guardarDadosRegistoAtual();
+    }
+}
+
 
 atualizarSimbolosBrinquedosAnimais();

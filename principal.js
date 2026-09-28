@@ -460,6 +460,8 @@ function registarEscolhaAtual() {
         diferencas: 0,
         memoria: 0,
         sons: 0,
+        animaisFacil: 0,
+        animaisDificil: 0,
         historico: []
     };
 
