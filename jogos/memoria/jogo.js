@@ -37,14 +37,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Guarda a quantidade de brinquedos que existia antes da oportunidade
     let brinquedosAntesDaOportunidade = 0;
 
+    // Evita guardar o mesmo resultado mais do que uma vez
+    let resultadoGuardado = false;
+
+
     function shuffleCards() {
+
         for (let i = cards.length - 1; i > 0; i--) {
+
             const j = Math.floor(Math.random() * (i + 1));
+
             [cards[i], cards[j]] = [cards[j], cards[i]];
         }
     }
 
     function createBoard() {
+
         const symbols = isHardMode ? hardSymbols : normalSymbols;
 
         cards = [...symbols, ...symbols];
@@ -53,9 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
             `repeat(${isHardMode ? 5 : 4}, 1fr)`;
 
         shuffleCards();
+
         memoryBoard.innerHTML = '';
 
         cards.forEach((symbol, index) => {
+
             const card = document.createElement('div');
 
             card.className = 'card';
@@ -69,11 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             card.addEventListener('click', flipCard);
+
             memoryBoard.appendChild(card);
         });
     }
 
     function flipCard() {
+
         if (
             lockBoard ||
             flippedCards.length >= 2 ||
@@ -81,10 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ) return;
 
         this.classList.add('flipped');
+
         flippedCards.push(this);
 
         if (flippedCards.length === 2) {
+
             lockBoard = true;
+
             attempts++;
 
             if (attemptsDisplay) {
@@ -98,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function checkForMatch() {
+
         const [card1, card2] = flippedCards;
 
         const symbol1 = card1.querySelector('.back').textContent;
@@ -137,12 +153,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         aindaPodeGanhar &&
                         typeof mostrarOportunidadeBrinquedo === 'function'
                     ) {
+
                         brinquedosAntesDaOportunidade =
                             obterQuantidadeBrinquedos();
 
                         mostrarOportunidadeBrinquedo();
 
                     } else {
+
                         mostrarEcraFinal();
                     }
 
@@ -164,7 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function obterQuantidadeBrinquedos() {
+
         try {
+
             const brinquedos = JSON.parse(
                 localStorage.getItem('brinquedosAdquiridos') || '[]'
             );
@@ -174,20 +194,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 : 0;
 
         } catch (erro) {
+
             return 0;
         }
     }
 
+    // Guarda o resultado da partida no histórico
+    function guardarResultadoAtual() {
+
+        if (typeof guardarResultadoJogo === 'function') {
+
+            const jogadas = attempts;
+            const acertos = matchedCards.length / 2;
+
+            guardarResultadoJogo(
+                "Jogo da Memória",
+                acertos,
+                jogadas
+            );
+        }
+    }
+
     function mostrarEcraFinal() {
+
+        // Guarda o resultado apenas uma vez
+        if (!resultadoGuardado) {
+
+            resultadoGuardado = true;
+
+            guardarResultadoAtual();
+        }
+
         ecraJogo.classList.add('hidden');
         ecraFinal.classList.remove('hidden');
 
         tentativasFinal.textContent = attempts;
     }
 
-    // Chamado pelo sistema dos brinquedos depois de:
-    // - escolher um brinquedo
-    // - ou o tempo terminar
     window.oportunidadeBrinquedoTerminadaDiferencas = function () {
 
         const brinquedosDepoisDaOportunidade =
@@ -205,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
 
             if (brinquedosGanhos < MAX_BRINQUEDOS_POR_NIVEL) {
+
                 localStorage.setItem(
                     chaveBrinquedos,
                     brinquedosGanhos + 1
@@ -221,6 +265,9 @@ document.addEventListener('DOMContentLoaded', () => {
         flippedCards = [];
         matchedCards = [];
         lockBoard = false;
+
+        // Permite guardar o resultado da nova partida
+        resultadoGuardado = false;
 
         if (attemptsDisplay) {
             attemptsDisplay.textContent = '0';
