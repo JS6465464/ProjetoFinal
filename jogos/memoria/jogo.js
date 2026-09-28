@@ -1,21 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
+
     const memoryBoard = document.getElementById('memory-board');
     const restartButton = document.getElementById('restartButton');
     const attemptsDisplay = document.getElementById('attempts');
-    const difficultyButton = document.getElementById('difficultyButton');
 
-    // Símbolos espaciais: 6 emojis para o modo fácil (12 cartas), 10 emojis para o difícil (20 cartas)
-    const normalSymbols = ['🚀', '🌍', '⭐', '🌙', '🪐', '🛸']; // 6 pares (12 cartas)
-    const hardSymbols = ['🚀', '🌍', '⭐', '🌙', '🪐', '🛸', '👽', '👨‍🚀', '☄️', '🛰️']; // 10 pares (20 cartas)
+    const modoFacil = document.getElementById('modo-facil');
+    const modoDificil = document.getElementById('modo-dificil');
+
+    const ecraInicial = document.getElementById('ecra-inicial');
+    const ecraJogo = document.getElementById('ecra-jogo');
+    const ecraFinal = document.getElementById('ecra-final');
+
+    const botaoComecar = document.getElementById('botao-comecar');
+    const botaoReiniciarFinal = document.getElementById('botao-reiniciar-final');
+    const botaoInicio = document.getElementById('botao-inicio');
+    const botaoVoltar = document.getElementById('botao-voltar');
+
+    const tentativasJogo = document.getElementById('tentativas-jogo');
+    const tentativasFinal = document.getElementById('tentativas-final');
+
+    const normalSymbols = ['🚀', '🌍', '⭐', '🌙', '🪐', '🛸'];
+    const hardSymbols = [...normalSymbols, '👽', '👨‍🚀', '☄️', '🛰️'];
+
+    // Máximo de brinquedos por nível
+    const CHAVE_BRINQUEDOS_FACIL = 'brinquedosMemoriaFacil';
+    const CHAVE_BRINQUEDOS_DIFICIL = 'brinquedosMemoriaDificil';
+    const MAX_BRINQUEDOS_POR_NIVEL = 2;
 
     let cards = [];
     let flippedCards = [];
     let matchedCards = [];
     let attempts = 0;
     let lockBoard = false;
-    let isHardMode = false; // Começa no modo fácil
+    let isHardMode = false;
 
-    // Função para baralhar as cartas (Fisher-Yates)
+    // Guarda a quantidade de brinquedos que existia antes da oportunidade
+    let brinquedosAntesDaOportunidade = 0;
+
     function shuffleCards() {
         for (let i = cards.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -23,106 +44,252 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Função para criar o tabuleiro dinamicamente
     function createBoard() {
-        const selectedSymbols = isHardMode ? hardSymbols : normalSymbols;
-        cards = [...selectedSymbols, ...selectedSymbols];
+        const symbols = isHardMode ? hardSymbols : normalSymbols;
 
-        // Ajusta as colunas da grelha CSS: 4 colunas (4x3 = 12 cartas no fácil) e 5 colunas (5x4 = 20 cartas no difícil)
-        if (isHardMode) {
-            memoryBoard.style.gridTemplateColumns = 'repeat(5, 1fr)'; // 5x4 (20 cartas)
-        } else {
-            memoryBoard.style.gridTemplateColumns = 'repeat(4, 1fr)'; // 4x3 (12 cartas)
-        }
+        cards = [...symbols, ...symbols];
+
+        memoryBoard.style.gridTemplateColumns =
+            `repeat(${isHardMode ? 5 : 4}, 1fr)`;
 
         shuffleCards();
         memoryBoard.innerHTML = '';
-        
+
         cards.forEach((symbol, index) => {
             const card = document.createElement('div');
-            card.classList.add('card');
+
+            card.className = 'card';
             card.dataset.index = index;
+
             card.innerHTML = `
-                <div class="front">?</div>
-                <div class="back">${symbol}</div> 
+                <div class="card-inner">
+                    <div class="front">?</div>
+                    <div class="back">${symbol}</div>
+                </div>
             `;
+
             card.addEventListener('click', flipCard);
             memoryBoard.appendChild(card);
         });
     }
 
-    // Lógica ao clicar numa carta
     function flipCard() {
-        if (lockBoard || flippedCards.length >= 2 || this.classList.contains('flipped')) return;
+        if (
+            lockBoard ||
+            flippedCards.length >= 2 ||
+            this.classList.contains('flipped')
+        ) return;
+
         this.classList.add('flipped');
         flippedCards.push(this);
 
         if (flippedCards.length === 2) {
             lockBoard = true;
             attempts++;
-            attemptsDisplay.textContent = attempts;
+
+            if (attemptsDisplay) {
+                attemptsDisplay.textContent = attempts;
+            }
+
+            tentativasJogo.textContent = attempts;
+
             checkForMatch();
         }
     }
 
-    // Verificação se formam par
     function checkForMatch() {
         const [card1, card2] = flippedCards;
+
         const symbol1 = card1.querySelector('.back').textContent;
         const symbol2 = card2.querySelector('.back').textContent;
 
         if (symbol1 === symbol2) {
+
             matchedCards.push(card1, card2);
-            if (matchedCards.length === cards.length) {
-                setTimeout(() => alert(`Missão cumprida! Ganhou em ${attempts} tentativas!`), 500);
-            }
-            lockBoard = false;
+
+            card1.classList.add('matched');
+            card2.classList.add('matched');
+
             flippedCards = [];
+            lockBoard = false;
+
+            if (matchedCards.length === cards.length) {
+
+                setTimeout(() => {
+
+                    const chaveBrinquedos = isHardMode
+                        ? CHAVE_BRINQUEDOS_DIFICIL
+                        : CHAVE_BRINQUEDOS_FACIL;
+
+                    const brinquedosGanhos = Number(
+                        localStorage.getItem(chaveBrinquedos) || 0
+                    );
+
+                    const ganhouBrinquedo =
+                        (!isHardMode && attempts < 15) ||
+                        (isHardMode && attempts < 20);
+
+                    const aindaPodeGanhar =
+                        brinquedosGanhos < MAX_BRINQUEDOS_POR_NIVEL;
+
+                    if (
+                        ganhouBrinquedo &&
+                        aindaPodeGanhar &&
+                        typeof mostrarOportunidadeBrinquedo === 'function'
+                    ) {
+                        brinquedosAntesDaOportunidade =
+                            obterQuantidadeBrinquedos();
+
+                        mostrarOportunidadeBrinquedo();
+
+                    } else {
+                        mostrarEcraFinal();
+                    }
+
+                }, 700);
+            }
+
         } else {
+
             setTimeout(() => {
+
                 card1.classList.remove('flipped');
                 card2.classList.remove('flipped');
-                lockBoard = false;
+
                 flippedCards = [];
+                lockBoard = false;
+
             }, 1000);
         }
     }
 
-    // Reiniciar o jogo com efeito visual suave
+    function obterQuantidadeBrinquedos() {
+        try {
+            const brinquedos = JSON.parse(
+                localStorage.getItem('brinquedosAdquiridos') || '[]'
+            );
+
+            return Array.isArray(brinquedos)
+                ? brinquedos.length
+                : 0;
+
+        } catch (erro) {
+            return 0;
+        }
+    }
+
+    function mostrarEcraFinal() {
+        ecraJogo.classList.add('hidden');
+        ecraFinal.classList.remove('hidden');
+
+        tentativasFinal.textContent = attempts;
+    }
+
+    // Chamado pelo sistema dos brinquedos depois de:
+    // - escolher um brinquedo
+    // - ou o tempo terminar
+    window.oportunidadeBrinquedoTerminadaDiferencas = function () {
+
+        const brinquedosDepoisDaOportunidade =
+            obterQuantidadeBrinquedos();
+
+        // Só aumenta o contador se realmente foi adquirido um brinquedo
+        if (brinquedosDepoisDaOportunidade > brinquedosAntesDaOportunidade) {
+
+            const chaveBrinquedos = isHardMode
+                ? CHAVE_BRINQUEDOS_DIFICIL
+                : CHAVE_BRINQUEDOS_FACIL;
+
+            const brinquedosGanhos = Number(
+                localStorage.getItem(chaveBrinquedos) || 0
+            );
+
+            if (brinquedosGanhos < MAX_BRINQUEDOS_POR_NIVEL) {
+                localStorage.setItem(
+                    chaveBrinquedos,
+                    brinquedosGanhos + 1
+                );
+            }
+        }
+
+        mostrarEcraFinal();
+    };
+
+    function iniciarJogo() {
+
+        attempts = 0;
+        flippedCards = [];
+        matchedCards = [];
+        lockBoard = false;
+
+        if (attemptsDisplay) {
+            attemptsDisplay.textContent = '0';
+        }
+
+        tentativasJogo.textContent = '0';
+
+        createBoard();
+
+        ecraInicial.classList.add('hidden');
+        ecraFinal.classList.add('hidden');
+        ecraJogo.classList.remove('hidden');
+    }
+
     function restartGame() {
-        memoryBoard.style.opacity = '0.5';
+
+        memoryBoard.style.opacity = '.5';
+
         setTimeout(() => {
-            flippedCards = [];
-            matchedCards = [];
-            attempts = 0;
-            attemptsDisplay.textContent = attempts;
-            lockBoard = false;
-            createBoard();
+
+            iniciarJogo();
+
             memoryBoard.style.opacity = '1';
+
         }, 300);
     }
 
-    // Inicialização do Jogo
-    createBoard();
+    modoFacil.addEventListener('click', () => {
 
-    // Evento do botão de reiniciar
+        isHardMode = false;
+
+        modoFacil.classList.add('modo-selecionado');
+        modoDificil.classList.remove('modo-selecionado');
+
+        modoFacil.setAttribute('aria-pressed', 'true');
+        modoDificil.setAttribute('aria-pressed', 'false');
+    });
+
+    modoDificil.addEventListener('click', () => {
+
+        isHardMode = true;
+
+        modoDificil.classList.add('modo-selecionado');
+        modoFacil.classList.remove('modo-selecionado');
+
+        modoDificil.setAttribute('aria-pressed', 'true');
+        modoFacil.setAttribute('aria-pressed', 'false');
+    });
+
+    botaoComecar.addEventListener('click', iniciarJogo);
+
     restartButton.addEventListener('click', restartGame);
 
-    // Evento do botão de alternar dificuldade
-    if (difficultyButton) {
-        difficultyButton.addEventListener('click', () => {
-            isHardMode = !isHardMode;
-            
-            // Atualiza o texto e o atributo data-difficulty do botão
-            if (isHardMode) {
-                difficultyButton.textContent = 'Modo Fácil';
-                difficultyButton.setAttribute('data-difficulty', 'facil');
-            } else {
-                difficultyButton.textContent = 'Modo Difícil';
-                difficultyButton.setAttribute('data-difficulty', 'dificil');
-            }
-            
-            restartGame();
-        });
-    }
+    botaoReiniciarFinal.addEventListener('click', iniciarJogo);
+
+    botaoInicio.addEventListener('click', () => {
+
+        ecraFinal.classList.add('hidden');
+        ecraJogo.classList.add('hidden');
+        ecraInicial.classList.remove('hidden');
+
+    });
+
+    botaoVoltar.addEventListener('click', () => {
+
+        ecraJogo.classList.add('hidden');
+        ecraFinal.classList.add('hidden');
+        ecraInicial.classList.remove('hidden');
+
+    });
+
 });

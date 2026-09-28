@@ -1,23 +1,385 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Memória</title>
-    <link rel="stylesheet" href="jogo.css">
-</head>
-<body>
-    <h1>Jogo da Memória</h1>
-    <h2>Tenta encontrar todos os pares no menor tempo possível</h2>
-    <button id="difficultyButton" data-difficulty="dificil">Mudar para modo difícil</button>
-    <div class="game-info">
-        <p> Tentativas: <span id="attempts">0</span></p>
-    </div>
-    <div class="memory-board" id="memory-board">
-    </div>
-    <button id="restartButton">Reiniciar jogo</button>
 
+    <title>Memória Galáctica 🚀</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../../comum/utilizador.css">
+    <link rel="stylesheet" href="../../comum/brinquedos.css">
+    <link rel="stylesheet" href="jogo.css">
+    <style>
+        #botaoBrinquedos:hover {
+            transform:translateY(-2px) scale(1.06);
+            box-shadow:0 6px 0 rgba(126,34,206,.18) !important;
+        }
+
+        #botaoBrinquedos:active {
+            transform:translateY(2px) scale(.96);
+            box-shadow:0 2px 0 rgba(126,34,206,.18) !important;
+        }
+
+        @media (max-width:700px) {
+            #botaoBrinquedos {
+                width:38px !important;
+                height:38px !important;
+                font-size:16px !important;
+            }
+        }
+    </style>
+
+</head>
+
+<body data-caminho-brinquedos="../../recursos/brinquedos/" data-caminho-recursos="../../recursos/">
+
+    <header class="titulo-pagina">
+        <div class="icone-titulo">
+            🪐
+        </div>
+        <div class="titulo-texto">
+            <h1>MEMÓRIA GALÁCTICA</h1>
+            <p>
+                Uma aventura espacial para testar a tua memória!
+            </p>
+        </div>
+        <div class="icone-titulo">
+            🚀
+        </div>
+    </header>
+
+    <main class="zona-jogo">
+        <div class="painel-jogo">
+            <div class="barra-jogo">
+                <div class="nome-jogo">
+                    <span>🌟</span>
+                    <strong>AVENTURA ESPACIAL</strong>
+                </div>
+                <div class="informacao-jogo" style="display:flex;align-items:center;gap:10px;">
+                    <div id="oportunidadesBrinquedosMemoria"
+                         style="display:flex;align-items:center;gap:4px;"
+                         title="Brinquedos que ainda podes ganhar"></div>
+
+                    <button id="botaoBrinquedos"
+                            type="button"
+                            title="Os teus brinquedos"
+                            aria-label="Ver a tua coleção de brinquedos"
+                            style="
+                                width:42px;
+                                height:42px;
+                                padding:0;
+                                margin:0;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                flex-shrink:0;
+                                border:3px solid #c084fc;
+                                border-radius:50%;
+                                background:#fff;
+                                color:#7e22ce;
+                                font-size:18px;
+                                line-height:1;
+                                cursor:pointer;
+                                box-sizing:border-box;
+                                box-shadow:0 4px 0 rgba(126,34,206,.18);
+                                transition:transform .2s ease,box-shadow .2s ease;
+                            ">
+                        <i class="fa-solid fa-gift" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="estatistica">
+                        <span>🎯</span>
+                        <span>Tentativas</span>
+                        <strong id="attempts">0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <section id="ecra-inicial"
+                     class="ecra ecra-inicial">
+
+                <div class="estrelas-decoracao estrelas-1">✦</div>
+                <div class="estrelas-decoracao estrelas-2">★</div>
+                <div class="estrelas-decoracao estrelas-3">✦</div>
+                <div class="estrelas-decoracao estrelas-4">★</div>
+
+                <div class="planeta-decoracao planeta-esquerdo">
+                    🪐
+                </div>
+                <div class="planeta-decoracao planeta-direito">
+                    🌍
+                </div>
+
+                <div class="inicio-galaxia">
+
+                    <div class="zona-espaco">
+
+                        <div class="etiqueta-espaco">
+                            🚀 MISSÃO ESPACIAL
+                        </div>
+                        <div class="sistema-solar">
+                            
+                            <div class="sol">
+                                ☀️
+                            </div>
+                            <div class="orbita orbita-1">
+
+                                <span class="planeta planeta-1">
+                                    🌍
+                                </span>
+                            </div>
+                            <div class="orbita orbita-2">
+
+                                <span class="planeta planeta-2">
+                                    🪐
+                                </span>
+                            </div>
+                            <div class="orbita orbita-3">
+
+                                <span class="planeta planeta-3">
+                                    🌙
+                                </span>
+                            </div>
+                            <div class="orbita orbita-4">
+
+                                <span class="planeta planeta-4">
+                                    🔵
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="frase-espaco">
+                            <strong>Explora a galáxia!</strong>
+
+                            <span>
+                                Descobre os pares escondidos
+                                entre as estrelas.
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="cartao-missao">
+
+                        <div class="icone-memoria">
+                            🧠
+                        </div>
+
+                        <h2>
+                            Prepara a tua memória!
+                        </h2>
+
+                        <p class="descricao-inicial">
+                            Vira as cartas, encontra os pares
+                            e completa a tua missão espacial.
+                        </p>
+
+                        <div class="escolha-dificuldade">
+
+                            <h3>
+                                Escolhe a tua missão
+                            </h3>
+
+                            <div class="opcoes-dificuldade">
+
+                                <button id="modo-facil"
+                                        type="button"
+                                        data-difficulty="facil"
+                                        aria-pressed="true"
+                                        class="opcao-dificuldade modo-selecionado">
+
+                                    <span class="icone-dificuldade">
+                                        🌍
+                                    </span>
+
+                                    <span class="nome-dificuldade">
+                                        Exploração
+                                    </span>
+
+                                    <span class="detalhe-dificuldade">
+                                        12 cartas
+                                    </span>
+
+                                    <span class="modo-visto">
+                                        <i class="fa-solid fa-check"></i>
+                                    </span>
+
+                                </button>
+
+                                <button id="modo-dificil"
+                                        type="button"
+                                        data-difficulty="dificil"
+                                        aria-pressed="false"
+                                        class="opcao-dificuldade">
+
+                                    <span class="icone-dificuldade">
+                                        🚀
+                                    </span>
+
+                                    <span class="nome-dificuldade">
+                                        Galáctica
+                                    </span>
+
+                                    <span class="detalhe-dificuldade">
+                                        20 cartas
+                                    </span>
+
+                                    <span class="modo-visto">
+                                        <i class="fa-solid fa-check"></i>
+                                    </span>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <button id="botao-comecar"
+                                class="botao-iniciar">
+
+                            <span>
+                                INICIAR AVENTURA
+                            </span>
+
+                            <span class="icone-botao">
+                                🚀
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section id="ecra-jogo"
+                     class="ecra ecra-jogo hidden">
+
+                <div class="cabecalho-partida">
+
+                    <div class="estado-partida">
+                        <span class="ponto-ativo"></span>
+                        MISSÃO EM CURSO
+                    </div>
+
+                    <div class="tentativas-partida">
+                        🎯 Tentativas:
+                        <strong id="tentativas-jogo">0</strong>
+                    </div>
+
+                </div>
+
+                <div id="memory-board"
+                     class="memory-board">
+                </div>
+
+                <div class="acoes-jogo">
+
+                    <button id="botao-voltar"
+                            class="botao-secundario">
+
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Voltar
+
+                    </button>
+
+                    <button id="restartButton"
+                            class="botao-reiniciar">
+
+                        <i class="fa-solid fa-rotate-right"></i>
+                        Reiniciar
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <section id="ecra-final"
+                     class="ecra ecra-final hidden">
+
+                <div class="final-estrelas">
+                    ✦ ★ ✦ ★ ✦
+                </div>
+                <div class="icone-final">
+                    🏆
+                </div>
+                <h2>
+                    MISSÃO CONCLUÍDA!
+                </h2>
+                <p>
+                    Encontraste todos os pares da galáxia!
+                </p>
+
+                <div class="resultado-final">
+
+                    <span>🎯</span>
+                    <div>
+                        <small>
+                            Tentativas utilizadas
+                        </small>
+                        <strong id="tentativas-final">
+                            0
+                        </strong>
+                    </div>
+                </div>
+
+                <div class="acoes-final">
+                    <button id="botao-reiniciar-final"
+                            class="botao-iniciar">
+                        <i class="fa-solid fa-rocket"></i>
+                        Nova missão
+                    </button>
+                    <button id="botao-inicio"
+                            class="botao-secundario">
+                        <i class="fa-solid fa-house"></i>
+                        Escolher dificuldade
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <img id="amigoJogo"
+         class="amigo-utilizador-jogo"
+         src=""
+         alt="Amigo escolhido">
+
+
+    <div id="popupColecaoBrinquedos" class="popup-brinquedos">
+        <div class="caixa-brinquedos">
+            <h2>A Tua Coleção de Brinquedos</h2>
+            <p>Estes são os brinquedos que já conquistaste!</p>
+            <div id="listaColecaoBrinquedos" class="lista-brinquedos"></div>
+            <button id="fecharBrinquedos" type="button" class="fechar-brinquedos">Fechar</button>
+        </div>
+    </div>
+
+    <div id="popupEscolherBrinquedo" class="popup-brinquedos popup-escolher-brinquedo">
+        <div class="caixa-brinquedos">
+            <h2>Ganhaste um Brinquedo! 🎁</h2>
+            <p>Escolhe um antes que o tempo acabe!</p>
+            <div class="tempo-brinquedo">
+                <p class="texto-tempo-brinquedo">Tempo restante</p>
+                <div id="contadorBrinquedo" class="contador-brinquedo">10</div>
+            </div>
+            <div id="listaEscolherBrinquedo" class="lista-brinquedos"></div>
+        </div>
+    </div>
+
+    <script src="../../comum/utilizador.js"></script>
+    <script src="../../comum/dados.js"></script>
     <script src="jogo.js"></script>
+    <script src="../../comum/brinquedos.js"></script>
 
 </body>
+
 </html>
