@@ -429,6 +429,7 @@ function verificarOportunidadeBrinquedoAnimais() {
 
     if (usados >= MAX_BRINQUEDOS_POR_MODO) return;   // já ganhou os 2 brinquedos deste modo
 
+    if (podeAcederAosBrinquedos() === false) return;
     // localStorage.setItem(chave, usados + 1);
     // atualizarSimbolosBrinquedosAnimais();
     // atualizarTotalBrinquedosSons();

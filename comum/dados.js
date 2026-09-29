@@ -14,50 +14,34 @@ function guardarRegistosUtilizador(registos) {
     localStorage.setItem("nomesRegistados", JSON.stringify(registos));
 }
 
-function nomesIguais(nome1, nome2) {
-    if (nome1 === null && nome2 === null) {
-        return true;
-    }
 
-    if (nome1 === null || nome2 === null) {
-        return false;
-    }
-
-    return nome1.toLowerCase() === nome2.toLowerCase();
-}
 
 function encontrarRegistoAtual(registos) {
-    const nome = localStorage.getItem("nomeUtilizador");
-    const cabeca = localStorage.getItem("cabecaAmigoUtilizador");
+    const idAtual = Number(localStorage.getItem("idUtilizadorAtual"));
+
+    if (isNaN(idAtual)) {
+        return -1;
+    }
 
     for (let i = 0; i < registos.length; i++) {
-
-        /*
-            Quando existe nome, o registo é identificado
-            pelo nome. Assim, mudar de amigo não cria
-            um histórico novo para a mesma criança.
-        */
-        if (
-            nome !== null &&
-            nomesIguais(registos[i].nome, nome)
-        ) {
-            return i;
-        }
-
-        /*
-            Se não existir nome, o amigo pode identificar
-            sozinho o registo.
-        */
-        if (
-            nome === null &&
-            registos[i].nome === null &&
-            registos[i].cabeca === cabeca
-        ) {
+        if (registos[i].id === idAtual) {
             return i;
         }
     }
 
     return -1;
+}
+
+function gerarNovoIdUtilizador(registos) {
+    let maiorId = 0;
+
+    for (let registo of registos) {
+        if (typeof registo.id === "number" && registo.id > maiorId) {
+            maiorId = registo.id;
+        }
+    }
+
+    return maiorId + 1;
 }
 
 function lerListaLocalStorage(chave) {
@@ -114,6 +98,7 @@ function guardarDadosRegistoAtual() {
 }
 
 function limparDadosAtivos() {
+    localStorage.removeItem("idUtilizadorAtual");
     localStorage.removeItem("brinquedosAdquiridos");
     localStorage.removeItem("brinquedosDiferencas");
     localStorage.removeItem("brinquedosMemoria");
@@ -126,6 +111,11 @@ function carregarDadosDoRegisto(registo) {
     limparDadosAtivos();
 
     localStorage.setItem(
+        "idUtilizadorAtual",
+        registo.id
+    );
+
+    localStorage.setItem(
         "brinquedosAdquiridos",
         JSON.stringify(registo.brinquedos || [])
     );
@@ -136,6 +126,7 @@ function carregarDadosDoRegisto(registo) {
     localStorage.setItem("brinquedosAnimaisFacil", registo.animaisFacil || 0);
     localStorage.setItem("brinquedosAnimaisDificil", registo.animaisDificil || 0);
 }
+
 
 function guardarResultadoJogo(jogo, acertos, jogadas) {
     if (jogadas === 0) {
@@ -163,3 +154,31 @@ function guardarResultadoJogo(jogo, acertos, jogadas) {
     registos[posicao].historico.unshift(resultado);
     guardarRegistosUtilizador(registos);
 }
+
+function eUtilizadorReal(registo) {
+    return registo.nome !== "Explorador" ||
+           registo.cabeca !== "recursos/cara_botao.png" ||
+           registo.amigo !== null;
+}
+
+function podeAcederAosBrinquedos() {
+    const registos = lerRegistosUtilizador();
+
+    if (registos.length > 1) {
+        return true;
+    }
+
+    if (registos.length === 1) {
+        const posicao = encontrarRegistoAtual(registos);
+
+        if (
+            posicao !== -1 &&
+            eUtilizadorReal(registos[posicao]) === true
+        ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+

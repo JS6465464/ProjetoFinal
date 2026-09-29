@@ -29,6 +29,7 @@ if (fundoEscolhido === "recursos/fundo3.png" ||
 /* ELEMENTOS */
 const botaoAmigo = document.getElementById("botaoAmigo");
 const botaoConfiguracoes = document.getElementById("botaoConfiguracoes");
+const botaoNovoRegisto = document.getElementById("botaoNovoRegisto");
 const popupAmigo = document.getElementById("popupAmigo");
 const popupConfiguracoes = document.getElementById("popupConfiguracoes");
 const fecharAmigo = document.getElementById("fecharAmigo");
@@ -74,19 +75,16 @@ let cabecaSelecionada = null;
 let corpoSelecionado = null;
 let nomeSelecionado = null;
 
-/* REINICIAR BRINQUEDOS */
-function reiniciarBrinquedos() {
-    guardarDadosRegistoAtual();
-    localStorage.removeItem("brinquedosAdquiridos");
-    localStorage.removeItem("brinquedosDiferencas");
-    localStorage.removeItem("brinquedosMemoria");
-    localStorage.removeItem("brinquedosSons");
-}
-
 /* RECUPERAR ESCOLHAS GUARDADAS */
 const nomeGuardado = localStorage.getItem("nomeUtilizador");
 const cabecaGuardada = localStorage.getItem("cabecaAmigoUtilizador");
 const amigoGuardado = localStorage.getItem("amigoUtilizador");
+
+nomeUtilizador.textContent = "Explorador!";
+cabecaAmigoPrincipal.src = "recursos/cara_botao.png";
+corpoAmigo.src = "";
+corpoAmigo.style.display = "none";
+botaoNovoRegisto.style.display = "none";
 
 if (nomeGuardado !== null) {
     nomeUtilizador.textContent = nomeGuardado + "!";
@@ -99,6 +97,26 @@ if (cabecaGuardada !== null) {
 if (amigoGuardado !== null) {
     corpoAmigo.src = amigoGuardado;
     corpoAmigo.style.display = "block";
+}
+
+/* ATUALIZAR BOTÃO NOVO REGISTO */
+function atualizarBotaoNovoRegisto() {
+    const registos = lerRegistosUtilizador();
+
+    let existeUtilizadorReal = false;
+
+    for (let registo of registos) {
+        if (eUtilizadorReal(registo) === true) {
+            existeUtilizadorReal = true;
+            break;
+        }
+    }
+
+    if (existeUtilizadorReal === true) {
+        botaoNovoRegisto.style.display = "block";
+    } else {
+        botaoNovoRegisto.style.display = "none";
+    }
 }
 
 /* REPOR AMIGO GUARDADO */
@@ -151,6 +169,17 @@ function reporNomeGuardado() {
     campoNome.value = "";
     mensagemErroNome.textContent = "";
 }
+
+/* NOVO REGISTO */
+botaoNovoRegisto.addEventListener("click", function () {
+    guardarDadosRegistoAtual();
+    fecharTodosPopups();
+
+    borrachaAtiva = false;
+    botaoBorracha.classList.remove("ativa");
+
+    criarNovoUtilizador();
+});
 
 /* ABRIR POPUP DOS AMIGOS */
 botaoAmigo.addEventListener("click", function () {
@@ -236,11 +265,6 @@ opcoesAmigo.forEach(function (amigo) {
 /* GUARDAR AMIGO*/
 guardarAmigo.addEventListener("click", function () {
     if (cabecaSelecionada !== null && corpoSelecionado !== null) {
-        const amigoAnterior = localStorage.getItem("amigoUtilizador");
-
-        if (amigoAnterior !== corpoSelecionado) {
-            reiniciarBrinquedos();
-        }
 
         cabecaAmigoPrincipal.src = cabecaSelecionada;
         corpoAmigo.src = corpoSelecionado;
@@ -250,6 +274,7 @@ guardarAmigo.addEventListener("click", function () {
         localStorage.setItem("amigoUtilizador", corpoSelecionado);
 
         registarEscolhaAtual();
+        atualizarBotaoNovoRegisto();
 
         cabecaSelecionada = null;
         corpoSelecionado = null;
@@ -319,16 +344,12 @@ opcoesNome.forEach(function (nome) {
 /* GUARDAR NOME*/
 guardarNome.addEventListener("click", function () {
     if (nomeSelecionado !== null) {
-        const nomeAnterior = localStorage.getItem("nomeUtilizador");
-
-        if (nomeAnterior !== nomeSelecionado) {
-            reiniciarBrinquedos();
-        }
 
         nomeUtilizador.textContent = nomeSelecionado + "!";
         localStorage.setItem("nomeUtilizador", nomeSelecionado);
 
         registarEscolhaAtual();
+        atualizarBotaoNovoRegisto();
 
         nomeSelecionado = null;
         popupConfiguracoes.classList.remove("aberto");
@@ -352,16 +373,13 @@ opcoesPersonagem.forEach(function (personagem) {
 /* GUARDAR PERSONAGEM*/
 guardarPersonagem.addEventListener("click", function () {
     if (nomeSelecionado !== null) {
-        const nomeAnterior = localStorage.getItem("nomeUtilizador");
 
-        if (nomeAnterior !== nomeSelecionado) {
-            reiniciarBrinquedos();
-        }
 
         nomeUtilizador.textContent = nomeSelecionado + "!";
         localStorage.setItem("nomeUtilizador", nomeSelecionado);
 
         registarEscolhaAtual();
+        atualizarBotaoNovoRegisto();
 
         nomeSelecionado = null;
         popupConfiguracoes.classList.remove("aberto");
@@ -395,16 +413,11 @@ guardarNomeEscrito.addEventListener("click", function () {
     } else {
         mensagemErroNome.textContent = "";
 
-        const nomeAnterior = localStorage.getItem("nomeUtilizador");
-
-        if (nomeAnterior !== nomeEscrito) {
-            reiniciarBrinquedos();
-        }
-
         nomeUtilizador.textContent = nomeEscrito + "!";
         localStorage.setItem("nomeUtilizador", nomeEscrito);
 
         registarEscolhaAtual();
+        atualizarBotaoNovoRegisto();
 
         campoNome.value = "";
         popupConfiguracoes.classList.remove("aberto");
@@ -427,35 +440,34 @@ function fecharTodosPopups() {
 
 /* REGISTAR ESCOLHA ATUAL */
 function registarEscolhaAtual() {
-    const nome = localStorage.getItem("nomeUtilizador");
-    const cabeca = localStorage.getItem("cabecaAmigoUtilizador");
-    const amigo = localStorage.getItem("amigoUtilizador");
-
-    if (nome === null && cabeca === null) {
-        return;
-    }
-
     const registos = lerRegistosUtilizador();
     const posicao = encontrarRegistoAtual(registos);
 
-    if (posicao !== -1) {
-        const registoExistente = registos.splice(posicao, 1)[0];
-
-        registoExistente.nome = nome;
-        registoExistente.cabeca = cabeca;
-        registoExistente.amigo = amigo;
-
-        registos.unshift(registoExistente);
-
-        guardarRegistosUtilizador(registos);
-        carregarDadosDoRegisto(registoExistente);
+    if (posicao === -1) {
         return;
     }
 
+    registos[posicao].nome =
+        localStorage.getItem("nomeUtilizador");
+
+    registos[posicao].cabeca =
+        localStorage.getItem("cabecaAmigoUtilizador");
+
+    registos[posicao].amigo =
+        localStorage.getItem("amigoUtilizador");
+
+    guardarRegistosUtilizador(registos);
+}
+
+/* CRIAR NOVO UTILIZADOR */
+function criarNovoUtilizador() {
+    const registos = lerRegistosUtilizador();
+
     const novoRegisto = {
-        nome: nome,
-        cabeca: cabeca,
-        amigo: amigo,
+        id: gerarNovoIdUtilizador(registos),
+        nome: "Explorador",
+        cabeca: "recursos/cara_botao.png",
+        amigo: null,
         brinquedos: [],
         diferencas: 0,
         memoria: 0,
@@ -467,16 +479,24 @@ function registarEscolhaAtual() {
 
     registos.unshift(novoRegisto);
 
-    if (registos.length > 100) {
-        registos.pop();
-    }
-
     guardarRegistosUtilizador(registos);
+
+    localStorage.setItem("nomeUtilizador", "Explorador");
+    localStorage.setItem(
+        "cabecaAmigoUtilizador",
+        "recursos/cara_botao.png"
+    );
+    localStorage.removeItem("amigoUtilizador");
+
     carregarDadosDoRegisto(novoRegisto);
+
+    nomeUtilizador.textContent = "Explorador!";
+    cabecaAmigoPrincipal.src = "recursos/cara_botao.png";
+    corpoAmigo.src = "";
+    corpoAmigo.style.display = "none";
 }
 
 /* APAGAR REGISTO */
-
 function apagarRegisto(posicao) {
     const registos = lerRegistosUtilizador();
     const registo = registos[posicao];
@@ -501,10 +521,37 @@ function apagarRegisto(posicao) {
         cabecaAmigoPrincipal.src = "recursos/cara_botao.png";
         corpoAmigo.src = "";
         corpoAmigo.style.display = "none";
+
+        if (registos.length > 0) {
+            selecionarNomeRegistado(registos[0]);
+        } else {
+            criarNovoUtilizador();
+        }
     }
 
     mostrarNomesRegistados();
+    atualizarBotaoNovoRegisto();
 }
+
+/*CRIA O UTILIZADOR AO ABRIR A PAGINA*/
+function garantirUtilizadorAtual() {
+    const registos = lerRegistosUtilizador();
+
+    const idAtual = Number(localStorage.getItem("idUtilizadorAtual"));
+
+    if (!isNaN(idAtual)) {
+        const posicao = encontrarRegistoAtual(registos);
+
+        if (posicao !== -1) {
+            return;
+        }
+    }
+
+    if (registos.length === 0) {
+        criarNovoUtilizador();
+    }
+}
+
 
 /* MOSTRAR REGISTOS*/
 
@@ -513,14 +560,21 @@ function mostrarNomesRegistados() {
 
     listaNomesRegistados.innerHTML = "";
 
-    if (registos.length === 0) {
-        const mensagem = document.createElement("p");
-        mensagem.className = "sem-registos";
-        mensagem.textContent = "Ainda não existem nomes registados.";
-        listaNomesRegistados.appendChild(mensagem);
-    } else {
+    let mostrarRegistos = false;
+
+    if (registos.length > 1) {
+        mostrarRegistos = true;
+    } else if (
+        registos.length === 1 &&
+        eUtilizadorReal(registos[0]) === true
+    ) {
+        mostrarRegistos = true;
+    }
+
+    if (mostrarRegistos === true) {
         for (let i = 0; i < registos.length; i++) {
             const registo = registos[i];
+
             const botao = document.createElement("button");
 
             botao.type = "button";
@@ -549,6 +603,13 @@ function mostrarNomesRegistados() {
 
             listaNomesRegistados.appendChild(botao);
         }
+    } else {
+        const mensagem = document.createElement("p");
+
+        mensagem.className = "sem-registos";
+        mensagem.textContent = "Ainda não existem utilizadores registados.";
+
+        listaNomesRegistados.appendChild(mensagem);
     }
 
     popupNomesRegistados.style.display = "flex";
@@ -566,18 +627,32 @@ function selecionarNomeRegistado(registo) {
         nomeUtilizador.textContent = "Explorador!";
     }
 
-    if (registo.cabeca !== null && registo.amigo !== null) {
-        localStorage.setItem("cabecaAmigoUtilizador", registo.cabeca);
-        localStorage.setItem("amigoUtilizador", registo.amigo);
+    if (registo.cabeca !== null) {
+    localStorage.setItem(
+        "cabecaAmigoUtilizador",
+        registo.cabeca
+    );
+    cabecaAmigoPrincipal.src = registo.cabeca;
+    } else {
+        localStorage.setItem(
+            "cabecaAmigoUtilizador",
+            "recursos/cara_botao.png"
+        );
 
-        cabecaAmigoPrincipal.src = registo.cabeca;
+        cabecaAmigoPrincipal.src = "recursos/cara_botao.png";
+    }
+
+    if (registo.amigo !== null) {
+        localStorage.setItem(
+            "amigoUtilizador",
+            registo.amigo
+        );
+
         corpoAmigo.src = registo.amigo;
         corpoAmigo.style.display = "block";
     } else {
-        localStorage.removeItem("cabecaAmigoUtilizador");
         localStorage.removeItem("amigoUtilizador");
 
-        cabecaAmigoPrincipal.src = "recursos/cara_botao.png";
         corpoAmigo.src = "";
         corpoAmigo.style.display = "none";
     }
@@ -610,6 +685,7 @@ botaoNomesRegistados.addEventListener("click", function () {
     botaoBorracha.classList.remove("ativa");
 
     mostrarNomesRegistados();
+    
 });
 
 fecharNomesRegistados.addEventListener("click", function () {
@@ -663,3 +739,6 @@ botaoHistorico.addEventListener("click", function () {
 fecharHistorico.addEventListener("click", function () {
     popupHistorico.style.display = "none";
 });
+
+garantirUtilizadorAtual();
+atualizarBotaoNovoRegisto();
