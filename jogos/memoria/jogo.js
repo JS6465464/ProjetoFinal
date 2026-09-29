@@ -148,9 +148,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     const aindaPodeGanhar =
                         brinquedosGanhos < MAX_BRINQUEDOS_POR_NIVEL;
 
+                        console.log("CHEGUEI À VERIFICAÇÃO DOS BRINQUEDOS");
+                        console.log("ganhouBrinquedo:", ganhouBrinquedo);
+                        console.log("aindaPodeGanhar:", aindaPodeGanhar);
+                        console.log(
+                            "podeAceder existe:",
+                            typeof podeAcederAosBrinquedos
+                        );
+                        
                     if (
                         ganhouBrinquedo &&
                         aindaPodeGanhar &&
+                        podeAcederAosBrinquedos() === true &&
                         typeof mostrarOportunidadeBrinquedo === 'function'
                     ) {
 

@@ -78,8 +78,11 @@ function guardarDadosRegistoAtual() {
     registos[posicao].diferencas =
         lerNumeroLocalStorage("brinquedosDiferencas");
 
-    registos[posicao].memoria =
-        lerNumeroLocalStorage("brinquedosMemoria");
+    registos[posicao].memoriaFacil =
+    lerNumeroLocalStorage("brinquedosMemoriaFacil");
+
+registos[posicao].memoriaDificil =
+    lerNumeroLocalStorage("brinquedosMemoriaDificil");
 
     registos[posicao].sons =
         lerNumeroLocalStorage("brinquedosSons");
@@ -121,7 +124,15 @@ function carregarDadosDoRegisto(registo) {
     );
 
     localStorage.setItem("brinquedosDiferencas", registo.diferencas || 0);
-    localStorage.setItem("brinquedosMemoria", registo.memoria || 0);
+    localStorage.setItem(
+    "brinquedosMemoriaFacil",
+    registo.memoriaFacil || 0
+);
+
+localStorage.setItem(
+    "brinquedosMemoriaDificil",
+    registo.memoriaDificil || 0
+);
     localStorage.setItem("brinquedosSons", registo.sons || 0);
     localStorage.setItem("brinquedosAnimaisFacil", registo.animaisFacil || 0);
     localStorage.setItem("brinquedosAnimaisDificil", registo.animaisDificil || 0);
@@ -164,13 +175,16 @@ function eUtilizadorReal(registo) {
 function podeAcederAosBrinquedos() {
     const registos = lerRegistosUtilizador();
 
+    console.log("REGISTOS:", registos);
+    console.log("ID ATUAL:", localStorage.getItem("idUtilizadorAtual"));
+
     if (registos.length > 1) {
         return true;
     }
 
     if (registos.length === 1) {
         const posicao = encontrarRegistoAtual(registos);
-
+console.log("POSIÇÃO ATUAL:", posicao);
         if (
             posicao !== -1 &&
             eUtilizadorReal(registos[posicao]) === true
