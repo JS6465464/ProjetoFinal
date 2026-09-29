@@ -301,6 +301,13 @@ function verificarOportunidadeBrinquedo() {
         return
     }
 
+    if (
+        typeof podeAcederAosBrinquedos === "function" &&
+        podeAcederAosBrinquedos() === false
+    ) {
+
+        return
+    }
 
     if (
         oportunidadesBrinquedos.includes(

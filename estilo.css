@@ -71,11 +71,15 @@ body {
     border-radius: 40px;
     box-shadow: 0 5px 18px rgba(0, 0, 0, 0.20);
     display: grid;
-    grid-template-columns: 64px 1fr 58px;
+    grid-template-columns: 64px 1fr auto;
     align-items: center;
     gap: 10px;
 }
-
+.botoes-perfil {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 /* BOTÃO AMIGO */
 
 .botao-amigo {
@@ -142,8 +146,12 @@ body {
     transition: transform 0.2s ease;
 }
 
-.botao-configuracoes:hover {
+#botaoConfiguracoes:hover {
     transform: rotate(20deg) scale(1.08);
+}
+
+#botaoNovoRegisto:hover {
+    transform: scale(1.08);
 }
 
 /* POPUPS */
