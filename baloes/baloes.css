@@ -1,0 +1,116 @@
+#areaBaloes {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#areaBaloes .balao {
+    position: absolute;
+    bottom: 0;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    width: var(--w);
+    height: calc(var(--w) * 1.2);
+    left: var(--left);
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255,255,255,.7) 0 9%, transparent 26%),
+        radial-gradient(circle at 70% 80%, rgba(0,0,0,.18), transparent 55%),
+        var(--cor);
+    border-radius: 50% 50% 50% 50% / 58% 58% 42% 42%;
+    transform: translate(0, 100%);
+    animation: subir var(--dur) linear forwards;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#areaBaloes .balao::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 99%;
+    margin-left: -6px;
+    border: 6px solid transparent;
+    border-bottom-color: var(--cor);
+    border-top: 0;
+}
+
+#areaBaloes .balao::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 2px;
+    height: 46px;
+    background: rgba(15, 58, 87, .35);
+    transform-origin: top;
+    animation: baloicar 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes subir {
+    from {
+        transform: translate(0, 100%);
+    }
+
+    to {
+        transform: translate(
+            var(--deriva),
+            calc(-100vh - 100% - 60px)
+        );
+    }
+}
+
+@keyframes baloicar {
+    from {
+        transform: rotate(-7deg);
+    }
+
+    to {
+        transform: rotate(7deg);
+    }
+}
+
+#areaBaloes .pedaco {
+    position: fixed;
+    width: 9px;
+    height: 9px;
+    border-radius: 50% 40% 60% 40%;
+    background: var(--cor);
+    pointer-events: none;
+    z-index: 5;
+    animation: voar .6s cubic-bezier(.15, .7, .3, 1) forwards;
+}
+
+@keyframes voar {
+    to {
+        transform: translate(var(--dx), var(--dy))
+                   rotate(var(--rot)) scale(.3);
+        opacity: 0;
+    }
+}
+
+#areaBaloes .onda {
+    position: fixed;
+    border-radius: 50%;
+    border: 3px solid var(--cor);
+    pointer-events: none;
+    z-index: 5;
+    transform: translate(-50%, -50%);
+    animation: onda .35s ease-out forwards;
+}
+
+@keyframes onda {
+    from {
+        width: 10px;
+        height: 10px;
+        opacity: .9;
+    }
+
+    to {
+        width: var(--tam);
+        height: var(--tam);
+        opacity: 0;
+    }
+}

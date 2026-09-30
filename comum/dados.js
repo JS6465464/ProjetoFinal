@@ -72,26 +72,13 @@ function guardarDadosRegistoAtual() {
         return;
     }
 
-    registos[posicao].brinquedos =
-        lerListaLocalStorage("brinquedosAdquiridos");
-
-    registos[posicao].diferencas =
-        lerNumeroLocalStorage("brinquedosDiferencas");
-
-    registos[posicao].memoriaFacil =
-        lerNumeroLocalStorage("brinquedosMemoriaFacil");
-
-    registos[posicao].memoriaDificil =
-        lerNumeroLocalStorage("brinquedosMemoriaDificil");
-
-    registos[posicao].sons =
-        lerNumeroLocalStorage("brinquedosSons");
-
-    registos[posicao].animaisFacil =
-        lerNumeroLocalStorage("brinquedosAnimaisFacil");
-
-    registos[posicao].animaisDificil =
-        lerNumeroLocalStorage("brinquedosAnimaisDificil");
+    registos[posicao].brinquedos = lerListaLocalStorage("brinquedosAdquiridos");
+    registos[posicao].diferencas = lerNumeroLocalStorage("brinquedosDiferencas");
+    registos[posicao].memoriaFacil = lerNumeroLocalStorage("brinquedosMemoriaFacil");
+    registos[posicao].memoriaDificil = lerNumeroLocalStorage("brinquedosMemoriaDificil");
+    registos[posicao].sons = lerNumeroLocalStorage("brinquedosSons");
+    registos[posicao].animaisFacil = lerNumeroLocalStorage("brinquedosAnimaisFacil");
+    registos[posicao].animaisDificil = lerNumeroLocalStorage("brinquedosAnimaisDificil");
 
     if (registos[posicao].historico === undefined) {
         registos[posicao].historico = [];
@@ -162,6 +149,8 @@ function resetarRegistoUtilizador(posicao) {
         sons: 0,
         animaisFacil: 0,
         animaisDificil: 0,
+        baloesRebentados: 0,
+        presenteBaloes: false,
         historico: []
     };
 
@@ -221,25 +210,13 @@ function eUtilizadorReal(registo) {
 
 function podeAcederAosBrinquedos() {
     const registos = lerRegistosUtilizador();
+    const posicao = encontrarRegistoAtual(registos);
 
-    console.log("REGISTOS:", registos);
-    console.log("ID ATUAL:", localStorage.getItem("idUtilizadorAtual"));
-
-    if (registos.length > 1) {
-        return true;
+    if (posicao === -1) {
+        return false;
     }
 
-    if (registos.length === 1) {
-        const posicao = encontrarRegistoAtual(registos);
-        console.log("POSIÇÃO ATUAL:", posicao);
-        if (
-            posicao !== -1 &&
-            eUtilizadorReal(registos[posicao]) === true
-        ) {
-            return true;
-        }
-    }
-
-    return false;
+    return eUtilizadorReal(registos[posicao]);
 }
+
 

@@ -6,9 +6,10 @@
     <title>MiniGénio</title>
     <link rel="stylesheet" href="estilo.css">
     <link rel="stylesheet" href="comum/brinquedos.css">
+    <link rel="stylesheet" href="baloes/baloes.css">
 </head>
 <body data-caminho-brinquedos="recursos/brinquedos/">
-
+<div id="areaBaloes"></div>
     <main class="aplicacao">
 
         <!-- topo -->
@@ -316,8 +317,21 @@
         </div>
     </div>
 
+    <div id="popupEscolherBrinquedo" class="popup-brinquedos popup-escolher-brinquedo">
+        <div class="caixa-brinquedos">
+            <h2>Ganhaste um Brinquedo! 🎁</h2>
+            <p>Escolhe um antes que o tempo acabe!</p>
+            <div class="tempo-brinquedo">
+                <p class="texto-tempo-brinquedo">Tempo restante</p>
+                <div id="contadorBrinquedo" class="contador-brinquedo">10</div>
+            </div>
+            <div id="listaEscolherBrinquedo" class="lista-brinquedos"></div>
+        </div>
+    </div>
+    
     <script src="comum/dados.js"></script>
     <script src="principal.js"></script>
     <script src="comum/brinquedos.js"></script>
+    <script src="baloes/baloes.js"></script>
 </body>
 </html>

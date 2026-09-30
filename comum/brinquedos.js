@@ -340,6 +340,13 @@ function mostrarOportunidadeBrinquedo() {
 
 /* Adquirir brinquedo */
 function adquirirBrinquedo(brinquedo) {
+    if (
+        typeof podeAcederAosBrinquedos === "function" &&
+        podeAcederAosBrinquedos() === false
+    ) {
+        return;
+    }
+    
     if (oportunidadeTerminada === true) {
         return;
     }

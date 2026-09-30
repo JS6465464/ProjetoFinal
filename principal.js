@@ -293,6 +293,19 @@ guardarAmigo.addEventListener("click", function () {
         localStorage.setItem("cabecaAmigoUtilizador", cabecaSelecionada);
         localStorage.setItem("amigoUtilizador", corpoSelecionado);
 
+        const registos = lerRegistosUtilizador();
+        const posicao = encontrarRegistoAtual(registos);
+
+        if (
+            posicao !== -1 &&
+            registos[posicao].amigo === null
+        ) {
+            registos[posicao].baloesRebentados = 0;
+            registos[posicao].presenteBaloes = false;
+
+            guardarRegistosUtilizador(registos);
+        }
+        
         registarEscolhaAtual();
         //atualizarBotaoNovoRegisto();
 
@@ -499,6 +512,8 @@ function criarNovoUtilizador() {
         sons: 0,
         animaisFacil: 0,
         animaisDificil: 0,
+        baloesRebentados: 0,
+        presenteBaloes: false,
         historico: []
     };
 
