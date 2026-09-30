@@ -182,6 +182,7 @@ function resetarRegistoUtilizador(posicao) {
         );
 
         localStorage.removeItem("amigoUtilizador");
+        localStorage.removeItem("popupAjudaAmigoVisto_" + idUtilizador);
 
         carregarDadosDoRegisto(registos[posicao]);
     }

@@ -28,6 +28,7 @@ if (fundoEscolhido === "recursos/fundo3.png" ||
 
 /* ELEMENTOS */
 const botaoAmigo = document.getElementById("botaoAmigo");
+const popupAjudaAmigo = document.getElementById("popupAjudaAmigo");
 const botaoConfiguracoes = document.getElementById("botaoConfiguracoes");
 const botaoNovoRegisto = document.getElementById("botaoNovoRegisto");
 const popupAmigo = document.getElementById("popupAmigo");
@@ -180,17 +181,32 @@ botaoNovoRegisto.addEventListener("click", function () {
     borrachaAtiva = false;
     botaoBorracha.classList.remove("ativa");
 
+    resetAtivo = false;
+    botaoReset.classList.remove("ativa");
+
     criarNovoUtilizador();
     atualizarBotaoBorracha();
     atualizarBotaoNovoRegisto();
+    //atualizarPopupAjudaAmigo();
 });
 
 /* ABRIR POPUP DOS AMIGOS */
 botaoAmigo.addEventListener("click", function () {
+
+    const idAtual = localStorage.getItem("idUtilizadorAtual");
+
+    localStorage.setItem(
+        "popupAjudaAmigoVisto_" + idAtual,
+        "true"
+    );
+
+    popupAjudaAmigo.style.display = "none";
+
     popupNomesRegistados.style.display = "none";
     popupHistorico.style.display = "none";
 
-    const popupBrinquedosAberto = document.getElementById("popupColecaoBrinquedos");
+    const popupBrinquedosAberto =
+        document.getElementById("popupColecaoBrinquedos");
 
     if (popupBrinquedosAberto !== null) {
         popupBrinquedosAberto.style.display = "none";
@@ -467,6 +483,10 @@ function registarEscolhaAtual() {
 function criarNovoUtilizador() {
     const registos = lerRegistosUtilizador();
 
+    if (registos.length >= 4) {
+        return;
+    }
+
     const novoRegisto = {
         id: gerarNovoIdUtilizador(registos),
         nome: "Explorador",
@@ -493,9 +513,14 @@ function criarNovoUtilizador() {
     );
     localStorage.removeItem("amigoUtilizador");
 
+    localStorage.removeItem(
+        "popupAjudaAmigoVisto_" + novoRegisto.id
+    );
+
     carregarDadosDoRegisto(novoRegisto);
 
     mostrarUtilizadorExplorador();
+    atualizarPopupAjudaAmigo();
 }
 
 /* APAGAR REGISTO */
@@ -549,6 +574,8 @@ function garantirUtilizadorAtual() {
 
     if (registos.length === 0) {
         criarNovoUtilizador();
+    }else{
+        selecionarNomeRegistado(registos[0]);
     }
 }
 
@@ -610,6 +637,7 @@ function mostrarNomesRegistados() {
 
                     if (registo.id === idAtual) {
                         mostrarUtilizadorExplorador();
+                        atualizarPopupAjudaAmigo();
                     }
 
                     mostrarNomesRegistados();
@@ -681,6 +709,7 @@ function selecionarNomeRegistado(registo) {
     nomeSelecionado = null;
 
     popupNomesRegistados.style.display = "none";
+    atualizarPopupAjudaAmigo();
 }
 
 function atualizarBotaoBorracha() {
@@ -800,6 +829,34 @@ fecharHistorico.addEventListener("click", function () {
     popupHistorico.style.display = "none";
 });
 
+//Pop up escolher amigo
+function atualizarPopupAjudaAmigo() {
+    const registos = lerRegistosUtilizador();
+    const posicao = encontrarRegistoAtual(registos);
+
+    if (posicao === -1) {
+        popupAjudaAmigo.style.display = "none";
+        return;
+    }
+
+    const registo = registos[posicao];
+
+    const popupVisto =
+        localStorage.getItem(
+            "popupAjudaAmigoVisto_" + registo.id
+        );
+
+    if (
+        registo.amigo === null &&
+        popupVisto === null
+    ) {
+        popupAjudaAmigo.style.display = "block";
+    } else {
+        popupAjudaAmigo.style.display = "none";
+    }
+}
+
 garantirUtilizadorAtual();
 atualizarBotaoBorracha()
 atualizarBotaoNovoRegisto();
+atualizarPopupAjudaAmigo();
