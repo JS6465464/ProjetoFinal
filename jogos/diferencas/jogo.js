@@ -132,6 +132,9 @@ let etapaAtual = 1
 
 let resultadoGuardado = false
 
+let respostaDada = false
+
+
 // ======================================================
 // OPORTUNIDADES DE BRINQUEDOS
 // ======================================================
@@ -301,13 +304,6 @@ function verificarOportunidadeBrinquedo() {
         return
     }
 
-    if (
-        typeof podeAcederAosBrinquedos === "function" &&
-        podeAcederAosBrinquedos() === false
-    ) {
-
-        return
-    }
 
     if (
         oportunidadesBrinquedos.includes(
@@ -361,7 +357,10 @@ function utilizarOportunidadeBrinquedoDiferencas() {
     )
 
 
-    if (typeof guardarDadosRegistoAtual === "function") {
+    if (
+        typeof guardarDadosRegistoAtual ===
+        "function"
+    ) {
 
         guardarDadosRegistoAtual()
 
@@ -576,6 +575,31 @@ function colocarNumerosNosBotoes(numeros) {
 
 function verificarResposta(botao) {
 
+    /*
+        Só pode existir uma resposta
+        por cada ronda.
+    */
+
+    if (respostaDada === true) {
+
+        return
+    }
+
+
+    respostaDada = true
+
+
+    /*
+        Bloqueia imediatamente os quatro
+        botões para impedir outro clique.
+    */
+
+    for (let botaoResposta of botoes) {
+
+        botaoResposta.disabled = true
+    }
+
+
     pararSons()
 
 
@@ -617,7 +641,19 @@ function mostrarSolucao() {
 
     tampa.style.display = "none"
 
-    respostas.style.display = "none"
+
+    /*
+        Os botões ficam invisíveis,
+        mas continuam a ocupar exatamente
+        o mesmo espaço no painel.
+    */
+
+    for (let botao of botoes) {
+
+        botao.style.visibility =
+            "hidden"
+    }
+
 
     seguinte.style.display = "block"
 
@@ -658,6 +694,7 @@ function proximaImagem() {
         return
     }
 
+
     etapaAtual =
         etapaAtual + 1
 
@@ -665,9 +702,31 @@ function proximaImagem() {
     oportunidadeAtualMostrada =
         false
 
+
+    /*
+        A nova ronda permite novamente
+        uma única resposta.
+    */
+
+    respostaDada = false
+
+
     tampa.style.display = "block"
 
-    respostas.style.display = "flex"
+
+    /*
+        Voltam a aparecer os quatro botões
+        exatamente na mesma posição.
+    */
+
+    for (let botao of botoes) {
+
+        botao.disabled = false
+
+        botao.style.visibility =
+            "visible"
+    }
+
 
     seguinte.style.display = "none"
 
@@ -676,6 +735,7 @@ function proximaImagem() {
 
     tocarInstrucao()
 }
+
 
 // ======================================================
 // GUARDAR RESULTADO NO HISTÓRICO
@@ -699,6 +759,7 @@ function guardarResultadoAtual() {
 
     }
 }
+
 
 // ======================================================
 // VOLTAR AO MINIGENIO
@@ -754,6 +815,7 @@ resposta4.addEventListener(
     }
 )
 
+
 // ======================================================
 // EVENTO SEGUINTE
 // ======================================================
@@ -766,9 +828,11 @@ seguinte.addEventListener(
     }
 )
 
+
 // ======================================================
 // EVENTO HOME
 // ======================================================
+
 home.addEventListener(
     "click",
     () => {
@@ -781,6 +845,7 @@ home.addEventListener(
 // ======================================================
 // INICIAR
 // ======================================================
+
 lerProgressoBrinquedosDiferencas()
 
 atualizarSimbolosOportunidades()
