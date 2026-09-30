@@ -31,7 +31,9 @@
                         <span id="nomeUtilizador" class="nome-utilizador">Explorador!</span>
                     </div>
                     <div class="botoes-perfil">
-                        <button id="botaoNovoRegisto" class="botao-configuracoes" type="button">➕</button>
+                        <button id="botaoNovoRegisto" class="botao-configuracoes" type="button">
+                            <img src="recursos/add-100.png" alt="" class="icone-novo">
+                        </button>
                         <!-- Configs -->
                         <button id="botaoConfiguracoes" class="botao-configuracoes" type="button" aria-label="Configurações">⚙</button>
                     </div>
@@ -276,8 +278,13 @@
 
             <div class="cabecalho-registos">
                 <h2>Nomes registados</h2>
-                <button id="botaoBorracha" class="botao-borracha" type="button" aria-label="Ativar modo de apagar" title="Apagar registos">🧽</button>
-                <button id="fecharNomesRegistados" class="fechar-registos" type="button" aria-label="Fechar">×</button>
+                <div class="botoes-registos">
+                    <button id="botaoBorracha" class="botao-borracha" type="button" aria-label="Ativar modo de apagar" title="Apagar registos">🧽</button>
+                    <button id="botaoReset" class="botao-borracha botao-reset" type="button" aria-label="Ativar modo de reset">
+                        <img src="recursos/history.svg" alt="" class="icone-reset">
+                    </button>
+                    <button id="fecharNomesRegistados" class="fechar-registos" type="button" aria-label="Fechar">×</button>
+                </div>
             </div>
 
             <p class="texto-registos">

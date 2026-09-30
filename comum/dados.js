@@ -79,10 +79,10 @@ function guardarDadosRegistoAtual() {
         lerNumeroLocalStorage("brinquedosDiferencas");
 
     registos[posicao].memoriaFacil =
-    lerNumeroLocalStorage("brinquedosMemoriaFacil");
+        lerNumeroLocalStorage("brinquedosMemoriaFacil");
 
-registos[posicao].memoriaDificil =
-    lerNumeroLocalStorage("brinquedosMemoriaDificil");
+    registos[posicao].memoriaDificil =
+        lerNumeroLocalStorage("brinquedosMemoriaDificil");
 
     registos[posicao].sons =
         lerNumeroLocalStorage("brinquedosSons");
@@ -104,7 +104,8 @@ function limparDadosAtivos() {
     localStorage.removeItem("idUtilizadorAtual");
     localStorage.removeItem("brinquedosAdquiridos");
     localStorage.removeItem("brinquedosDiferencas");
-    localStorage.removeItem("brinquedosMemoria");
+    localStorage.removeItem("brinquedosMemoriaFacil");
+    localStorage.removeItem("brinquedosMemoriaDificil");
     localStorage.removeItem("brinquedosSons");
     localStorage.removeItem("brinquedosAnimaisFacil");
     localStorage.removeItem("brinquedosAnimaisDificil");
@@ -139,6 +140,53 @@ localStorage.setItem(
 }
 
 
+
+function resetarRegistoUtilizador(posicao) {
+    const registos = lerRegistosUtilizador();
+
+    if (posicao < 0 || posicao >= registos.length) {
+        return;
+    }
+
+    const idUtilizador = registos[posicao].id;
+
+    registos[posicao] = {
+        id: idUtilizador,
+        nome: "Explorador",
+        cabeca: "recursos/cara_botao.png",
+        amigo: null,
+        brinquedos: [],
+        diferencas: 0,
+        memoriaFacil: 0,
+        memoriaDificil: 0,
+        sons: 0,
+        animaisFacil: 0,
+        animaisDificil: 0,
+        historico: []
+    };
+
+    guardarRegistosUtilizador(registos);
+
+    if (
+        Number(localStorage.getItem("idUtilizadorAtual")) ===
+        idUtilizador
+    ) {
+        localStorage.setItem(
+            "nomeUtilizador",
+            "Explorador"
+        );
+
+        localStorage.setItem(
+            "cabecaAmigoUtilizador",
+            "recursos/cara_botao.png"
+        );
+
+        localStorage.removeItem("amigoUtilizador");
+
+        carregarDadosDoRegisto(registos[posicao]);
+    }
+}
+
 function guardarResultadoJogo(jogo, acertos, jogadas) {
     if (jogadas === 0) {
         return;
@@ -167,9 +215,7 @@ function guardarResultadoJogo(jogo, acertos, jogadas) {
 }
 
 function eUtilizadorReal(registo) {
-    return registo.nome !== "Explorador" ||
-           registo.cabeca !== "recursos/cara_botao.png" ||
-           registo.amigo !== null;
+    return registo.amigo !== null;
 }
 
 function podeAcederAosBrinquedos() {
@@ -184,7 +230,7 @@ function podeAcederAosBrinquedos() {
 
     if (registos.length === 1) {
         const posicao = encontrarRegistoAtual(registos);
-console.log("POSIÇÃO ATUAL:", posicao);
+        console.log("POSIÇÃO ATUAL:", posicao);
         if (
             posicao !== -1 &&
             eUtilizadorReal(registos[posicao]) === true

@@ -539,6 +539,11 @@ body {
     align-items: center;
     margin-bottom: 10px;
 }
+.botoes-registos {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
 .cabecalho-registos h2 {
     color: #123e73;
@@ -623,15 +628,21 @@ body {
 .botao-borracha {
     width: 42px;
     height: 42px;
-    margin-left: auto;
-    margin-right: 10px;
+    padding: 0;
     border: 2px solid #e1e6eb;
     border-radius: 12px;
     background-color: #f8fafb;
     font-size: 22px;
     cursor: pointer;
+    display: grid;
+    place-items: center;
 }
-
+.icone-reset {
+    width: 24px;
+    height: 24px;
+    display: block;
+    object-fit: contain;
+}
 .botao-borracha.ativa {
     background-color: #ffd6d6;
     border-color: #e56b6b;
@@ -854,4 +865,32 @@ body {
     .botao-brinquedos-principal {
         bottom: 15px;
     }
+}
+
+.botao-borracha .icone-reset {
+    width: 25px;
+    height: 25px;
+    display: block;
+    object-fit: contain;
+}
+
+#botaoNovoRegisto {
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+#botaoNovoRegisto .icone-novo {
+    width: 100%;
+    height: 100%;
+    transform: scale(1.1);
+    display: block;
+    object-fit: cover;
+    object-fit: cover;        /* troca por contain se a imagem estiver a ser cortada */
+    object-position: center; 
+    border-radius: 50%;
+}
+#botaoNovoRegisto:hover {
+    transform: rotate(20deg) scale(1.08);
 }
