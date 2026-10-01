@@ -1,25 +1,25 @@
 /* Animais */
 const BASE_ANIMAIS = [
-    { id: 'cao', nome: 'Cão', emoji: '🐶', somUrl: 'https://actions.google.com/sounds/v1/animals/dog_barking.ogg', imagem: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80' },
-    { id: 'gato', nome: 'Gato', emoji: '🐱', somUrl: 'https://actions.google.com/sounds/v1/animals/cat_purr_meow.ogg', imagem: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80' },
-    { id: 'vaca', nome: 'Vaca', emoji: '🐮', somUrl: 'https://actions.google.com/sounds/v1/animals/cow_moo.ogg', imagem: 'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&w=800&q=80' },
-    { id: 'pato', nome: 'Pato', emoji: '🦆', somUrl: 'https://actions.google.com/sounds/v1/animals/mallard_duck_quacking.ogg', imagem: 'https://images.unsplash.com/photo-1555852095-64e7428df0fa?auto=format&fit=crop&w=800&q=80' },
-    { id: 'leao', nome: 'Leão', emoji: '🦁', somUrl: 'https://actions.google.com/sounds/v1/animals/lion_roar.ogg', imagem: 'https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?auto=format&fit=crop&w=800&q=80' },
-    { id: 'ovelha', nome: 'Ovelha', emoji: '🐑', somUrl: 'https://actions.google.com/sounds/v1/animals/sheep_bleat.ogg', imagem: 'https://modernfarmer.com/wp-content/uploads/2017/12/Funny-Sheep-Facts-jpg.webp' },
-    { id: 'porco', nome: 'Porco', emoji: '🐷', somUrl: 'https://actions.google.com/sounds/v1/animals/pig_grunting.ogg', imagem: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=800&q=80' },
-    { id: 'galo', nome: 'Galo', emoji: '🐓', somUrl: 'https://actions.google.com/sounds/v1/animals/rooster_crowing.ogg', imagem: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80' },
-    { id: 'cavalo', nome: 'Cavalo', emoji: '🐴', somUrl: 'https://actions.google.com/sounds/v1/animals/horse_whinny.ogg', imagem: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=800&q=80' },
-    { id: 'macaco', nome: 'Macaco', emoji: '🐒', somUrl: 'https://actions.google.com/sounds/v1/animals/monkeys_screaming.ogg', imagem: 'https://images.unsplash.com/photo-1540573133985-778788177267?auto=format&fit=crop&w=800&q=80' },
-    { id: 'elefante', nome: 'Elefante', emoji: '🐘', somUrl: 'https://actions.google.com/sounds/v1/animals/elephant_trumpet.ogg', imagem: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=800&q=80' },
-    { id: 'urso', nome: 'Urso', emoji: '🐻', somUrl: 'https://actions.google.com/sounds/v1/animals/bear_groan.ogg', imagem: 'https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=800&q=80' },
-    { id: 'sapo', nome: 'Sapo', emoji: '🐸', somUrl: 'https://actions.google.com/sounds/v1/animals/bullfrog_croak.ogg', imagem: 'https://images.unsplash.com/photo-1559253664-ca249d4608c6?auto=format&fit=crop&w=800&q=80' },
-    { id: 'coruja', nome: 'Coruja', emoji: '🦉', somUrl: 'https://actions.google.com/sounds/v1/animals/owl_hoot.ogg', imagem: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80' },
-    { id: 'lobo', nome: 'Lobo', emoji: '🐺', somUrl: 'https://actions.google.com/sounds/v1/animals/wolf_howling.ogg', imagem: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef9?auto=format&fit=crop&w=800&q=80' },
-    { id: 'passaro', nome: 'Pássaro', emoji: '🐦', somUrl: 'https://actions.google.com/sounds/v1/animals/robin_chirp.ogg', imagem: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=800&q=80' },
-    { id: 'abelha', nome: 'Abelha', emoji: '🐝', somUrl: 'https://actions.google.com/sounds/v1/animals/bee_buzzing.ogg', imagem: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=800&q=80' },
-    { id: 'grilo', nome: 'Grilo', emoji: '🦗', somUrl: 'https://actions.google.com/sounds/v1/animals/cricket_chirp.ogg', imagem: 'https://images.unsplash.com/photo-1533230881515-65e17559c27f?auto=format&fit=crop&w=800&q=80' },
-    { id: 'rato', nome: 'Rato', emoji: '🐭', somUrl: 'https://actions.google.com/sounds/v1/animals/mouse_squeak.ogg', imagem: 'https://images.unsplash.com/photo-1425082661705-1834bfd09dca?auto=format&fit=crop&w=800&q=80' },
-    { id: 'peru', nome: 'Peru', emoji: '🦃', somUrl: 'https://actions.google.com/sounds/v1/animals/turkey_gobble.ogg', imagem: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=800&q=80' }
+    { id: 'cao', nome: 'Cão', emoji: '🐶', somUrl: 'recursos/sons/cao.ogg', imagem: 'recursos/imagens/cao.avif' },
+    { id: 'gato', nome: 'Gato', emoji: '🐱', somUrl: 'recursos/sons/gato.wav', imagem: 'recursos/imagens/gato.jpg' },
+    { id: 'vaca', nome: 'Vaca', emoji: '🐮', somUrl: 'recursos/sons/vaca.ogg', imagem: 'recursos/imagens/vaca.avif' },
+    { id: 'porco', nome: 'Porco', emoji: '🐷', somUrl: 'recursos/sons/porco.mpeg', imagem: 'recursos/imagens/porco.jpg' },
+    { id: 'galo', nome: 'Galo', emoji: '🐓', somUrl: 'recursos/sons/galo.wav', imagem: 'recursos/imagens/galo.jpg' },
+    { id: 'pato', nome: 'Pato', emoji: '🦆', somUrl: 'recursos/sons/pato.mpeg', imagem: 'recursos/imagens/pato.webp' },
+    { id: 'ovelha', nome: 'Ovelha', emoji: '🐑', somUrl: 'recursos/sons/ovelha.mpeg', imagem: 'recursos/imagens/ovelha.jpg' },
+    { id: 'cavalo', nome: 'Cavalo', emoji: '🐴', somUrl: 'recursos/sons/cavalo.mpeg', imagem: 'recursos/imagens/cavalo.jpg' },
+    { id: 'burro', nome: 'Burro', emoji: '🐴', somUrl: 'recursos/sons/burro.mp3', imagem: 'recursos/imagens/burro.png' },
+    { id: 'cabra', nome: 'Cabra', emoji: '🐐', somUrl: 'recursos/sons/cabra.mp3', imagem: 'recursos/imagens/cabra.jpg' },
+    { id: 'leao', nome: 'Leão', emoji: '🦁', somUrl: 'recursos/sons/leao.ogg', imagem: 'recursos/imagens/leao.jpg' },
+    { id: 'elefante', nome: 'Elefante', emoji: '🐘', somUrl: 'recursos/sons/elefante.mpeg', imagem: 'recursos/imagens/elefante.jpg' },
+    { id: 'macaco', nome: 'Macaco', emoji: '🐒', somUrl: 'recursos/sons/macaco.mpeg', imagem: 'recursos/imagens/macaco.jpg' },
+    { id: 'lobo', nome: 'Lobo', emoji: '🐺', somUrl: 'recursos/sons/lobo.mp3', imagem: 'recursos/imagens/lobo.jpg' },
+    { id: 'sapo', nome: 'Sapo', emoji: '🐸', somUrl: 'recursos/sons/sapo.mpeg', imagem: 'recursos/imagens/sapo.jpg' },
+    { id: 'pintainho', nome: 'Pintainho', emoji: '🐤', somUrl: 'recursos/sons/pintainho.mp3', imagem: 'recursos/imagens/pintainho.avif' },
+    { id: 'corvo', nome: 'Corvo', emoji: '🐦‍', somUrl: 'recursos/sons/corvo.mp3', imagem: 'recursos/imagens/corvo.jpg' },
+    { id: 'grilo', nome: 'Grilo', emoji: '🦗', somUrl: 'recursos/sons/grilo.wav', imagem: 'recursos/imagens/grilo.jpg' },
+    { id: 'coruja', nome: 'Coruja', emoji: '🦉', somUrl: 'recursos/sons/coruja.ogg', imagem: 'recursos/imagens/coruja.jpg' },
+    { id: 'peru', nome: 'Peru', emoji: '🦃', somUrl: 'recursos/sons/peru.mpeg', imagem: 'recursos/imagens/peru.jpg' }
 ];
 
 // Definição de Variáveis de Jogo
@@ -58,12 +58,21 @@ const botaoOuvirSom = document.getElementById('botao-ouvir-som');
 const botaoReiniciar = document.getElementById('botao-reiniciar');
 const botaoInicio = document.getElementById('botao-inicio');
 const botoesModo = document.querySelectorAll('.botao-modo');
+const botaoVoltar = document.getElementById('botao-voltar');
+//const nomeJogo = document.getElementById('nomeJogo');
+
 
 // Eventos
 botaoComecar.addEventListener('click', iniciarJogo);
 botaoOuvirSom.addEventListener('click', ouvirSomAnimalCerto);
 botaoReiniciar.addEventListener('click', iniciarJogo);
 botaoInicio.addEventListener('click', mostrarEcraInicial);
+
+//nome amigo com ola antes
+if (nomeJogo !== null && nomeJogo.innerText !== "") {
+    nomeJogo.innerText = "Olá, " + nomeJogo.innerText;
+}
+
 
 // Cada botão de modo, quando é clicado, chama selecionarModo com esse botão
 for (const botao of botoesModo) {
@@ -158,10 +167,11 @@ function selecionarModo(botaoEscolhido) {
 
 // ---------- Fluxo do jogo ----------
 
+
 // 'mensagem-inicio', 'mensagem-sucesso', 'mensagem-nova-tentativa' ou 'mensagem-revelacao'
 function mostrarMensagem(texto, classeEstilo) {
     mensagemJogo.textContent = texto;
-    mensagemJogo.className = 'caixa-mensagem fonte-titulo font-bold text-center rounded-full shrink-0 ' + classeEstilo;
+    mensagemJogo.className = 'caixa-mensagem fonte-titulo text-center rounded-full shrink-0 ' + classeEstilo;
 }
 
 function mostrarEcraInicial() {
@@ -206,7 +216,6 @@ function prepararRonda() {
     // O animal certo nunca se repete na mesma partida.
     const alvosDisponiveis = BASE_ANIMAIS.filter(animal => !idsAnimaisUsados.includes(animal.id));
     animalCerto = alvosDisponiveis[Math.floor(Math.random() * alvosDisponiveis.length)];
-    alert(animalCerto.nome);
     idsAnimaisUsados.push(animalCerto.id);
 
     // As outras 3 opções são animais diferentes do certo; depois baralha-se tudo
@@ -265,10 +274,10 @@ function tratarAcerto(cartaoClicado) {
     let estrelasGanhas = 0;
     if (tentativasRonda === 1) {
         estrelasGanhas = 1;   // 1ª tentativa = estrela cheia
-        mostrarMensagem("ESPETÁCULO! Acertaste à 1ª! ⭐🎉", 'mensagem-sucesso animate-bounce');
+        mostrarMensagem("ESPETÁCULO! Acertaste à 1ª! ⭐🎉", 'mensagem-sucesso animacao-sucesso');
     } else {
         estrelasGanhas = 0.5;   // 2ª tentativa = meia estrela
-        mostrarMensagem("MUITO BEM! Conseguiste! 🌟🎉", 'mensagem-sucesso animate-bounce');
+        mostrarMensagem("MUITO BEM! Conseguiste! 🌟🎉", 'mensagem-sucesso animacao-sucesso');
     }
 
     totalEstrelas += estrelasGanhas;
@@ -521,6 +530,10 @@ function atualizarTotalBrinquedosSons() {
         guardarDadosRegistoAtual();
     }
 }
+
+botaoVoltar.addEventListener('click', function () {
+    window.location.href = '../../index.html';
+});
 
 
 atualizarSimbolosBrinquedosAnimais();
