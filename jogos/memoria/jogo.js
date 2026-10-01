@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const botaoReiniciarFinal = document.getElementById('botao-reiniciar-final');
     const botaoInicio = document.getElementById('botao-inicio');
     const botaoVoltar = document.getElementById('botao-voltar');
+    const botaoHomepage = document.getElementById('botao-homepage');
 
     const tentativasJogo = document.getElementById('tentativas-jogo');
     const tentativasFinal = document.getElementById('tentativas-final');
@@ -22,10 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const normalSymbols = ['🚀', '🌍', '⭐', '🌙', '🪐', '🛸'];
     const hardSymbols = [...normalSymbols, '👽', '👨‍🚀', '☄️', '🛰️'];
 
-    // Máximo de brinquedos por nível
     const CHAVE_BRINQUEDOS_FACIL = 'brinquedosMemoriaFacil';
     const CHAVE_BRINQUEDOS_DIFICIL = 'brinquedosMemoriaDificil';
     const MAX_BRINQUEDOS_POR_NIVEL = 2;
+    const TOTAL_BRINQUEDOS_MEMORIA = 4;
 
     let cards = [];
     let flippedCards = [];
@@ -33,43 +34,30 @@ document.addEventListener('DOMContentLoaded', () => {
     let attempts = 0;
     let lockBoard = false;
     let isHardMode = false;
-
-    // Guarda a quantidade de brinquedos que existia antes da oportunidade
     let brinquedosAntesDaOportunidade = 0;
-
-    // Evita guardar o mesmo resultado mais do que uma vez
     let resultadoGuardado = false;
 
-
     function shuffleCards() {
-
         for (let i = cards.length - 1; i > 0; i--) {
-
             const j = Math.floor(Math.random() * (i + 1));
-
             [cards[i], cards[j]] = [cards[j], cards[i]];
         }
     }
 
     function createBoard() {
-
         const symbols = isHardMode ? hardSymbols : normalSymbols;
-
         cards = [...symbols, ...symbols];
 
         memoryBoard.style.gridTemplateColumns =
             `repeat(${isHardMode ? 5 : 4}, 1fr)`;
 
         shuffleCards();
-
         memoryBoard.innerHTML = '';
 
-        cards.forEach((symbol, index) => {
-
+        cards.forEach((symbol) => {
             const card = document.createElement('div');
 
             card.className = 'card';
-            card.dataset.index = index;
 
             card.innerHTML = `
                 <div class="card-inner">
@@ -79,13 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             card.addEventListener('click', flipCard);
-
             memoryBoard.appendChild(card);
         });
     }
 
     function flipCard() {
-
         if (
             lockBoard ||
             flippedCards.length >= 2 ||
@@ -93,13 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ) return;
 
         this.classList.add('flipped');
-
         flippedCards.push(this);
 
         if (flippedCards.length === 2) {
-
             lockBoard = true;
-
             attempts++;
 
             if (attemptsDisplay) {
@@ -107,20 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             tentativasJogo.textContent = attempts;
-
             checkForMatch();
         }
     }
 
     function checkForMatch() {
-
         const [card1, card2] = flippedCards;
-
         const symbol1 = card1.querySelector('.back').textContent;
         const symbol2 = card2.querySelector('.back').textContent;
 
         if (symbol1 === symbol2) {
-
             matchedCards.push(card1, card2);
 
             card1.classList.add('matched');
@@ -130,9 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lockBoard = false;
 
             if (matchedCards.length === cards.length) {
-
                 setTimeout(() => {
-
                     const chaveBrinquedos = isHardMode
                         ? CHAVE_BRINQUEDOS_DIFICIL
                         : CHAVE_BRINQUEDOS_FACIL;
@@ -148,52 +125,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     const aindaPodeGanhar =
                         brinquedosGanhos < MAX_BRINQUEDOS_POR_NIVEL;
 
-                        console.log("CHEGUEI À VERIFICAÇÃO DOS BRINQUEDOS");
-                        console.log("ganhouBrinquedo:", ganhouBrinquedo);
-                        console.log("aindaPodeGanhar:", aindaPodeGanhar);
-                        console.log(
-                            "podeAceder existe:",
-                            typeof podeAcederAosBrinquedos
-                        );
-                        
                     if (
                         ganhouBrinquedo &&
                         aindaPodeGanhar &&
                         podeAcederAosBrinquedos() === true &&
                         typeof mostrarOportunidadeBrinquedo === 'function'
                     ) {
-
                         brinquedosAntesDaOportunidade =
                             obterQuantidadeBrinquedos();
 
                         mostrarOportunidadeBrinquedo();
-
                     } else {
-
                         mostrarEcraFinal();
                     }
-
                 }, 700);
             }
-
         } else {
-
             setTimeout(() => {
-
                 card1.classList.remove('flipped');
                 card2.classList.remove('flipped');
-
                 flippedCards = [];
                 lockBoard = false;
-
             }, 1000);
         }
     }
 
     function obterQuantidadeBrinquedos() {
-
         try {
-
             const brinquedos = JSON.parse(
                 localStorage.getItem('brinquedosAdquiridos') || '[]'
             );
@@ -201,23 +159,49 @@ document.addEventListener('DOMContentLoaded', () => {
             return Array.isArray(brinquedos)
                 ? brinquedos.length
                 : 0;
-
         } catch (erro) {
-
             return 0;
         }
     }
 
-    // Guarda o resultado da partida no histórico
+    function atualizarSimbolosBrinquedosMemoria() {
+        const zona = document.getElementById(
+            'oportunidadesBrinquedosMemoria'
+        );
+
+        if (!zona) return;
+
+        const brinquedosFacil = Number(
+            localStorage.getItem(CHAVE_BRINQUEDOS_FACIL) || 0
+        );
+
+        const brinquedosDificil = Number(
+            localStorage.getItem(CHAVE_BRINQUEDOS_DIFICIL) || 0
+        );
+
+        const usados = brinquedosFacil + brinquedosDificil;
+
+        const restantes = Math.max(
+            0,
+            TOTAL_BRINQUEDOS_MEMORIA - usados
+        );
+
+        zona.innerHTML = '';
+
+        for (let i = 0; i < restantes; i++) {
+            const urso = document.createElement('span');
+            urso.textContent = '🧸';
+            zona.appendChild(urso);
+        }
+    }
+
     function guardarResultadoAtual() {
-
         if (typeof guardarResultadoJogo === 'function') {
-
             const jogadas = attempts;
             const acertos = matchedCards.length / 2;
 
             guardarResultadoJogo(
-                "Jogo da Memória",
+                'Jogo da Memória',
                 acertos,
                 jogadas
             );
@@ -225,29 +209,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function mostrarEcraFinal() {
-
-        // Guarda o resultado apenas uma vez
         if (!resultadoGuardado) {
-
             resultadoGuardado = true;
-
             guardarResultadoAtual();
         }
 
         ecraJogo.classList.add('hidden');
         ecraFinal.classList.remove('hidden');
-
         tentativasFinal.textContent = attempts;
     }
 
     window.oportunidadeBrinquedoTerminadaDiferencas = function () {
-
         const brinquedosDepoisDaOportunidade =
             obterQuantidadeBrinquedos();
 
-        // Só aumenta o contador se realmente foi adquirido um brinquedo
         if (brinquedosDepoisDaOportunidade > brinquedosAntesDaOportunidade) {
-
             const chaveBrinquedos = isHardMode
                 ? CHAVE_BRINQUEDOS_DIFICIL
                 : CHAVE_BRINQUEDOS_FACIL;
@@ -257,11 +233,12 @@ document.addEventListener('DOMContentLoaded', () => {
             );
 
             if (brinquedosGanhos < MAX_BRINQUEDOS_POR_NIVEL) {
-
                 localStorage.setItem(
                     chaveBrinquedos,
                     brinquedosGanhos + 1
                 );
+
+                atualizarSimbolosBrinquedosMemoria();
             }
         }
 
@@ -269,13 +246,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function iniciarJogo() {
-
         attempts = 0;
         flippedCards = [];
         matchedCards = [];
         lockBoard = false;
-
-        // Permite guardar o resultado da nova partida
         resultadoGuardado = false;
 
         if (attemptsDisplay) {
@@ -283,7 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         tentativasJogo.textContent = '0';
-
         createBoard();
 
         ecraInicial.classList.add('hidden');
@@ -292,60 +265,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function restartGame() {
-
         memoryBoard.style.opacity = '.5';
 
         setTimeout(() => {
-
             iniciarJogo();
-
             memoryBoard.style.opacity = '1';
-
         }, 300);
     }
 
     modoFacil.addEventListener('click', () => {
-
         isHardMode = false;
-
         modoFacil.classList.add('modo-selecionado');
         modoDificil.classList.remove('modo-selecionado');
-
         modoFacil.setAttribute('aria-pressed', 'true');
         modoDificil.setAttribute('aria-pressed', 'false');
     });
 
     modoDificil.addEventListener('click', () => {
-
         isHardMode = true;
-
         modoDificil.classList.add('modo-selecionado');
         modoFacil.classList.remove('modo-selecionado');
-
         modoDificil.setAttribute('aria-pressed', 'true');
         modoFacil.setAttribute('aria-pressed', 'false');
     });
 
     botaoComecar.addEventListener('click', iniciarJogo);
-
     restartButton.addEventListener('click', restartGame);
-
     botaoReiniciarFinal.addEventListener('click', iniciarJogo);
 
     botaoInicio.addEventListener('click', () => {
-
         ecraFinal.classList.add('hidden');
         ecraJogo.classList.add('hidden');
         ecraInicial.classList.remove('hidden');
-
     });
 
     botaoVoltar.addEventListener('click', () => {
-
         ecraJogo.classList.add('hidden');
         ecraFinal.classList.add('hidden');
         ecraInicial.classList.remove('hidden');
-
     });
 
+    botaoHomepage.addEventListener('click', () => {
+        window.location.href = '../../index.html';
+    });
+
+    atualizarSimbolosBrinquedosMemoria();
 });
