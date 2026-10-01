@@ -1,6 +1,7 @@
 * {
     box-sizing:border-box;
 }
+
 body {
     margin:0;
     min-height:100vh;
@@ -8,6 +9,7 @@ body {
     color:#49366f;
     background:radial-gradient(circle at 10% 20%,rgba(255,190,230,.75),transparent 28%),radial-gradient(circle at 90% 15%,rgba(180,225,255,.8),transparent 30%),radial-gradient(circle at 50% 100%,rgba(255,225,150,.7),transparent 35%),linear-gradient(135deg,#f8e9ff,#e7f5ff 50%,#fff1d6);
 }
+
 .titulo-pagina {
     display:flex;
     justify-content:center;
@@ -16,6 +18,7 @@ body {
     padding:25px 20px 15px;
     text-align:center;
 }
+
 .titulo-pagina h1 {
     margin:0;
     color:#fff;
@@ -24,21 +27,25 @@ body {
     letter-spacing:2px;
     text-shadow:0 3px 0 #8b6bd9,0 5px 12px rgba(108,78,170,.25);
 }
+
 .titulo-pagina p {
     margin:6px 0 0;
     color:#66518c;
     font-size:16px;
     font-weight:600;
 }
+
 .icone-titulo {
     font-size:42px;
     animation:flutuar 3s ease-in-out infinite;
 }
+
 .zona-jogo {
     display:flex;
     justify-content:center;
     padding:10px 20px 35px;
 }
+
 .painel-jogo {
     width:1100px;
     max-width:100%;
@@ -51,6 +58,7 @@ body {
     border-radius:28px;
     box-shadow:0 18px 45px rgba(112,83,170,.18),inset 0 0 35px rgba(190,160,255,.12);
 }
+
 .barra-jogo {
     display:flex;
     justify-content:space-between;
@@ -58,6 +66,7 @@ body {
     padding:15px 25px;
     background:linear-gradient(90deg,#ffb6d9,#ffd77a,#a8e6cf);
 }
+
 .nome-jogo {
     display:flex;
     align-items:center;
@@ -66,10 +75,12 @@ body {
     font-family:'Fredoka One',cursive;
     letter-spacing:1px;
 }
+
 .nome-jogo span {
     font-size:25px;
 }
-.estatistica,.tentativas-partida {
+
+.tentativas-partida {
     display:flex;
     align-items:center;
     justify-content:center;
@@ -81,17 +92,21 @@ body {
     color:#675183;
     box-shadow:0 3px 10px rgba(100,80,140,.1);
 }
-.estatistica {
-    font-size:14px;
-}
-.estatistica strong,.tentativas-partida strong {
+
+.tentativas-partida strong {
     color:#e06a9b;
     font-size:18px;
 }
+
 .ecra {
     flex:1;
-    width:100%}.hidden{display:none!important;
+    width:100%;
 }
+
+.hidden {
+    display:none!important;
+}
+
 .ecra-inicial {
     position:relative;
     display:flex;
@@ -102,6 +117,7 @@ body {
     overflow:hidden;
     text-align:center;
 }
+
 .inicio-galaxia {
     width:min(1000px,100%);
     min-height:480px;
@@ -112,6 +128,7 @@ body {
     position:relative;
     z-index:3;
 }
+
 .zona-espaco {
     flex:1;
     min-width:0;
@@ -122,6 +139,7 @@ body {
     justify-content:center;
     text-align:center;
 }
+
 .etiqueta-espaco {
     margin-bottom:5px;
     padding:8px 16px;
@@ -132,6 +150,7 @@ body {
     font-size:13px;
     box-shadow:0 5px 14px rgba(100,70,150,.12);
 }
+
 .sistema-solar {
     position:relative;
     width:340px;
@@ -139,40 +158,62 @@ body {
     flex-shrink:0;
     pointer-events:none;
 }
+
 .sol,.orbita {
     position:absolute;
     left:50%;
     top:50%;
 }
+
 .sol {
     transform:translate(-50%,-50%);
     font-size:55px;
     filter:drop-shadow(0 5px 8px rgba(255,170,40,.3));
 }
+
 .orbita {
     border:2px solid #c8b9f2;
     border-radius:50%;
     transform:translate(-50%,-50%);
     animation:orbitar linear infinite;
 }
+
 .orbita-1 {
     width:90px;
     height:90px;
-    animation-duration:8s}.orbita-2{width:160px;
+    animation-duration:8s;
+}
+
+.orbita-2 {
+    width:160px;
     height:160px;
-    animation-duration:13s}.orbita-3{width:235px;
+    animation-duration:13s;
+}
+
+.orbita-3 {
+    width:235px;
     height:235px;
-    animation-duration:18s}.orbita-4{width:310px;
+    animation-duration:18s;
+}
+
+.orbita-4 {
+    width:310px;
     height:310px;
     animation-duration:25s;
 }
+
 .planeta {
     position:absolute;
     left:50%;
     top:-15px;
     transform:translateX(-50%);
-    font-size:23px}.planeta-2{font-size:28px;
+    font-size:23px;
 }
+
+.planeta-2 {
+    font-size:28px;
+}
+
 .frase-espaco {
     width:280px;
     display:flex;
@@ -182,11 +223,13 @@ body {
     font-size:13px;
     line-height:1.35;
 }
+
 .frase-espaco strong {
     color:#6e4baa;
     font-family:'Fredoka One',cursive;
     font-size:18px;
 }
+
 .cartao-missao {
     width:390px;
     flex-shrink:0;
@@ -197,6 +240,7 @@ body {
     border-radius:28px;
     box-shadow:0 12px 30px rgba(111,76,165,.14),0 0 0 5px rgba(255,255,255,.65);
 }
+
 .icone-memoria {
     width:72px;
     height:72px;
@@ -211,30 +255,54 @@ body {
     box-shadow:0 7px 18px rgba(190,110,190,.25);
     animation:flutuar 3s ease-in-out infinite;
 }
+
 .cartao-missao h2 {
     margin:0 0 8px;
     color:#63458f;
     font-family:'Fredoka One',cursive;
     font-size:27px;
 }
+
 .descricao-inicial {
     margin:0 auto 18px;
     color:#806e9c;
     font-size:14px;
     line-height:1.45;
 }
+
 .escolha-dificuldade h3 {
     margin:0 0 10px;
     color:#7b55a9;
     font-family:'Fredoka One',cursive;
     font-size:17px;
 }
+
 .opcoes-dificuldade {
     display:flex;
     justify-content:center;
     gap:10px;
     margin-bottom:20px;
 }
+
+.info-recompensas {
+    margin-top:16px;
+    padding:12px 16px;
+    border:2px solid #c084fc;
+    border-radius:14px;
+    background:rgba(255,255,255,.8);
+    color:#4c1d95;
+    font-size:14px;
+    line-height:1.4;
+}
+
+.info-recompensas p {
+    margin:5px 0 0;
+}
+
+.info-recompensas strong {
+    color:#7e22ce;
+}
+
 .opcao-dificuldade {
     position:relative;
     width:145px;
@@ -251,32 +319,70 @@ body {
     box-shadow:0 4px 10px rgba(100,70,140,.07);
     transition:.25s;
 }
+
 .opcao-dificuldade:first-child {
-    border-color:#9be5c0}.opcao-dificuldade:last-child{border-color:#b9a5f5;
+    border-color:#9be5c0;
 }
+
+.opcao-dificuldade:last-child {
+    border-color:#b9a5f5;
+}
+
 .opcao-dificuldade:hover {
     background:#fff;
     transform:translateY(-4px) rotate(-1deg);
 }
+
 .opcao-dificuldade.modo-selecionado {
     background:linear-gradient(135deg,#ffd0e6,#d8c8ff);
     border-color:#d58be5;
     box-shadow:0 6px 16px rgba(190,120,200,.2);
 }
+
 .icone-dificuldade {
-    font-size:35px}.nome-dificuldade{color:#654685;
+    font-size:35px;
+}
+
+.nome-dificuldade {
+    color:#654685;
     font-family:'Fredoka One',cursive;
-    font-size:17px}.detalhe-dificuldade{color:#8d7ba4;
+    font-size:17px;
+}
+
+.detalhe-dificuldade {
+    color:#8d7ba4;
     font-size:13px;
 }
+
 .modo-visto {
     position:absolute;
     top:8px;
     right:10px;
     display:none;
-    color:#e56da6}.modo-selecionado .modo-visto{display:block;
+    color:#e56da6;
 }
-.botao-iniciar,.botao-secundario,.botao-reiniciar {
+
+.modo-selecionado .modo-visto {
+    display:block;
+}
+
+.acoes-inicio {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+.acoes-inicio .botao-iniciar,
+.acoes-inicio .botao-secundario {
+    margin:0;
+}
+
+.botao-iniciar,
+.botao-secundario,
+.botao-reiniciar {
     display:inline-flex;
     align-items:center;
     justify-content:center;
@@ -292,19 +398,27 @@ body {
     box-shadow:0 5px 0 #8664c9,0 9px 18px rgba(150,100,190,.2);
     transition:.15s ease;
 }
-.botao-iniciar:hover,.botao-secundario:hover,.botao-reiniciar:hover {
+
+.botao-iniciar:hover,
+.botao-secundario:hover,
+.botao-reiniciar:hover {
     transform:translateY(-3px);
     background:linear-gradient(135deg,#ff91c1,#aa91f0);
 }
-.botao-iniciar:active,.botao-secundario:active,.botao-reiniciar:active {
+
+.botao-iniciar:active,
+.botao-secundario:active,
+.botao-reiniciar:active {
     transform:translateY(2px);
 }
+
 .ecra-jogo {
     display:flex;
     flex-direction:column;
     align-items:center;
     padding:20px;
 }
+
 .cabecalho-partida {
     width:min(760px,95%);
     display:flex;
@@ -312,6 +426,7 @@ body {
     align-items:center;
     margin-bottom:12px;
 }
+
 .estado-partida {
     display:flex;
     align-items:center;
@@ -320,6 +435,7 @@ body {
     font-size:13px;
     font-weight:700;
 }
+
 .ponto-ativo {
     width:8px;
     height:8px;
@@ -327,6 +443,7 @@ body {
     background:#34d399;
     box-shadow:0 0 10px #34d399;
 }
+
 .memory-board {
     width:min(780px,95%);
     margin:25px auto;
@@ -334,11 +451,13 @@ body {
     gap:14px;
     perspective:1000px;
 }
+
 .card {
     height:105px;
     position:relative;
     cursor:pointer;
 }
+
 .card-inner {
     width:100%;
     height:100%;
@@ -346,10 +465,13 @@ body {
     transform-style:preserve-3d;
     transition:transform .6s ease;
 }
+
 .card.flipped .card-inner {
     transform:rotateY(180deg);
 }
-.card .front,.card .back {
+
+.card .front,
+.card .back {
     position:absolute;
     inset:0;
     display:flex;
@@ -359,12 +481,14 @@ body {
     backface-visibility:hidden;
     -webkit-backface-visibility:hidden;
 }
+
 .card .front {
     background:radial-gradient(circle at 25% 20%,#ffb4d6,transparent 28%),linear-gradient(135deg,#8e7be8,#62b9e8);
     border:3px solid #fff;
     font-size:2.5rem;
     box-shadow:0 5px 12px rgba(80,70,140,.15);
 }
+
 .card .back {
     background:radial-gradient(circle at 75% 20%,#ffe39a,transparent 30%),linear-gradient(135deg,#ffb0d5,#9bdcf5);
     border:3px solid #fff;
@@ -372,15 +496,27 @@ body {
     transform:rotateY(180deg);
     box-shadow:0 5px 12px rgba(80,70,140,.15);
 }
+
 .card:hover {
-    transform:scale(1.03)}.card.matched{cursor:default;
+    transform:scale(1.03);
 }
-.acoes-jogo,.acoes-final {
+
+.card.matched {
+    cursor:default;
+}
+
+.acoes-jogo,
+.acoes-final {
     display:flex;
     justify-content:center;
     gap:12px;
-    flex-wrap:wrap}.acoes-jogo{margin-top:15px;
+    flex-wrap:wrap;
 }
+
+.acoes-jogo {
+    margin-top:15px;
+}
+
 .ecra-final {
     display:flex;
     flex-direction:column;
@@ -389,27 +525,32 @@ body {
     padding:30px;
     text-align:center;
 }
+
 .final-estrelas {
     margin-bottom:15px;
     color:#f5c84b;
     font-size:25px;
     letter-spacing:8px;
 }
+
 .icone-final {
     margin-bottom:10px;
     font-size:70px;
     animation:flutuar 3s ease-in-out infinite;
 }
+
 .ecra-final h2 {
     margin:0;
     color:#68488f;
     font-family:'Fredoka One',cursive;
     font-size:35px;
 }
+
 .ecra-final>p {
     color:#806e9c;
     font-size:17px;
 }
+
 .resultado-final {
     display:flex;
     align-items:center;
@@ -423,76 +564,208 @@ body {
     border-radius:18px;
     text-align:center;
 }
+
 .resultado-final>span {
-    font-size:30px}.resultado-final div{display:flex;
+    font-size:30px;
+}
+
+.resultado-final div {
+    display:flex;
     flex-direction:column;
-    align-items:center}.resultado-final small{color:#8d7ba4}.resultado-final strong{color:#e36da4;
+    align-items:center;
+}
+
+.resultado-final small {
+    color:#8d7ba4;
+}
+
+.resultado-final strong {
+    color:#e36da4;
     font-family:'Fredoka One',cursive;
     font-size:32px;
 }
-.planeta-decoracao,.estrelas-decoracao {
+
+.planeta-decoracao,
+.estrelas-decoracao {
     position:absolute;
     z-index:1;
     animation:flutuar 5s ease-in-out infinite;
 }
+
 .planeta-decoracao {
     font-size:70px;
-    opacity:.65}.planeta-esquerdo{left:5%;
-    top:15%}.planeta-direito{right:5%;
+    opacity:.65;
+}
+
+.planeta-esquerdo {
+    left:5%;
+    top:15%;
+}
+
+.planeta-direito {
+    right:5%;
     bottom:15%;
 }
+
 .estrelas-decoracao {
     color:#fff;
-    font-size:22px}.estrelas-1{left:7%;
-    top:12%}.estrelas-2{left:19%;
+    font-size:22px;
+}
+
+.estrelas-1 {
+    left:7%;
+    top:12%;
+}
+
+.estrelas-2 {
+    left:19%;
     bottom:12%;
-    font-size:15px}.estrelas-3{right:10%;
+    font-size:15px;
+}
+
+.estrelas-3 {
+    right:10%;
     top:16%;
-    font-size:17px}.estrelas-4{right:22%;
+    font-size:17px;
+}
+
+.estrelas-4 {
+    right:22%;
     bottom:14%;
 }
-@keyframes flutuar{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes orbitar{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
 
-@media(max-width:850px){
-.inicio-galaxia {
-    flex-direction:column;
-    gap:15px}.zona-espaco{min-height:auto;
+@keyframes flutuar {
+    0%,100% {
+        transform:translateY(0);
+    }
+
+    50% {
+        transform:translateY(-8px);
+    }
 }
-.sistema-solar {
-    width:250px;
-    height:250px;
+
+@keyframes orbitar {
+    from {
+        transform:translate(-50%,-50%) rotate(0);
+    }
+
+    to {
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
 }
-.orbita-1 {
-    width:70px;
-    height:70px}.orbita-2{width:120px;
-    height:120px}.orbita-3{width:175px;
-    height:175px}.orbita-4{width:230px;
-    height:230px;
+
+@media(max-width:850px) {
+    .inicio-galaxia {
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .zona-espaco {
+        min-height:auto;
+    }
+
+    .sistema-solar {
+        width:250px;
+        height:250px;
+    }
+
+    .orbita-1 {
+        width:70px;
+        height:70px;
+    }
+
+    .orbita-2 {
+        width:120px;
+        height:120px;
+    }
+
+    .orbita-3 {
+        width:175px;
+        height:175px;
+    }
+
+    .orbita-4 {
+        width:230px;
+        height:230px;
+    }
+
+    .cartao-missao {
+        width:min(390px,95%);
+    }
 }
-.cartao-missao {
-    width:min(390px,95%);
-}
-}
-@media(max-width:700px){
-.titulo-pagina {
-    gap:8px;
-    padding-top:15px}.icone-titulo{font-size:28px}.titulo-pagina p{font-size:13px;
-}
-.painel-jogo {
-    min-height:620px;
-    border-radius:20px}.barra-jogo{padding:12px 15px}.nome-jogo strong{font-size:13px;
-}
-.ecra-inicial {
-    padding:20px 12px}.frase-espaco,.planeta-decoracao{display:none;
-}
-.cartao-missao {
-    padding:20px 15px}.cartao-missao .opcao-dificuldade{width:125px;
-}
-.memory-board {
-    width:95%;
-    gap:7px}.card{height:75px}.card .front,.card .back{font-size:28px}.cabecalho-partida{width:95%;
-}
+
+@media(max-width:700px) {
+    .titulo-pagina {
+        gap:8px;
+        padding-top:15px;
+    }
+
+    .icone-titulo {
+        font-size:28px;
+    }
+
+    .titulo-pagina p {
+        font-size:13px;
+    }
+
+    .painel-jogo {
+        min-height:620px;
+        border-radius:20px;
+    }
+
+    .barra-jogo {
+        padding:12px 15px;
+    }
+
+    .nome-jogo strong {
+        font-size:13px;
+    }
+
+    .ecra-inicial {
+        padding:20px 12px;
+    }
+
+    .frase-espaco,
+    .planeta-decoracao {
+        display:none;
+    }
+
+    .cartao-missao {
+        padding:20px 15px;
+    }
+
+    .cartao-missao .opcao-dificuldade {
+        width:125px;
+    }
+
+    .acoes-inicio {
+        flex-direction:column;
+        width:100%;
+    }
+
+    .acoes-inicio .botao-iniciar,
+    .acoes-inicio .botao-secundario {
+        width:100%;
+        max-width:280px;
+    }
+
+    .memory-board {
+        width:95%;
+        gap:7px;
+    }
+
+    .card {
+        height:75px;
+    }
+
+    .card .front,
+    .card .back {
+        font-size:28px;
+    }
+
+    .cabecalho-partida {
+        width:95%;
+    }
 }
 
 .popup-brinquedos {
@@ -632,4 +905,8 @@ body {
         grid-template-columns:repeat(3,1fr);
         gap:9px;
     }
+}
+
+.amigo-utilizador-jogo {
+    bottom:80px !important;
 }

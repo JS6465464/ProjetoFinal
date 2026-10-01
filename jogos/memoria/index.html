@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../../comum/utilizador.css">
     <link rel="stylesheet" href="../../comum/brinquedos.css">
     <link rel="stylesheet" href="jogo.css">
+
     <style>
         #botaoBrinquedos:hover {
             transform:translateY(-2px) scale(1.06);
@@ -35,21 +36,23 @@
             }
         }
     </style>
-
 </head>
 
-<body data-caminho-brinquedos="../../recursos/brinquedos/" data-caminho-recursos="../../recursos/">
+<body data-caminho-brinquedos="../../recursos/brinquedos/"
+      data-caminho-recursos="../../recursos/">
 
     <header class="titulo-pagina">
         <div class="icone-titulo">
             🪐
         </div>
+
         <div class="titulo-texto">
             <h1>MEMÓRIA GALÁCTICA</h1>
             <p>
                 Uma aventura espacial para testar a tua memória!
             </p>
         </div>
+
         <div class="icone-titulo">
             🚀
         </div>
@@ -57,15 +60,20 @@
 
     <main class="zona-jogo">
         <div class="painel-jogo">
+
             <div class="barra-jogo">
                 <div class="nome-jogo">
                     <span>🌟</span>
                     <strong>AVENTURA ESPACIAL</strong>
                 </div>
-                <div class="informacao-jogo" style="display:flex;align-items:center;gap:10px;">
+
+                <div class="informacao-jogo"
+                     style="display:flex;align-items:center;gap:10px;">
+
                     <div id="oportunidadesBrinquedosMemoria"
                          style="display:flex;align-items:center;gap:4px;"
-                         title="Brinquedos que ainda podes ganhar"></div>
+                         title="Brinquedos que ainda podes ganhar">
+                    </div>
 
                     <button id="botaoBrinquedos"
                             type="button"
@@ -93,12 +101,6 @@
                             ">
                         <i class="fa-solid fa-gift" aria-hidden="true"></i>
                     </button>
-
-                    <div class="estatistica">
-                        <span>🎯</span>
-                        <span>Tentativas</span>
-                        <strong id="attempts">0</strong>
-                    </div>
                 </div>
             </div>
 
@@ -113,6 +115,7 @@
                 <div class="planeta-decoracao planeta-esquerdo">
                     🪐
                 </div>
+
                 <div class="planeta-decoracao planeta-direito">
                     🌍
                 </div>
@@ -124,35 +127,51 @@
                         <div class="etiqueta-espaco">
                             🚀 MISSÃO ESPACIAL
                         </div>
+
+                        <div class="info-recompensas">
+                            🧸 <strong>Recompensas</strong>
+
+                            <p>
+                                Menos de 15 tentativas no modo Exploração
+                                ou menos de 20 no modo Galáctica para teres
+                                oportunidade de ganhar um brinquedo.
+                            </p>
+
+                            <p>
+                                Podes ganhar até 2 brinquedos por nível.
+                            </p>
+                        </div>
+
                         <div class="sistema-solar">
-                            
+
                             <div class="sol">
                                 ☀️
                             </div>
-                            <div class="orbita orbita-1">
 
+                            <div class="orbita orbita-1">
                                 <span class="planeta planeta-1">
                                     🌍
                                 </span>
                             </div>
-                            <div class="orbita orbita-2">
 
+                            <div class="orbita orbita-2">
                                 <span class="planeta planeta-2">
                                     🪐
                                 </span>
                             </div>
-                            <div class="orbita orbita-3">
 
+                            <div class="orbita orbita-3">
                                 <span class="planeta planeta-3">
                                     🌙
                                 </span>
                             </div>
-                            <div class="orbita orbita-4">
 
+                            <div class="orbita orbita-4">
                                 <span class="planeta planeta-4">
                                     🔵
                                 </span>
                             </div>
+
                         </div>
 
                         <div class="frase-espaco">
@@ -241,18 +260,33 @@
 
                         </div>
 
-                        <button id="botao-comecar"
-                                class="botao-iniciar">
+                        <div class="acoes-inicio">
 
-                            <span>
-                                INICIAR AVENTURA
-                            </span>
+                            <button id="botao-comecar"
+                                    class="botao-iniciar"
+                                    type="button">
 
-                            <span class="icone-botao">
-                                🚀
-                            </span>
+                                <span>
+                                    INICIAR AVENTURA
+                                </span>
 
-                        </button>
+                                <span class="icone-botao">
+                                    🚀
+                                </span>
+
+                            </button>
+
+                            <button id="botao-homepage"
+                                    class="botao-secundario"
+                                    type="button"
+                                    onclick="window.location.href='../../index.html'">
+
+                                <i class="fa-solid fa-house"></i>
+                                Homepage
+
+                            </button>
+
+                        </div>
 
                     </div>
 
@@ -284,7 +318,8 @@
                 <div class="acoes-jogo">
 
                     <button id="botao-voltar"
-                            class="botao-secundario">
+                            class="botao-secundario"
+                            type="button">
 
                         <i class="fa-solid fa-arrow-left"></i>
                         Voltar
@@ -292,7 +327,8 @@
                     </button>
 
                     <button id="restartButton"
-                            class="botao-reiniciar">
+                            class="botao-reiniciar"
+                            type="button">
 
                         <i class="fa-solid fa-rotate-right"></i>
                         Reiniciar
@@ -309,12 +345,15 @@
                 <div class="final-estrelas">
                     ✦ ★ ✦ ★ ✦
                 </div>
+
                 <div class="icone-final">
                     🏆
                 </div>
+
                 <h2>
                     MISSÃO CONCLUÍDA!
                 </h2>
+
                 <p>
                     Encontraste todos os pares da galáxia!
                 </p>
@@ -322,29 +361,43 @@
                 <div class="resultado-final">
 
                     <span>🎯</span>
+
                     <div>
                         <small>
                             Tentativas utilizadas
                         </small>
+
                         <strong id="tentativas-final">
                             0
                         </strong>
                     </div>
+
                 </div>
 
                 <div class="acoes-final">
+
                     <button id="botao-reiniciar-final"
-                            class="botao-iniciar">
+                            class="botao-iniciar"
+                            type="button">
+
                         <i class="fa-solid fa-rocket"></i>
                         Nova missão
+
                     </button>
+
                     <button id="botao-inicio"
-                            class="botao-secundario">
+                            class="botao-secundario"
+                            type="button">
+
                         <i class="fa-solid fa-house"></i>
                         Escolher dificuldade
+
                     </button>
+
                 </div>
+
             </section>
+
         </div>
     </main>
 
@@ -353,26 +406,65 @@
          src=""
          alt="Amigo escolhido">
 
+    <div id="popupColecaoBrinquedos"
+         class="popup-brinquedos">
 
-    <div id="popupColecaoBrinquedos" class="popup-brinquedos">
         <div class="caixa-brinquedos">
-            <h2>A Tua Coleção de Brinquedos</h2>
-            <p>Estes são os brinquedos que já conquistaste!</p>
-            <div id="listaColecaoBrinquedos" class="lista-brinquedos"></div>
-            <button id="fecharBrinquedos" type="button" class="fechar-brinquedos">Fechar</button>
+
+            <h2>
+                A Tua Coleção de Brinquedos
+            </h2>
+
+            <p>
+                Estes são os brinquedos que já conquistaste!
+            </p>
+
+            <div id="listaColecaoBrinquedos"
+                 class="lista-brinquedos">
+            </div>
+
+            <button id="fecharBrinquedos"
+                    type="button"
+                    class="fechar-brinquedos">
+                Fechar
+            </button>
+
         </div>
+
     </div>
 
-    <div id="popupEscolherBrinquedo" class="popup-brinquedos popup-escolher-brinquedo">
+    <div id="popupEscolherBrinquedo"
+         class="popup-brinquedos popup-escolher-brinquedo">
+
         <div class="caixa-brinquedos">
-            <h2>Ganhaste um Brinquedo! 🎁</h2>
-            <p>Escolhe um antes que o tempo acabe!</p>
+
+            <h2>
+                Ganhaste um Brinquedo! 🎁
+            </h2>
+
+            <p>
+                Escolhe um antes que o tempo acabe!
+            </p>
+
             <div class="tempo-brinquedo">
-                <p class="texto-tempo-brinquedo">Tempo restante</p>
-                <div id="contadorBrinquedo" class="contador-brinquedo">10</div>
+
+                <p class="texto-tempo-brinquedo">
+                    Tempo restante
+                </p>
+
+                <div id="contadorBrinquedo"
+                     class="contador-brinquedo">
+                    10
+                </div>
+
             </div>
-            <div id="listaEscolherBrinquedo" class="lista-brinquedos"></div>
+
+            <div id="listaEscolherBrinquedo"
+                 class="lista-brinquedos">
+            </div>
+
         </div>
+
     </div>
 
     <script src="../../comum/utilizador.js"></script>
@@ -381,5 +473,4 @@
     <script src="../../comum/brinquedos.js"></script>
 
 </body>
-
 </html>
