@@ -171,7 +171,7 @@ function selecionarModo(botaoEscolhido) {
 // 'mensagem-inicio', 'mensagem-sucesso', 'mensagem-nova-tentativa' ou 'mensagem-revelacao'
 function mostrarMensagem(texto, classeEstilo) {
     mensagemJogo.textContent = texto;
-    mensagemJogo.className = 'caixa-mensagem fonte-titulo font-bold text-center rounded-full shrink-0 ' + classeEstilo;
+    mensagemJogo.className = 'caixa-mensagem fonte-titulo text-center rounded-full shrink-0 ' + classeEstilo;
 }
 
 function mostrarEcraInicial() {
