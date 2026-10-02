@@ -12,9 +12,7 @@
     <link rel="stylesheet" href="jogo.css">
 </head>
 
-<body
-    data-caminho-brinquedos="../../recursos/brinquedos/"
-    data-caminho-recursos="../../recursos/"
+<body data-caminho-brinquedos="../../recursos/brinquedos/" data-caminho-recursos="../../recursos/"
 >
 
     <main class="jogo">
@@ -24,7 +22,6 @@
         ====================================== -->
 
         <section class="zona-imagens">
-
             <img
                 id="imagem-jogo"
                 src=""
@@ -36,7 +33,6 @@
                 src="recursos/tampa.png"
                 alt="Observa e escolhe a resposta"
             >
-
         </section>
 
 
@@ -49,95 +45,72 @@
             <!-- CABEÇALHO -->
 
             <div class="cabecalho-jogo">
-
                 <div class="marca-jogo">
                     <span>★</span>
                     MiniGénio
                     <span>★</span>
                 </div>
-
                 <h1>
                     Jogo das<br>
                     Diferenças
                 </h1>
-
                 <div
                     id="oportunidadesDiferencas"
                     class="oportunidades-diferencas"
                     aria-label="Oportunidades de brinquedo restantes"
                 ></div>
-
             </div>
 
 
             <!-- UTILIZADOR E PONTUAÇÃO -->
 
             <div class="informacao-jogo">
-
                 <div class="cartao-utilizador">
-
                     <span class="legenda-cartao">
                         Jogador
                     </span>
-
                     <p
                         id="nomeJogo"
                         class="nome-utilizador-jogo nome-diferencas"
                     ></p>
-
                 </div>
 
-
                 <div class="pontuacao">
-
                     <span class="legenda-cartao">
                         Pontuação
                     </span>
-
                     <strong id="valor-pontuacao">
                         0 / 0
                     </strong>
-
                 </div>
-
             </div>
-
 
             <!-- RESPOSTAS -->
 
             <div class="titulo-respostas">
                 Escolhe a resposta
             </div>
-
-            <div
-                id="respostas"
-                class="respostas"
-            >
-
+            <div id="respostas" class="respostas">
                 <button
                     id="resposta1"
                     class="resposta"
                     type="button"
                 ></button>
-
                 <button
                     id="resposta2"
                     class="resposta"
                     type="button"
                 ></button>
-
                 <button
                     id="resposta3"
                     class="resposta"
                     type="button"
                 ></button>
-
                 <button
                     id="resposta4"
                     class="resposta"
                     type="button"
                 ></button>
-
             </div>
 
 
@@ -151,23 +124,19 @@
                 Seguinte
             </button>
 
-
             <!-- BOTÕES -->
 
             <div class="acoes-jogo">
-
                 <button
                     id="botaoBrinquedos"
                     class="botao-brinquedos-jogo"
                     type="button"
                 >
                     <span class="icone-acao">🧸</span>
-
                     <span>
                         Brinquedos
                     </span>
                 </button>
-
 
                 <button
                     id="home"
@@ -175,12 +144,10 @@
                     type="button"
                 >
                     <span class="icone-acao">🏠</span>
-
                     <span>
                         Home
                     </span>
                 </button>
-
             </div>
 
 
@@ -190,18 +157,14 @@
             ====================================== -->
 
             <div class="zona-amigo">
-
                 <img
                     id="amigoJogo"
                     class="amigo-utilizador-jogo amigo-diferencas"
                     src=""
                     alt="Amigo escolhido"
                 >
-
             </div>
-
         </aside>
-
     </main>
 
 
@@ -209,26 +172,18 @@
          COLEÇÃO DE BRINQUEDOS
     ====================================== -->
 
-    <div
-        id="popupColecaoBrinquedos"
-        class="popup-brinquedos"
-    >
-
+    <div id="popupColecaoBrinquedos" class="popup-brinquedos">
         <div class="caixa-brinquedos">
-
             <h2>
                 Os meus Brinquedos
             </h2>
-
             <p>
                 Estes são os brinquedos que já ganhaste.
             </p>
-
             <div
                 id="listaColecaoBrinquedos"
                 class="lista-brinquedos"
             ></div>
-
             <button
                 id="fecharBrinquedos"
                 class="fechar-brinquedos"
@@ -236,54 +191,38 @@
             >
                 Fechar
             </button>
-
         </div>
-
     </div>
-
 
     <!-- =====================================
          ESCOLHER BRINQUEDO
     ====================================== -->
 
-    <div
-        id="popupEscolherBrinquedo"
-        class="popup-brinquedos popup-escolher-brinquedo"
-    >
-
+    <div id="popupEscolherBrinquedo" class="popup-brinquedos popup-escolher-brinquedo">
         <div class="tempo-brinquedo">
-
             <p class="texto-tempo-brinquedo">
                 Tempo para escolher
             </p>
-
             <div
                 id="contadorBrinquedo"
                 class="contador-brinquedo"
             >
                 10
             </div>
-
         </div>
 
-
         <div class="caixa-brinquedos">
-
             <h2>
                 Escolhe um brinquedo!
             </h2>
-
             <p>
                 Escolhe um antes que o tempo termine.
             </p>
-
             <div
                 id="listaEscolherBrinquedo"
                 class="lista-brinquedos"
             ></div>
-
         </div>
-
     </div>
 
 
@@ -295,7 +234,5 @@
     <script src="../../comum/utilizador.js"></script>
     <script src="../../comum/brinquedos.js"></script>
     <script src="jogo.js"></script>
-
 </body>
-
 </html>

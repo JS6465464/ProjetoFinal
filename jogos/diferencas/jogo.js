@@ -274,11 +274,6 @@ function criarOportunidadesBrinquedos() {
 
     }
 
-
-    console.log(
-        "Oportunidades de brinquedos:",
-        oportunidadesBrinquedos
-    )
 }
 
 
@@ -378,10 +373,7 @@ function utilizarOportunidadeBrinquedoDiferencas() {
     atualizarSimbolosOportunidades()
 
 
-    console.log(
-        "Oportunidades utilizadas:",
-        oportunidadesUtilizadasDiferencas
-    )
+
 }
 
 
@@ -495,16 +487,6 @@ function descobrirResposta(nomeImagem) {
     respostaCorreta =
         Number(doisUltimos)
 
-
-    console.log(
-        "Imagem:",
-        nomeImagem
-    )
-
-    console.log(
-        "Resposta correta:",
-        respostaCorreta
-    )
 }
 
 

@@ -21,7 +21,7 @@ body {
     width: 1200px;
     height: 800px;
     max-width: 96vw;
-    max-height: min(82vh, calc(100vh - 160px));
+    max-height: min(82vh, calc(100vh - 230px));
     position: relative;
 }
 
@@ -356,4 +356,24 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+
+@media (max-width:1650px) {
+    .amigo-animais {
+        display:none !important;
+    }
+}
+@media (max-width:1000px) {
+    #nomeJogo {
+        display:none !important;
+    }
+}
+@media (max-height: 850px) {
+    .area-cartoes {
+        gap: 0 !important;
+    }
+    #botao-ouvir-som {
+        width: 55px !important;
+        height: 55px !important;
+    }
 }

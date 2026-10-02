@@ -94,7 +94,10 @@ function criarBalao() {
 
     b.dataset.cor = cor;
 
-    b.addEventListener("pointerdown", function () {rebentarBalao(b);});
+    b.addEventListener("pointerdown", function (e) {
+        e.preventDefault();
+        rebentarBalao(b);
+    });
 
     b.addEventListener("animationend", function (e) {
             if (e.animationName === "subir") {

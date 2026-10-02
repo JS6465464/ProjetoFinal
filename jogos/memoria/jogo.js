@@ -51,6 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
         memoryBoard.style.gridTemplateColumns =
             `repeat(${isHardMode ? 5 : 4}, 1fr)`;
 
+        memoryBoard.classList.toggle('modo-dificil', isHardMode);
+        
         shuffleCards();
         memoryBoard.innerHTML = '';
 
