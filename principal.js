@@ -875,3 +875,4 @@ garantirUtilizadorAtual();
 atualizarBotaoBorracha()
 atualizarBotaoNovoRegisto();
 atualizarPopupAjudaAmigo();
+

@@ -7,6 +7,12 @@ body {
     min-height:100vh;
     font-family:'Quicksand',Arial,sans-serif;
     color:#49366f;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
     background:radial-gradient(circle at 10% 20%,rgba(255,190,230,.75),transparent 28%),radial-gradient(circle at 90% 15%,rgba(180,225,255,.8),transparent 30%),radial-gradient(circle at 50% 100%,rgba(255,225,150,.7),transparent 35%),linear-gradient(135deg,#f8e9ff,#e7f5ff 50%,#fff1d6);
 }
 
@@ -15,7 +21,8 @@ body {
     justify-content:center;
     align-items:center;
     gap:20px;
-    padding:25px 20px 15px;
+    padding:0px 20px 0;
+    margin-bottom: clamp(10px, 2vh, 40px);
     text-align:center;
 }
 
@@ -43,13 +50,14 @@ body {
 .zona-jogo {
     display:flex;
     justify-content:center;
-    padding:10px 20px 35px;
+    padding:10px 20px 20px;
 }
 
 .painel-jogo {
-    width:1100px;
-    max-width:100%;
-    min-height:650px;
+    width:1200px;
+    height:800px;
+    max-width:96vw;
+    max-height:min(82vh, calc(100vh - 160px));
     overflow:hidden;
     display:flex;
     flex-direction:column;
@@ -398,7 +406,11 @@ body {
     box-shadow:0 5px 0 #8664c9,0 9px 18px rgba(150,100,190,.2);
     transition:.15s ease;
 }
+.botao-secundario{
+    padding-bottom: 20px;
+    padding-top: 20px;
 
+}
 .botao-iniciar:hover,
 .botao-secundario:hover,
 .botao-reiniciar:hover {
@@ -599,12 +611,12 @@ body {
 
 .planeta-esquerdo {
     left:5%;
-    top:15%;
+    top:8%;
 }
 
 .planeta-direito {
     right:5%;
-    bottom:15%;
+    bottom:7%;
 }
 
 .estrelas-decoracao {
@@ -907,6 +919,11 @@ body {
     }
 }
 
+
 .amigo-utilizador-jogo {
-    bottom:80px !important;
+    position: fixed;
+    left: calc(89% - 15px);
+    bottom: 20px;
+    transform: translateX(-50%);
+    z-index: 10;
 }

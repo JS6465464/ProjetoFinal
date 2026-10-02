@@ -322,7 +322,7 @@ body {
         box-shadow 0.15s,
         border-color 0.15s,
         color 0.15s,
-        *background* 0.15s;
+        background 0.15s;
 }
 /* Pequeno brilho no botão */
 .zona-lateral #respostas .resposta::before {
