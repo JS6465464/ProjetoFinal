@@ -213,4 +213,4 @@ function rebentarBalao(b) {
 setTimeout(criarBalao, 3000);
 
 // Depois, um balão a cada 8 segundos
-setInterval(criarBalao, 8000);
+setInterval(criarBalao, 7000);
