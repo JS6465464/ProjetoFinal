@@ -425,14 +425,17 @@ body {
 }
 
 .ecra-jogo {
+    flex:1;
+    width:100%;
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content:center;
     padding:20px;
 }
 
 .cabecalho-partida {
-    width:min(760px,95%);
+    width:min(820px,95%);
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -457,7 +460,7 @@ body {
 }
 
 .memory-board {
-    width:min(780px,95%);
+    width:min(820px,95%);
     margin:25px auto;
     display:grid;
     gap:14px;
@@ -465,7 +468,7 @@ body {
 }
 
 .card {
-    height:105px;
+    height:115px;
     position:relative;
     cursor:pointer;
 }
